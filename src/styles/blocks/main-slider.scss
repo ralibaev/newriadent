@@ -1,0 +1,195 @@
+.main-slider {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  overflow: hidden;
+  &__list {
+    position: relative;
+    display: flex;
+    width: 49%;
+    height: 570px;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    list-style: none;
+    overflow: hidden;
+  }
+  &__item {
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0 50px;
+    box-sizing: border-box;
+    transition: .3s ease;
+    &:nth-child(1) {
+      left: 0;
+      background: url('../img/slider-back1.svg') bottom no-repeat #462899;
+    }
+    &:nth-child(2) {
+      left: 100%;
+      background: url('../img/slider-back1.svg') bottom no-repeat #462899;
+    }
+    &:nth-child(3) {
+      left: 200%;
+      background: url('../img/slider-back1.svg') bottom no-repeat #462899;
+    }
+  }
+  &__img-block, &__text-block {
+    height: 100%;
+    width: 50%;
+  }
+  &__img-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    line-height: 0;
+    &:nth-child(2), &:nth-child(3) {margin-bottom: 50px;}
+  }
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    h2, span {
+      color: white;
+    }
+    h2 {
+      font-size: 36px;
+      font-weight: 600;
+    }
+    span {
+      font-size: 24px;
+      font-weight: 300;
+    }
+    button {
+      width: 250px;
+      height: 55px;
+      margin-top: 50px;
+      color: #462899;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+    }
+  }
+  &__button-list {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    width: 100%;
+  }
+  &__button-item {
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
+    background-color: white;
+    opacity: 0.2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    &--active {
+      opacity: 1;
+    }
+  }
+  &__grid {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    width: 46%;
+    height: 570px;
+  }
+  &__grid-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 48.5%;
+    height: 48%;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    z-index: -10;
+    &:nth-child(1), &:nth-child(4) {
+      background-color: #462899;
+      h3, span {color: white;}
+      button {
+        color: #462899;
+        background-color: white;
+      }
+    }
+    &:nth-child(2), &:nth-child(3) {
+      background-color: #F8F8F8;
+      button {
+        color: white;
+        background-color: #462899;
+      }
+    }
+    &:nth-child(1) {
+      background-image: url('../img/mainslider_gridback1.svg');
+      background-size: 97px;
+      background-position: top 10% right 2.5%;
+      background-repeat: no-repeat;
+      picture {
+        bottom: 0;
+        right: 5.5%;
+      }
+    }
+    &:nth-child(2) {
+      background-image: url('../img/mainslider_gridback2.svg');
+      background-size: 88px;
+      background-position: bottom 11% right 67%;
+      background-repeat: no-repeat;
+      picture {
+        bottom: 0;
+        right: 2.5%;
+      }
+    }
+    &:nth-child(3) {
+      background-image: url('../img/mainslider_gridback3.svg');
+      background-size: 120px;
+      background-position: top 3% right 3%;
+      background-repeat: no-repeat;
+      picture {
+        bottom: 25%;
+        right: 5.5%;
+      }
+    }
+    &:nth-child(4) {
+      background-image: url('../img/mainslider_gridback4.svg');
+      background-size: 96px 119px;
+      background-position: bottom 0 right 47%;
+      background-repeat: no-repeat;
+      picture {
+        bottom: 15%;
+        right: 5.5%;
+      }
+    }
+    h3 {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+    span {font-size: 12px;}
+    button {
+      width: 90px;
+      height: 25px;
+      font-size: 10px;
+      font-weight: 600;
+      border: none;
+      border-radius: 13px;
+    }
+    picture {
+      position: absolute;
+      line-height: 0;
+      z-index: -5;
+    }
+  }
+  &__grid-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+  }
+}

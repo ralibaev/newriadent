@@ -1,0 +1,49 @@
+.lilform {
+  padding: 50px 0;
+  background: url('../img/lilform-back.png') bottom 0px right 40% no-repeat #462899;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__question, form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    span {font-size: 18px;}
+  }
+  &__title, span, &__phone {color: white;}
+  &__title {margin-top: 0; font-size: 40px;}
+  &__phone-text {margin: 40px 0 20px;}
+  &__phone {font-size: 40px; text-decoration: none;}
+  &__form-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  &__right-title {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  form {
+    align-items: flex-end;
+  }
+  &__name-input, &__phone-input {
+    width: 250px;
+    height: 45px;
+    padding: 0 0 0 20px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 20px;
+  }
+  &__submit {
+    width: 150px;
+    height: 45px;
+    font-weight: 600;
+    color: #067F53;
+    border: none;
+    border-radius: 20px;
+  }
+}

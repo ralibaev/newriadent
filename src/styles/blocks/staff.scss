@@ -1,0 +1,56 @@
+.staff {
+  background: url('../img/staff-backimg.png') center/cover no-repeat;
+  &__container {
+    padding: 220px 0 100px;
+  }
+  &__wrapper {
+    background: url('../img/staff-back.png') top/contain no-repeat;
+  }
+  &__main-block {
+    display: flex;
+  }
+  &__photo, &__text {
+    width: 50%;
+  }
+  &__photo {
+    margin-top: 20px;
+    picture {
+      display: block;
+      width: 82.5%;
+    }
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    padding: 150px 30px 0;
+    h2, span {color: white;}
+    h2 {font-weight: 300; font-size: 40px;}
+  }
+  &__sign {
+    display: flex;
+    align-items: center;
+    span {font-size: 24px;}
+    img {margin-left: 20px;}
+  }
+  &__bottom {
+    overflow: hidden;
+  }
+  &__list {
+    display: flex;
+    width: 200%;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+  }
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3, span {text-align: center;}
+    h3 {font-size: 20px; font-weight: 600;}
+    span {font-size: 18px; font-weight: 300;}
+  }
+}

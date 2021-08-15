@@ -1,0 +1,20 @@
+.socials {
+  background: url('../img/socials-back.png') bottom no-repeat $violet;
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 40px 0;
+  }
+  span {
+    font-size: 25px;
+    color: white;
+  }
+  &__list {
+    display: flex;
+  }
+  &__item {
+    margin-left: 30px;
+    a {cursor: pointer;}
+  }
+}

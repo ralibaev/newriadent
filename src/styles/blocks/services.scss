@@ -1,0 +1,66 @@
+.services {
+  padding-top: 70px;
+  background: url('../img/services-back1.png') left bottom no-repeat, url('../img/services-back2.png') right bottom no-repeat #EBEBEB;
+  &__title {
+    margin-top: 0;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+  }
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+  }
+  &__tab {
+    width: 49%;
+    padding: 10px;
+    color: #23493B;
+    border: 1px solid #462899;
+    background-color: white;
+    cursor: pointer;
+    &--active {
+      background-color: $violet;
+      color: white;
+    }
+  }
+  &__tabs-list {
+    position: relative;
+    display: flex;
+    height: 1300px;
+    overflow: hidden;
+  }
+  &__list {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 25px;
+    transition: .3s ease;
+    &:nth-child(1) {left: 0;}
+    &:nth-child(2) {left: 100%;}
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18%;
+    margin-right: 2.5%;
+    margin-bottom: 25px;
+    padding: 60px 20px 20px;
+    background-color: white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:nth-child(5n) {margin-right: 0;}
+    span {
+      margin-top: 60px;
+      font-size: 20px;
+      text-align: center;
+    }
+    svg {
+      width: 90px;
+      height: 88px;
+    }
+  }
+}
