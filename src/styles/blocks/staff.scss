@@ -8,15 +8,24 @@
   }
   &__main-block {
     display: flex;
+    align-items: flex-end;
+    margin-bottom: 30px;
   }
   &__photo, &__text {
     width: 50%;
   }
   &__photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 600px;
     margin-top: 20px;
+    padding: 20px 0 0 20px;
     picture {
       display: block;
       width: 82.5%;
+      line-height: 0;
     }
   }
   &__text {
@@ -37,13 +46,24 @@
   }
   &__list {
     display: flex;
-    width: 200%;
+    width: 100%;
+    padding-bottom: 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
   }
   &__item {
+    padding: 20px;
+    min-width: 25%;
+    box-sizing: border-box;
+  }
+  &__item-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    cursor: pointer;
+    &:hover h3, &:hover span {
+      opacity: 0.7;
+    }
   }
   &__text-block {
     display: flex;

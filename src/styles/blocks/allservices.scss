@@ -1,0 +1,23 @@
+.allservices {
+  padding: 100px 0;
+  color: white;
+  background: url('../img/allservices-back.png') right -5px bottom -5px no-repeat #462899;
+  &__columns {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__item {
+    margin: 10px 0;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}

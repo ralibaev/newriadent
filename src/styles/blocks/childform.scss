@@ -1,0 +1,110 @@
+.childform {
+  position: fixed;
+  top: 20%;
+  left: calc(50% - 381px);
+  display: none;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 50px;
+  width: 762px;
+  box-sizing: border-box;
+  background: url('../img/orange_form.svg') right no-repeat #EEE;
+  border-radius: 20px;
+  z-index: 200;
+  animation: bounce 0.6s;
+  &--show {
+    display: flex;
+  }
+  @media (max-width: 767px) {
+    top: 10%;
+    left: calc(50% - 140px);
+    width: 280px;
+    padding: 20px;
+    background: #EEE;
+  }
+  &__overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    cursor: pointer;
+    &--show {
+      display: block;
+    }
+  }
+  &__close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 200;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 2px;
+      width: 22px;
+      height: 4px;
+      background-color: rgb(208, 208, 208);
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  h2 {
+    font-size: 24px;
+    @media (max-width: 767px) {
+      width: 100%;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+  span {
+    display: block;
+    width: 100%;
+  }
+  &__input {
+    margin-bottom: 10px;
+    padding: 11px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    @media (max-width: 767px) {
+      width: calc(100% - 40px);
+    }
+  }
+  input[type="submit"] {
+    height: 40px;
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #462899;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+  &__img {
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+}
+@keyframes bounce {
+    0% {transform: translateY(-1000px);}
+    70% {transform: translateY(30px);}
+    90% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}

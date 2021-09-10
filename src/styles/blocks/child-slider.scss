@@ -1,0 +1,32 @@
+.child-slider {
+  color: white;
+  // background-color: rgba(70, 40, 153, 0.8);
+  background: url('../img/child-slider-img.png') bottom 0 right 230px no-repeat, url('../img/child-slider-back.png') bottom no-repeat rgba(70, 40, 153, 0.8);
+  &__container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  &__wrapper {
+    max-width: 500px;
+  }
+  &__title {
+    margin-top: 200px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  &__text {
+    margin-top: 70px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__button {
+    margin-top: 150px;
+    margin-bottom: 200px;
+    padding: 22px 32px;
+    color: white;
+    text-transform: uppercase;
+    background-color: #462899;
+    border: none;
+    border-radius: 20px;
+  }
+}

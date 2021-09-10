@@ -1,0 +1,54 @@
+.sam-form {
+  background-color: #462899;
+  &__container {
+    background: url('../img/sam-background.png') right bottom no-repeat;
+  }
+  &__left {
+    max-width: 600px;
+    padding: 50px 0;
+  }
+  &__title {
+    margin-top: 50px;
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+  }
+  &__span {
+    font-size: 18px;
+    color: white;
+  }
+  &__form-block {
+    margin-top: 50px;
+    padding: 55px;
+    background-color: white;
+    border-radius: 20px;
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: $violet;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      margin: 10px 0;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 300;
+      border: 1px solid $main-green;
+      border-radius: 20px;
+    }
+  }
+  &__submit {
+    margin-top: 50px;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: 300;
+    color: white;
+    background-color: $main-green;
+    border: none;
+    border-radius: 20px;
+  }
+}

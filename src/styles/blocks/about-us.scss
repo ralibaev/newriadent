@@ -1,0 +1,42 @@
+.about-us {
+  &__list {
+    position: relative;
+    display: flex;
+    height: 1000px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+  &__item {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 50px;
+    box-sizing: border-box;
+    transition: .3s ease;
+    &:nth-child(1) {
+      left: 0;
+    }
+    &:nth-child(2) {
+      left: 100%;
+    }
+  }
+  &__title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #462899;
+  }
+  &__under-title {
+    font-size: 40px;
+    font-weight: 300;
+  }
+  &__photo {
+    margin-bottom: 50px;
+  }
+  &__span {
+    font-size: 30px;
+    font-weight: 600;
+  }
+}

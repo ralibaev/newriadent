@@ -1,0 +1,53 @@
+.child-form {
+  padding: 100px 0;
+  background: url('../img/child-form-back.svg') bottom no-repeat #462899;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__title {
+    font-size: 24px;
+    color: white;
+  }
+  &__left-time {
+    display: flex;
+    color: white;
+  }
+  &__days, &__hours, &__minutes, &__seconds {
+    text-align: center;
+  }
+  &__number-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    margin: 0 10px;
+    border-radius: 20px;
+    background-color: white;
+  }
+  &__days-span, &__hours-span, &__minutes-span, &__seconds-span {
+    font-size: 72px;
+    font-weight: 600;
+  }
+  &__days-span {
+    color: #44A5FF;
+  }
+  &__hours-span {
+    color: #067F53;
+  }
+  &__minutes-span {
+    color: #462899;
+  }
+  &__seconds-span {
+    color: #462899;
+  }
+  &__right {
+    box-sizing: border-box;
+  }
+}

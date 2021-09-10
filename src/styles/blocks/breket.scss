@@ -1,0 +1,23 @@
+.breket {
+  padding: 40px 0;
+  background-color: #AD6BB3;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__text, &__img {
+    width: 45%;
+  }
+  &__title {
+    margin-top: 0;
+    font-family: 'Alabama';
+    font-size: 40px;
+    color: white;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+  }
+}
