@@ -1,6 +1,5 @@
 .lilform {
   padding: 50px 0;
-  background: url('../img/lilform-back.png') bottom 0px right 50% no-repeat #462899;
   &__container {
     display: flex;
     justify-content: space-between;
@@ -48,4 +47,10 @@
     cursor: pointer;
     &:hover {opacity: 0.7;}
   }
+}
+body.webp .lilform {
+  background: url('../img/lilform-back.webp') bottom 0px right 50% no-repeat #462899;
+}
+body.no-webp .lilform {
+  background: url('../img/lilform-back.png') bottom 0px right 50% no-repeat #462899;
 }

@@ -317,6 +317,14 @@ if (faqItem) {
   }
 })();
 
+// Слайдер врачей
+let staffItem = document.querySelectorAll('.staff__item');
+let staffButtonPrev = document.querySelector('.staff__button--prev');
+let staffButtonNext = document.querySelector('.staff__button--next');
+let staffButtonsList = document.querySelector('.staff__buttons-list');
+
+
+// Попап
 let toCallPopup = document.querySelector('.popup__child');
 let childOverlay = document.querySelector('.childform__overlay');
 let childForm = document.querySelector('.childform');

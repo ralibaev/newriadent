@@ -1,18 +1,32 @@
 .staff {
-  background: url('../img/staff-backimg.png') center/cover no-repeat;
+  // background: url('../img/staff-backimg.png') center/cover no-repeat;
+  @media (max-width: $tablet-max) {background: none;}
   &__container {
     padding: 220px 0 100px;
+    @media (max-width: $tablet-max) {
+      padding: 50px 0;
+    }
   }
   &__wrapper {
     background: url('../img/staff-back.png') top/contain no-repeat;
+    @media (max-width: $tablet-max) {
+      padding: 20px;
+      box-sizing: border-box;
+      background: #462899;
+      border-radius: 20px;
+    }
   }
   &__main-block {
     display: flex;
     align-items: flex-end;
     margin-bottom: 30px;
+    @media (max-width: $tablet-max) {
+      margin-bottom: 0;
+    }
   }
   &__photo, &__text {
     width: 50%;
+    @media (max-width: $tablet-max) {width: 100%;}
   }
   &__photo {
     display: flex;
@@ -22,6 +36,7 @@
     height: 600px;
     margin-top: 20px;
     padding: 20px 0 0 20px;
+    @media (max-width: $tablet-max) {display: none;}
     picture {
       display: block;
       width: 82.5%;
@@ -32,12 +47,33 @@
     display: flex;
     flex-direction: column;
     padding: 150px 30px 0;
+    @media (max-width: $tablet-max) {
+      padding: 0;
+    }
     h2, span {color: white;}
-    h2 {font-weight: 300; font-size: 40px;}
+    h2 {
+      font-weight: 300;
+      font-size: 40px;
+      @media (max-width: $tablet-max) {
+        padding-bottom: 10px;
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center;
+        border-bottom: 1px solid white;
+      }
+    }
+    span {
+      @media (max-width: $tablet-max) {
+        display: none;
+      }
+    }
   }
   &__sign {
     display: flex;
     align-items: center;
+    @media (max-width: $tablet-max) {
+      display: none;
+    }
     span {font-size: 24px;}
     img {margin-left: 20px;}
   }
@@ -55,6 +91,17 @@
     padding: 20px;
     min-width: 25%;
     box-sizing: border-box;
+    @media (max-width: $tablet-max) {
+      min-width: 33.33%;
+      padding: 10px;
+    }
+    @media (max-width: $phone-max) {
+      min-width: 50%;
+    }
+    @media (max-width: 519px) {
+      min-width: 100%;
+      padding: 0;
+    }
   }
   &__item-inner {
     display: flex;
@@ -64,13 +111,108 @@
     &:hover h3, &:hover span {
       opacity: 0.7;
     }
+    picture {
+      @media (max-width: $tablet-max) {
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      @media (max-width: $phone-max) {
+        border-radius: 10px;
+      }
+    }
   }
   &__text-block {
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: $tablet-max) {
+      color: white;
+    }
     h3, span {text-align: center;}
-    h3 {font-size: 20px; font-weight: 600;}
-    span {font-size: 18px; font-weight: 300;}
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      @media (max-width: $tablet-max) {
+        font-size: 16px;
+      }
+    }
+    span {
+      font-size: 18px;
+      font-weight: 300;
+      @media (max-width: $tablet-max) {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      @media (min-width: $laptop-min) {display: none;}
+    }
   }
+  &__buttons {
+    position: relative;
+  }
+  &__prev-next {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    &::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid white;
+    }
+    &--prev {
+      padding-left: 5px;
+      &::before {
+        border-left: 2px solid white;
+        transform: rotate(-45deg);
+      }
+    }
+    &--next {
+      padding-right: 5px;
+      &::before {
+        border-right: 2px solid white;
+        transform: rotate(45deg);
+      }
+    }
+  }
+  &__buttons-list {
+    position: absolute;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  &__buttons-item {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+body.webp .staff {
+  background: url('../img/staff-backimg.webp') center/cover no-repeat;
+}
+body.no-webp .staff {
+  background: url('../img/staff-backimg.png') center/cover no-repeat;
 }

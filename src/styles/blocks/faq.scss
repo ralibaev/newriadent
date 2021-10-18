@@ -1,5 +1,4 @@
 .faq {
-  background: url('../img/faq-background.png') top right no-repeat;
   &__container {
     padding: 100px 0;
   }
@@ -46,4 +45,10 @@
       visibility: visible;
     }
   }
+}
+body.webp .faq {
+  background: url('../img/faq-background.webp') top right no-repeat;
+}
+body.no-webp .faq {
+  background: url('../img/faq-background.png') top right no-repeat;
 }

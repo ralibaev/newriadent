@@ -1,8 +1,5 @@
 .sam-form {
   background-color: #462899;
-  &__container {
-    background: url('../img/sam-background.png') right bottom no-repeat;
-  }
   &__left {
     max-width: 600px;
     padding: 50px 0;
@@ -51,4 +48,10 @@
     border: none;
     border-radius: 20px;
   }
+}
+body.webp .sam-form__container {
+  background: url('../img/sam-background.webp') right bottom no-repeat;
+}
+body.no-webp .sam-form__container {
+  background: url('../img/sam-background.png') right bottom no-repeat;
 }

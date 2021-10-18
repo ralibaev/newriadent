@@ -1,6 +1,5 @@
 .services {
   padding-top: 70px;
-  background: url('../img/services-back1.png') left bottom no-repeat, url('../img/services-back2.png') right bottom no-repeat #EBEBEB;
   @media (max-width: 1439px) {
     background: #EBEBEB;
   }
@@ -142,4 +141,10 @@
     height: 50px;
     text-align: center;
   }
+}
+body.webp .services {
+  background: url('../img/services-back1.webp') left bottom no-repeat, url('../img/services-back2.webp') right bottom no-repeat #EBEBEB;
+}
+body.no-webp .services {
+  background: url('../img/services-back1.png') left bottom no-repeat, url('../img/services-back2.png') right bottom no-repeat #EBEBEB;
 }
