@@ -1,21 +1,46 @@
 .child-form {
-  padding: 100px 0;
-  background: url('../img/child-form-back.svg') bottom no-repeat #462899;
+  background: url('../img/child-form-back.svg') bottom/cover no-repeat #462899;
   &__container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    padding: 20px;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+      padding: 30px;
+    }
+    @media (min-width: $desktop-min) {
+      padding: 100px 0;
+    }
+  }
+  &__left, &__right {
+    @media (min-width: $tablet-min) {
+      width: 50%;
+    }
   }
   &__left {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (min-width: $tablet-min) {
+      justify-content: space-around;
+    }
   }
   &__title {
-    font-size: 24px;
+    font-size: 18px;
+    text-align: center;
     color: white;
+    @media (min-width: $laptop-min) {
+      font-size: 20px;
+    }
+    @media (min-width: $desktop-min) {
+      font-size: 24px;
+    }
   }
   &__left-time {
     display: flex;
+    justify-content: center;
+    padding: 20px 0;
     color: white;
   }
   &__days, &__hours, &__minutes, &__seconds {
@@ -25,15 +50,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     margin: 0 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: white;
+    @media (min-width: $laptop-min) {
+      width: 90px;
+      height: 90px;
+      border-radius: 15px;
+    }
+    @media (min-width: $desktop-min) {
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+    }
   }
   &__days-span, &__hours-span, &__minutes-span, &__seconds-span {
-    font-size: 72px;
+    font-size: 30px;
     font-weight: 600;
+    @media (min-width: $laptop-min) {
+      font-size: 48px;
+    }
+    @media (min-width: $desktop-min) {
+      font-size: 72px;
+    }
   }
   &__days-span {
     color: #44A5FF;

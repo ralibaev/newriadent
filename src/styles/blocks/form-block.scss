@@ -8,7 +8,9 @@
   &__pizdesh-block, &__form-block {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    @media (min-width: $laptop-min) {
+      width: 50%;
+    }
   }
   &__pizdesh-block {
     padding: 100px 120px 0 50px;
@@ -30,33 +32,53 @@
     margin: 0 auto;
   }
   &__form-block {
-    padding: 55px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
+    @media (min-width: $laptop-min) {
+      max-width: none;
+      padding: 30px;
+      border-radius: 15px;
+    }
+    @media (min-width: $desktop-min) {
+      padding: 55px;
+      border-radius: 20px;
+    }
     form {
       display: flex;
       flex-direction: column;
     }
     input {
       margin: 10px 0;
-      padding: 15px;
-      font-size: 18px;
+      padding: 10px;
+      font-size: 16px;
       font-weight: 300;
       border: 1px solid $main-green;
-      border-radius: 20px;
+      border-radius: 10px;
+      @media (min-width: $laptop-min) {
+        padding: 15px;
+        font-size: 18px;
+        border-radius: 20px;
+      }
     }
   }
   &__title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
     color: $violet;
     text-align: center;
+    @media (min-width: $laptop-min) {
+      font-size: 24px;
+    }
   }
   &__submit {
     position: relative;
-    margin-top: 50px;
-    padding: 15px;
-    font-size: 25px;
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
     font-weight: 300;
     color: white;
     background-color: $main-green;
@@ -76,6 +98,18 @@
     }
     &:hover {
       opacity: 0.7;
+    }
+    @media (min-width: $tablet-min) {
+      margin-top: 20px;
+    }
+    @media (min-width: $laptop-min) {
+      height: auto;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 25px;
+    }
+    @media (min-width: $desktop-min) {
+      margin-top: 30px;
     }
   }
 }

@@ -1,40 +1,67 @@
 .no-pain {
   color: #462899;
   &__container {
-    position: relative;
     display: flex;
     justify-content: space-between;
-    padding-top: 100px;
+    padding: 20px 0 40px;
+    @media (min-width: $tablet-min) {
+      position: relative;
+      padding: 30px 0;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
   }
   &__maloy {
-    margin-right: 7%;
+    width: 60%;
+    margin-top: 20px;
     line-height: 0;
   }
-  &__without-pain {
-    width: 55%;
+  &__sertif {
+    width: 100%;
+    margin-top: -100px;
+    @media (min-width: 420px) {
+      width: 80%;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    @media (min-width: $tablet-min) {
+      width: 55%;
+    }
   }
   &__title {
     font-family: 'Alabama';
-    font-size: 40px;
+    font-size: 24px;
+    text-align: center;
+    @media (min-width: $tablet-min) {
+      font-size: 24px;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 28px;
+    }
   }
   &__list {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    padding-left: 40px;
     &::before {
       content: '';
       position: absolute;
       top: 20px;
-      left: -20px;
+      left: 20px;
       width: 1px;
-      height: 90%;
+      height: 85%;
       background-color: black;
     }
   }
   &__item {
     position: relative;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
     &:last-child {
       margin-bottom: 0;
     }
@@ -49,10 +76,15 @@
       background-color: #98c8ed;
       border-radius: 50%;
     }
+    @media (min-width: $tablet-min) {
+      margin-bottom: 70px;
+    }
   }
   &__sertif-img {
-    position: absolute;
-    bottom: -220px;
-    left: 200px;
+    @media (min-width: $tablet-min) {
+      position: absolute;
+      bottom: -220px;
+      left: 200px;
+    }
   }
 }

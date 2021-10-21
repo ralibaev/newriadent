@@ -1,23 +1,61 @@
 .orange-services {
-  background: url('../img/orange-services-back1.png') bottom 0 left 70px no-repeat, url('../img/orange-services-back.png') bottom no-repeat;
+  background-color: rgba(173, 107, 178, 0.2);
+  @media (min-width: $laptop-min) {
+    background: url('../img/orange-services-back.png') bottom/contain no-repeat;
+  }
+  @media (min-width: $desktop-min) {
+    background: url('../img/orange-services-back1.png') bottom 0 left 70px no-repeat, url('../img/orange-services-back.png') bottom/contain no-repeat;
+  }
   &__container {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @media (min-width: $tablet-min) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    @media (min-width: $laptop-min) {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    @media (min-width: $desktop-min) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
   }
   &__list {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+    }
   }
   &__item {
     display: flex;
     flex-direction: column;
-    width: 335px;
-    height: 400px;
-    padding: 30px;
+    width: 100%;
+    max-width: 335px;
+    height: 220px;
+    padding: 10px;
+    margin-bottom: 20px;
     box-sizing: border-box;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0px 0px 50px 10px rgba(70, 40, 153, 0.45);
+    @media (min-width: $tablet-min) {
+      width: calc((100% - 60px) / 3);
+      height: 260px;
+      padding: 15px;
+      margin-bottom: 0;
+    }
+    @media (min-width: $laptop-min) {
+      height: 300px;
+      padding: 20px;
+      box-shadow: 0px 0px 50px 10px rgba(70, 40, 153, 0.45);
+    }
+    @media (min-width: $desktop-min) {
+      height: 350px;
+    }
     &:nth-child(1) {
       h3 {color: #55BD97;}
     }
@@ -29,11 +67,18 @@
     }
   }
   &__title {
-    margin-top: 20px;
+    margin-bottom: 0;
     font-family: 'Alabama';
-    font-size: 40px;
+    font-size: 18px;
     text-transform: uppercase;
     text-align: center;
+    @media (min-width: $laptop-min) {
+      font-size: 28px;
+    }
+    @media (min-width: $desktop-min) {
+      margin-top: 20px;
+      font-size: 40px;
+    }
   }
   &__text-block {
     display: flex;
@@ -41,7 +86,14 @@
     align-items: center;
     height: 100%;
     p {
+      font-size: 14px;
       text-align: center;
+      @media (min-width: $laptop-min) {
+        font-size: 16px;
+      }
+      @media (min-width: $desktop-min) {
+        font-size: 18px;
+      }
     }
   }
 }
