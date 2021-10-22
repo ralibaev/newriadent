@@ -1,23 +1,48 @@
 .breket {
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: #AD6BB3;
+  @media (min-width: $tablet-min) {
+    padding: 30px 0;
+  }
   &__container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+    }
   }
   &__text, &__img {
-    width: 45%;
+    width: 100%;
+    @media (min-width: $tablet-min) {
+      width: 45%;
+    }
   }
   &__title {
     margin-top: 0;
     font-family: 'Alabama';
-    font-size: 40px;
+    font-size: 20px;
+    text-align: center;
     color: white;
+    @media (min-width: $tablet-min) {
+      font-size: 24px;
+      text-align: left;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 40px;
+    }
   }
   p {
-    font-size: 18px;
     font-weight: 600;
     color: white;
+    text-align: center;
+    @media (min-width: $tablet-min) {
+      text-align: left;
+    }
+  }
+  &__img {
+    width: 60%;
+    max-width: 420px;
   }
 }

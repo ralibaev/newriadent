@@ -2,23 +2,60 @@
   background: url('../img/socials-back.png') bottom no-repeat $violet;
   &__container {
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding: 40px 0;
+    padding: 20px 0;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+      padding: 30px 0;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 40px 0;
+    }
   }
   span {
-    font-size: 25px;
     color: white;
+    font-size: 14px;
+    @media (min-width: $tablet-min) {
+      margin-right: 50px;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 20px;
+    }
   }
   &__list {
     display: flex;
+    margin-top: 30px;
+    @media (min-width: $tablet-min) {
+      margin-top: 0;
+    }
   }
   &__item {
-    margin-left: 30px;
+    margin: 0 10px;
+    &:nth-child(1) a {
+      background: url('../img/vk-social.png') center/cover no-repeat;
+    }
+    &:nth-child(2) a {
+      background: url('../img/instagram-social.png') center/cover no-repeat;
+    }
+    &:nth-child(3) a {
+      background: url('../img/whatsapp-social.png') center/cover no-repeat;
+    }
+    &:nth-child(4) a {
+      background: url('../img/youtube-social.png') center/cover no-repeat;
+    }
     a {
+      display: block;
+      width: 40px;
+      height: 40px;
+      font-size: 0;
+      line-height: 0;
       cursor: pointer;
-      &:hover {
-        opacity: 0.7;
+      &:hover {opacity: 0.7;}
+      @media (min-width: $laptop-min) {
+        width: 60px;
+        height: 60px;
       }
     }
   }

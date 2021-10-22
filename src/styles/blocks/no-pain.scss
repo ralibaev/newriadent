@@ -7,21 +7,42 @@
     @media (min-width: $tablet-min) {
       position: relative;
       padding: 30px 0;
+      flex-direction: column;
+      align-items: flex-end;
     }
     @media (min-width: $laptop-min) {
-      padding: 50px 0;
+      padding: 80px 0;
     }
   }
   &__maloy {
     width: 60%;
     margin-top: 20px;
     line-height: 0;
+    @media (min-width: $tablet-min) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40%;
+    }
+    @media (min-width: $laptop-min) {
+      top: auto;
+      bottom: 0;
+    }
   }
   &__sertif {
     width: 100%;
     margin-top: -100px;
     @media (min-width: 420px) {
       width: 80%;
+    }
+    @media (min-width: $tablet-min) {
+      position: absolute;
+      left: 0;
+      bottom: -100px;
+      margin-top: 0;
+    }
+    @media (min-width: $laptop-min) {
+      bottom: -150px;
     }
   }
   &__wrapper {
@@ -57,6 +78,12 @@
       width: 1px;
       height: 85%;
       background-color: black;
+      @media (min-width: $scaf) {
+        height: 88%;
+      }
+    }
+    @media (min-width: $tablet-min) {
+      margin-top: 20px;
     }
   }
   &__item {
