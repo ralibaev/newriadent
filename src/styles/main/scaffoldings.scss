@@ -17,20 +17,20 @@ img {
 }
 picture {line-height: 0;}
 .container {
-	width: calc(100% - 100px);
 	max-width: 1200px;
-	padding-left: $desktop-paddings;
-	padding-right: $desktop-paddings;
+	width: calc(100% - 40px);
+	padding-left: $phone-paddings;
+	padding-right: $phone-paddings;
 	margin: 0 auto;
-	@media (max-width: $tablet-max) {
+	@media (min-width: $tablet-min) {
 		width: calc(100% - 60px);
 		padding-left: $tablet-paddings;
 		padding-right: $tablet-paddings;
 	}
-	@media (max-width: $phone-max) {
-		width: calc(100% - 40px);
-		padding-left: $phone-paddings;
-		padding-right: $phone-paddings;
+	@media (min-width: $laptop-min) {
+		width: calc(100% - 100px);
+		padding-left: $desktop-paddings;
+		padding-right: $desktop-paddings;
 	}
 }
 body, p, span, ol, ul {

@@ -343,3 +343,83 @@ if (toCallPopup) {
     childOverlay.classList.remove('childform__overlay--show');
   });
 }
+
+// Слайдер отзывов
+let reviewSlides = document.querySelectorAll('.reviews__item');
+if (reviewSlides.length) {
+  let reviewSlidesCount = 0;
+  for (let i = 0; i < reviewSlides.length; i++) {
+    reviewSlidesCount++;
+  }
+
+  let reviewSlidesButtonList = document.querySelector('.reviews__button-list');
+  for (let i = 0; i < reviewSlidesCount; i++) {
+    let reviewSlidesButton = document.createElement('button');
+    reviewSlidesButton.classList.add('reviews__button-item');
+    reviewSlidesButtonList.append(reviewSlidesButton);
+  }
+
+  reviewSlidesButtonList.childNodes[0].classList.add('reviews__button-item--active');
+
+  for (let i = 0; i < reviewSlides.length; i++) {
+    reviewSlides[i].style.left = (i * 100) + '%';
+  }
+
+  function showReviews() {
+    for (let i = 0; i < reviewSlidesCount; i++) {
+      if (reviewSlidesButtonList.childNodes[i].classList.contains('reviews__button-item--active')) {
+        for (let j = 0; j < reviewSlides.length; j++) {
+          reviewSlides[j].style.left = (j * 100) - (i * 100) + '%';
+        }
+      }
+    }
+  }
+
+  function prevReviews() {
+    let x = 0;
+    for (let i = 0; i < reviewSlidesCount; i++) {
+      if (reviewSlidesButtonList.childNodes[i].classList.contains('reviews__button-item--active')) {
+        x = i;
+      }
+    }
+    reviewSlidesButtonList.childNodes[x].classList.remove('reviews__button-item--active');
+    if (x == 0) {
+      reviewSlidesButtonList.lastChild.classList.add('reviews__button-item--active');
+    } else {
+      reviewSlidesButtonList.childNodes[x - 1].classList.add('reviews__button-item--active');
+    }
+    showReviews();
+  }
+
+  function nextReviews() {
+    let x = 0;
+    for (let i = 0; i < reviewSlidesCount; i++) {
+      if (reviewSlidesButtonList.childNodes[i].classList.contains('reviews__button-item--active')) {
+        x = i;
+      }
+    }
+    reviewSlidesButtonList.childNodes[x].classList.remove('reviews__button-item--active');
+    if (x == (reviewSlidesCount - 1)) {
+      reviewSlidesButtonList.firstChild.classList.add('reviews__button-item--active');
+    } else {
+      reviewSlidesButtonList.childNodes[x + 1].classList.add('reviews__button-item--active');
+    }
+    reviewSomeSlides();
+  }
+
+  for (let i = 0; i < reviewSlidesCount; i++) {
+    reviewSlidesButtonList.childNodes[i].addEventListener('click', function() {
+      for (let j = 0; j < reviewSlides.length; j++) {
+        reviewSlidesButtonList.childNodes[j].classList.remove('reviews__button-item--active')
+      }
+      reviewSlidesButtonList.childNodes[i].classList.add('reviews__button-item--active');
+      showReviews();
+    });
+  }
+
+  let reviewSlidesPrevButton = document.querySelector('.reviews__button--prev');
+  reviewSlidesPrevButton.addEventListener('click', prevReviews);
+
+  let reviewSlidesNextButton = document.querySelector('.reviews__button--next');
+  reviewSlidesNextButton.addEventListener('click', nextReviews);
+}

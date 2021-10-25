@@ -13,6 +13,12 @@
     @media (min-width: $tablet-min) {
       padding-top: 150px;
     }
+    @media (min-width: $scaf) {
+      padding: 150px 200px 0;
+    }
+    @media (min-width: $desktop-min) {
+      padding: 150px 0 0;
+    }
   }
   &__svyateishestvo {
     margin: 0 5%;
@@ -28,6 +34,10 @@
     }
   }
   &__inside-circle {
+    width: 100vw;
+    padding: 10px;
+    margin-left: -20px;
+    background: url('../img/ainur-baby-back.svg') center/cover no-repeat;
     @media (min-width: $tablet-min) {
       position: absolute;
       left: 0;
@@ -36,6 +46,7 @@
       height: 100%;
       border: 1px solid #4d77dd;
       border-radius: 50%;
+      background: none;
     }
   }
   &__elem {
@@ -75,34 +86,64 @@
   &__text-elem {
     display: block;
     width: 100%;
-    color: #462899;
+    padding-left: 20px;
+    color: white;
     font-weight: 700;
     &--1 {
-      top: calc(6.7% - 30px);
-      left: calc(25% - 200px);
+      top: 5%;
+      left: 11%;
+      @media (min-width: $laptop-min) {
+        left: 15%;
+      }
+      @media (min-width: $desktop-min) {
+        left: 17%;
+      }
     }
     &--2 {
-      top: calc(6.7% - 30px);
-      right: calc(25% - 150px);
+      top: 5%;
+      right: 7%;
+      @media (min-width: $laptop-min) {
+        right: 11%;
+      }
+      @media (min-width: $desktop-min) {
+        right: 15%;
+      }
     }
     &--3 {
-      top: calc(25% - 30px);
-      left: calc(6.7% - 150px);
+      top: 21%;
+      left: 10%;
+      @media (min-width: $laptop-min) {
+        top: 22%;
+      }
     }
     &--4 {
-      top: calc(25% - 20px);
-      right: calc(6.7% - 100px);
+      top: 21%;
+      right: 8%;
+      @media (min-width: $laptop-min) {
+        top: 22%;
+      }
     }
     &--5 {
-      bottom: calc(50% - 20px);
-      left: -150px;
+      bottom: 48%;
+      left: 3%;
+      @media (min-width: $desktop-min) {
+        bottom: 48%;
+        left: -12%;
+      }
     }
     &--6 {
-      bottom: calc(50% - 10px);
-      right: -110px;
+      bottom: 47%;
+      right: 3%;
+      @media (min-width: $desktop-min) {
+        bottom: 47%;
+        right: -10%;
+      }
     }
     @media (min-width: $tablet-min) {
       position: absolute;
+      width: 100px;
+      padding: 0;
+      color: #462899;
     }
   }
 }

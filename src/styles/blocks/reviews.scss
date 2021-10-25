@@ -1,0 +1,34 @@
+.reviews {
+  &__wrapper {
+    display: flex;
+    width: 400vw;
+    @media (min-width: $tablet-min) {
+      width: 200vw;
+    }
+    @media (min-width: $laptop-min) {
+      width: calc(100% - 100px);
+    	max-width: 1200px;
+    	margin-left: $desktop-paddings;
+    	margin-right: $desktop-paddings;
+    	margin: 0 auto;
+      overflow: hidden;
+    }
+  }
+  &__item {
+    min-width: 100vw;
+    overflow-x: scroll;
+    @media (min-width: $tablet-min) {
+      min-width: 50vw;
+    }
+    @media (min-width: $laptop-min) {
+      min-width: 50%;
+    }
+    @media (min-width: $scaf) {
+      min-width: 25%;
+    }
+  }
+  &__item-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
