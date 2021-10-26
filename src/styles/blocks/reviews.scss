@@ -16,7 +16,7 @@
   }
   &__item {
     min-width: 100vw;
-    overflow-x: scroll;
+    transform: translate(-100px);
     @media (min-width: $tablet-min) {
       min-width: 50vw;
     }

@@ -1,6 +1,10 @@
 .gallery {
+  display: none;
   padding: 100px 0;
   background: url('../img/background-symbol.png') left -200px top 0 no-repeat #462899;
+  @media (min-width: $laptop-min) {
+    display: block;
+  }
   &__container {
     display: flex;
     justify-content: space-between;

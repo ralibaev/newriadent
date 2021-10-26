@@ -350,6 +350,7 @@ if (reviewSlides.length) {
   let reviewSlidesCount = 0;
   for (let i = 0; i < reviewSlides.length; i++) {
     reviewSlidesCount++;
+    console.log(window.getComputedStyle(reviewSlides).transform);
   }
 
   let reviewSlidesButtonList = document.querySelector('.reviews__button-list');
