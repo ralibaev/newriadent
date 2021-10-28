@@ -1,38 +1,37 @@
 section.gallery
   .container.gallery__container
-    .gallery__top
-      h2 Фотогалерея
-      .gallery__buttons
-        button.gallery__button-up
-        .gallery__numbers
-          span 2/18
-        button.gallery__button-down
-    .gallery__photo-list
-      .gallery__photo-item
-        picture
-          source.gallery__item-webp(type="image/webp" srcset="img/gallery1.webp")
-          img.gallery__item-img(src="img/gallery1.jpg" alt="")
-      .gallery__photo-item
-        picture
-          source.gallery__item-webp(type="image/webp" srcset="img/gallery2.webp")
-          img.gallery__item-img(src="img/gallery2.jpg" alt="")
-      .gallery__photo-item
-        picture
-          source.gallery__item-webp(type="image/webp" srcset="img/gallery1.webp")
-          img.gallery__item-img(src="img/gallery1.jpg" alt="")
-      .gallery__photo-item
-        picture
-          source.gallery__item-webp(type="image/webp" srcset="img/gallery2.webp")
-          img.gallery__item-img(src="img/gallery2.jpg" alt="")
-      .gallery__photo-item
-        picture
-          source.gallery__item-webp(type="image/webp" srcset="img/gallery1.webp")
-          img.gallery__item-img(src="img/gallery1.jpg" alt="")
-      .gallery__photo-item
-        picture
-          source.gallery__item-webp(type="image/webp" srcset="img/gallery2.webp")
-          img.gallery__item-img(src="img/gallery2.jpg" alt="")
+    h2.gallery__title Фотогалерея
     .gallery__main-photo
       picture
-        source.gallery__main-webp(type="image/webp" srcset="img/gallery_main.webp")
-        img.gallery__main-img(src="img/gallery_main.jpg" alt="")
+        source.gallery__main-webp(type="image/webp" srcset="img/gallery1.webp")
+        img.gallery__main-img(src="img/gallery1.jpg" alt="")
+    .gallery__photo-list
+      .gallery__photo-item.gallery__photo-item--active
+        picture
+          source.gallery__item-webp(type="image/webp" srcset="img/gallery1.webp")
+          img.gallery__item-img(src="img/gallery1.jpg" alt="")
+      .gallery__photo-item
+        picture
+          source.gallery__item-webp(type="image/webp" srcset="img/gallery2.webp")
+          img.gallery__item-img(src="img/gallery2.jpg" alt="")
+      .gallery__photo-item
+        picture
+          source.gallery__item-webp(type="image/webp" srcset="img/gallery3.webp")
+          img.gallery__item-img(src="img/gallery3.jpg" alt="")
+      .gallery__photo-item
+        picture
+          source.gallery__item-webp(type="image/webp" srcset="img/gallery4.webp")
+          img.gallery__item-img(src="img/gallery4.jpg" alt="")
+      .gallery__photo-item
+        picture
+          source.gallery__item-webp(type="image/webp" srcset="img/gallery5.webp")
+          img.gallery__item-img(src="img/gallery5.jpg" alt="")
+    .gallery__buttons
+      button.gallery__button-left
+        svg(width="26" height="47")
+          use(xlink:href="img/sprite.svg#gallery-arrow")
+      .gallery__numbers
+        span.gallery__numspan 1/5
+      button.gallery__button-right
+        svg(width="26" height="47")
+          use(xlink:href="img/sprite.svg#gallery-arrow")

@@ -243,16 +243,69 @@ if (staffMainWebp) {
 
 // Фотогалерея
 let galleryMainWebp = document.querySelector('.gallery__main-webp');
-let galleryMainImg = document.querySelector('.gallery__main-webp');
-let galleryItems = document.querySelectorAll('.gallery__photo-item');
 if (galleryMainWebp) {
+  let galleryMainImg = document.querySelector('.gallery__main-img');
+  let galleryItems = document.querySelectorAll('.gallery__photo-item');
+  let galleryNumSpan = document.querySelector('.gallery__numspan');
+  let galleryAllNum = galleryItems.length;
+  let galleryPrevButton = document.querySelector('.gallery__button-left');
+  let galleryNextButton = document.querySelector('.gallery__button-right');
+  function showGalleryPhoto(i) {
+    galleryNumSpan.innerHTML = (i+1) + "/" + galleryAllNum;
+    galleryItems[i].classList.add('gallery__photo-item--active');
+    galleryMainWebp.attributes.srcset.textContent = galleryItems[i].querySelector('.gallery__item-webp').attributes.srcset.textContent;
+    galleryMainImg.attributes.src.textContent = galleryItems[i].querySelector('.gallery__item-img').attributes.src.textContent;
+  }
+  function galeryCheckButtons() {
+    if (galleryItems[0].classList.contains('gallery__photo-item--active')) {
+      galleryPrevButton.setAttribute('disabled', 'disabled');
+    };
+    if (galleryItems[galleryItems.length-1].classList.contains('gallery__photo-item--active')) {
+      galleryNextButton.setAttribute('disabled', 'disabled');
+    }
+  }
+  function galleryEnableButtons() {
+    galleryPrevButton.removeAttribute('disabled');
+    galleryNextButton.removeAttribute('disabled');
+  }
+  galeryCheckButtons();
   galleryItems.forEach((item, i) => {
     item.addEventListener('click', function() {
-      galleryMainWebp.attributes.srcset.textContent = item.querySelector('.gallery__item-webp').attributes.srcset.textContent;
-      galleryMainImg.attributes.src.textContent = item.querySelector('.gallery__item-img').attributes.src.textContent;
+      for (let j = 0; j < galleryItems.length; j++) {
+        galleryItems[j].classList.remove('gallery__photo-item--active')
+      }
+      showGalleryPhoto(i);
+      galleryEnableButtons();
+      galeryCheckButtons();
     })
   });
-}
+  galleryPrevButton.addEventListener('click', function () {
+    for (let j = 0; j < galleryItems.length; j++) {
+      if (galleryItems[j].classList.contains('gallery__photo-item--active')) {
+        if (j != 0) {
+          galleryItems[j].classList.remove('gallery__photo-item--active');
+          showGalleryPhoto(j-1);
+          galleryEnableButtons();
+          galeryCheckButtons();
+        };
+        break;
+      }
+    }
+  });
+  galleryNextButton.addEventListener('click', function () {
+    for (let j = 0; j < galleryItems.length; j++) {
+      if (galleryItems[j].classList.contains('gallery__photo-item--active')) {
+        if (j != (galleryItems.length - 1)) {
+          galleryItems[j].classList.remove('gallery__photo-item--active');
+          showGalleryPhoto(j+1);
+          galleryEnableButtons();
+          galeryCheckButtons();
+        };
+        break;
+      }
+    }
+  });
+};
 
 // FAQ
 let faqItem = document.querySelectorAll('.faq__item');

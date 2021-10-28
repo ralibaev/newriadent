@@ -1,19 +1,44 @@
 .gallery {
   display: none;
-  padding: 100px 0;
+  padding: 50px 0;
   background: url('../img/background-symbol.png') left -200px top 0 no-repeat #462899;
   @media (min-width: $laptop-min) {
     display: block;
   }
   &__container {
     display: flex;
-    justify-content: space-between;
-    height: 620px;
-  }
-  &__left {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+  }
+  &__title {
+    color: white;
+    text-align: center;
+  }
+  &__main-photo {
+    position: relative;
+    width: 100%;
+    padding-top: 50%;
+    height: 0;
+    line-height: 0;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  &__photo-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  &__photo-item {
+    width: 20%;
+    line-height: 0;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    &--active {
+      border: 2px solid white;
+    }
   }
   // &__name {
   //   width: 100%;
@@ -30,38 +55,32 @@
   // }
   &__buttons {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    padding-top: 30px;
   }
-  &__button-up, &__button-down {
-    width: 46px;
-    height: 25px;
+  &__button-left, &__button-right {
+    width: 26px;
+    height: 47px;
+    padding: 0;
+    background-color: transparent;
     border: none;
-  }
-  &__button-up {
-    background: url('../img/arrow-up.svg') center no-repeat;
-  }
-  &__button-down {
-    background: url('../img/arrow-down.svg') center no-repeat;
-  }
-  &__numbers {
-    margin: 30px 0;
-    text-align: center;
-    span {
-      font-size: 18px;
-      color: white;
+    cursor: pointer;
+    &:disabled, &[disabled] {
+      opacity: 0.5;
     }
   }
-  &__photo-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow-y: scroll;
+  &__button-right {
+    transform: rotate(180deg);
   }
-  &__photo-item {
-    line-height: 0;
-    // picture {
-    //   line-height: 0;
-    // }
+  &__numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    margin: 0 20px;
+    span {
+      font-size: 24px;
+      color: white;
+    }
   }
 }

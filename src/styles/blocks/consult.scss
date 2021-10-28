@@ -1,18 +1,38 @@
 .consult {
-  padding: 50px 0;
   background-color: #EEEEEE;
+  &__container {
+    padding: 20px 0;
+  }
   &__title {
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 600;
     color: #462899;
+    @media (min-width: $tablet-min) {
+      font-size: 28px;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 40px;
+    }
   }
   &__columns {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-top: 100px;
+    margin-top: 20px;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
   &__column {
-    width: 20%;
+    @media (min-width: $tablet-min) {
+      width: 46%;
+      margin-bottom: 30px;
+    }
+    @media (min-width: $laptop-min) {
+      width: 23%;
+      margin-bottom: 0;
+    }
     ul {
       margin: 0;
       padding: 0;
