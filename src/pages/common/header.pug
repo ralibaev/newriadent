@@ -3,7 +3,9 @@ header.page-header
     .container.top-header__container
       .top-header__logo
         a(href="#")
-          img(src="img/logo.png" width="141")
+          picture
+            source(media="(min-width: 1024px)"  srcset="img/logo.png" alt="")
+            img(src="img/logo-mobile.png" width="141")
       .top-header__socials
         ul.top-header__socials-list
           li.top-header__socials-item
@@ -22,23 +24,84 @@ header.page-header
         a.top-header__phone-link(href="tel:+73472252520") +7 (347) 225-25-20
   .bottom-header
     .container.bottom-header__container
-      ul.bottom-header__main-nav.main-nav__list
-        li.main-nav__item
-          a(href="#") О клинике
-        li.main-nav__item
-          a(href="#") Услуги
-        li.main-nav__item
-          a(href="#") Цены
-        li.main-nav__item
-          a(href="#") Диагностика
-        li.main-nav__item
-          a(href="#") Лечение
-        li.main-nav__item
-          a(href="#") Имплантация
-        li.main-nav__item
-          a(href="#") Протезирование
-        li.main-nav__item
-          a(href="#") КТ
-        li.main-nav__item
-          a(href="#") ДМС
-      button.bottom-header__call-button Записаться на прием
+      button.main-nav__nav-button
+        span Меню
+      .main-nav__wrapper.main-nav__wrapper--show
+        button.main-nav__close-button
+          span Закрыть меню
+        ul.bottom-header__main-nav.main-nav__list
+          li.main-nav__item
+            a(href="#") О клинике
+            ul
+              li
+                a(href="#") Команда
+              li
+                a(href="#") Отзывы
+              li
+                a(href="#") Правовая информация
+              li
+                a(href="#") Политика конфиденциальности
+              li
+                a(href="#") FAQ
+              li
+                a(href="#") Блог
+              li
+                a(href="#") Контакты
+          li.main-nav__item
+            a(href="#") Услуги
+          li.main-nav__item
+            a(href="#") Цены
+          li.main-nav__item
+            a(href="#") Вакансии
+          li.main-nav__item
+            a(href="#") Акции
+          li.main-nav__item
+            a(href="#") Имплантация
+            ul
+              li
+                a(href="#") Имплантация зубов во время беременности
+              li
+                a(href="#") Имплантация зубов под ключ
+              li
+                a(href="#") Несъемные протезы на 4-х имплантах по технологии All-on-4
+              li
+                a(href="#") Несъемные протезы на 6-ти имплантах по технологии All-on-6
+              li
+                a(href="#") Несъемные протезы на 8-ми имплантах по технологии All-on-8
+              li
+                a(href="#") Одномоментная имплантация зубов
+              li
+                a(href="#") Импланты зубов за один день
+              li
+                a(href="#") Синус лифтинг
+          li.main-nav__item
+            a(href="#") Протезирование
+            ul
+              li
+                a(href="#") Съемные протезы
+              li
+                a(href="#") Протезирование на имплантах
+              li
+                a(href="#") Протезирование передних зубов
+              li
+                a(href="#") Несъемное протезирование
+              li
+                a(href="#") Коронки на зубы
+              li
+                a(href="#") Металлокерамические коронки
+          li.main-nav__item
+            a(href="#") КТ
+            ul
+              li
+                a(href="#") Исследование методом 3D компьютерной томографии
+              li
+                a(href="#") Исследование ВНЧС методом 3D компьютерной томографии
+              li
+                a(href="#") Телерентгенограмма
+              li
+                a(href="#") Диагностика
+          li.main-nav__item
+            a(href="#") ДМС
+        .main-nav__phone
+        .main-nav__socials
+        button.bottom-header__call-button Записаться на прием

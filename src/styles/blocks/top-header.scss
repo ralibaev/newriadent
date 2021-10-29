@@ -1,5 +1,8 @@
 .top-header {
   font-size: 14px;
+  @media (min-width: $laptop-min) {
+    display: block;
+  }
   &__container {
     display: flex;
     justify-content: space-between;
@@ -7,7 +10,24 @@
     padding: 25px 0;
   }
   &__logo {
-    width: 141px;
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    @media (min-width: $laptop-min) {
+      position: static;
+    }
+    img {
+      width: 110px;
+      @media (min-width: $laptop-min) {
+        width: 141px;
+      }
+    }
+  }
+  &__socials {
+    display: none;
+    @media (min-width: $laptop-min) {
+      display: block;
+    }
   }
   &__socials-list {
     display: flex;
@@ -41,7 +61,7 @@
     }
   }
   &__place {
-    display: flex;
+    display: none;
     align-items: center;
     &::before {
       content: '';
@@ -53,35 +73,58 @@
     &:hover {
       opacity: 0.7;
     }
+    @media (min-width: $laptop-min) {
+      display: flex;
+    }
   }
   &__place-select {
     background-color: transparent;
     border: none;
   }
   &__time {
+    display: none;
     padding-top: 10px;
+    @media (min-width: $laptop-min) {
+      display: block;
+    }
     span {
       font-size: 14px;
+    }
+  }
+  &__phone {
+    position: absolute;
+    top: 15px;
+    right: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    @media (min-width: $laptop-min) {
+      position: static;
     }
   }
   &__phone-link {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 600;
-    color: #462899;
+    color: white;
     text-decoration: none;
     cursor: pointer;
-    &::before {
-      content: '';
-      display: block;
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-      background: url('../img/phone.png') center no-repeat;
-    }
     &:hover {
       opacity: 0.7;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 16px;
+      color: #462899;
+      &::before {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        background: url('../img/phone.png') center no-repeat;
+      }
     }
   }
 }
