@@ -7,6 +7,17 @@ Modernizr.on('webp', function(result) {
   }
 });
 
+// Меню
+let mainNavButton = document.querySelector('.main-nav__nav-button');
+let mainNavClose = document.querySelector('.main-nav__close-button');
+let mainNavWrapper = document.querySelector('.main-nav__wrapper');
+mainNavButton.addEventListener('click', function() {
+  mainNavWrapper.classList.add('main-nav__wrapper--show');
+});
+mainNavClose.addEventListener('click', function() {
+  mainNavWrapper.classList.remove('main-nav__wrapper--show');
+})
+
 // Главный слайдер
 let mainSlides = document.querySelectorAll('.main-slider__item');
 if (mainSlides.length) {

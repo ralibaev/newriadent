@@ -32,7 +32,10 @@ header.page-header
         ul.bottom-header__main-nav.main-nav__list
           li.main-nav__item
             a(href="#") О клинике
-            ul
+            button.main-nav__item-button
+              svg(width="19" height="10")
+                use(xlink:href="img/sprite.svg#arrow-down")
+            ul.main-nav__item-list
               li
                 a(href="#") Команда
               li
@@ -57,7 +60,8 @@ header.page-header
             a(href="#") Акции
           li.main-nav__item
             a(href="#") Имплантация
-            ul
+            button.main-nav__item-button
+            ul.main-nav__item-list
               li
                 a(href="#") Имплантация зубов во время беременности
               li
@@ -76,7 +80,8 @@ header.page-header
                 a(href="#") Синус лифтинг
           li.main-nav__item
             a(href="#") Протезирование
-            ul
+            button.main-nav__item-button
+            ul.main-nav__item-list
               li
                 a(href="#") Съемные протезы
               li
@@ -91,7 +96,8 @@ header.page-header
                 a(href="#") Металлокерамические коронки
           li.main-nav__item
             a(href="#") КТ
-            ul
+            button.main-nav__item-button
+            ul.main-nav__item-list
               li
                 a(href="#") Исследование методом 3D компьютерной томографии
               li
@@ -110,7 +116,16 @@ header.page-header
               a(href="#") Дентал туризм
             li
               a(href="#") Отзывы
-          a(href="#") +7 (347) 225-25-20
+          a.main-nav__black-phone(href="tel:+73472252520")
+            svg(width="25" height="25")
+              use(xlink:href="img/sprite.svg#phone")
+            span +7 (347) 225-25-20
         .main-nav__white
-          
+          ul
+            li
+              a Инстаграм
+            li
+              a Youtube
+            li
+              a Вконтакте
         button.bottom-header__call-button Записаться на прием
