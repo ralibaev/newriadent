@@ -489,3 +489,19 @@ if (reviewSlides.length) {
   let reviewSlidesNextButton = document.querySelector('.reviews__button--next');
   reviewSlidesNextButton.addEventListener('click', nextReviews);
 }
+
+// Accordion
+let accordionItem = document.querySelectorAll('.accordion__item');
+if (accordionItem) {
+  accordionItem.forEach((item, i) => {
+    item.addEventListener('click', function() {
+      if (item.querySelector('.accordion__text').classList.contains('accordion__text--show')) {
+        item.querySelector('.accordion__text').classList.remove('accordion__text--show');
+        item.querySelector('.accordion__title').classList.remove('accordion__title--show');
+      } else {
+        item.querySelector('.accordion__text').classList.add('accordion__text--show');
+        item.querySelector('.accordion__title').classList.add('accordion__title--show');
+      }
+    })
+  });
+}

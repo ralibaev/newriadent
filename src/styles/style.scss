@@ -3,7 +3,9 @@
 @import 'main/normalize.scss';
 @import 'main/variables.scss';
 @import 'main/scaffoldings.scss';
+@import 'blocks/three-items.scss';
 @import 'blocks/about-us.scss';
+@import 'blocks/accordion.scss';
 @import 'blocks/ainur-baby.scss';
 @import 'blocks/allservices.scss';
 @import 'blocks/bottom-header.scss';
@@ -15,7 +17,10 @@
 @import 'blocks/consult.scss';
 @import 'blocks/faq.scss';
 @import 'blocks/form-block.scss';
+@import 'blocks/four-steps.scss';
 @import 'blocks/gallery.scss';
+@import 'blocks/img-left.scss';
+@import 'blocks/img-right.scss';
 @import 'blocks/lilform.scss';
 @import 'blocks/main-nav.scss';
 @import 'blocks/main-slider.scss';
@@ -29,6 +34,7 @@
 @import 'blocks/sam-form.scss';
 @import 'blocks/secrets.scss';
 @import 'blocks/serv-footer.scss';
+@import 'blocks/service-slider.scss';
 @import 'blocks/services.scss';
 @import 'blocks/smile.scss';
 @import 'blocks/socials.scss';

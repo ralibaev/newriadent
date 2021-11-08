@@ -1,0 +1,58 @@
+.accordion {
+  &__item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px -3px rgba(24, 39, 75, 0.1), 0px 6px 29px -2px rgba(24, 39, 75, 0.1);
+    @media (min-width: $tablet-min) {
+      margin-bottom: 20px;
+    }
+  }
+  &__title {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: calc(50% - 5px);
+      display: block;
+      width: 18px;
+      height: 10px;
+      background: url('../img/accordion-arrow.svg') right no-repeat;
+      transition: .3s;
+    }
+    &--show {
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+    @media (min-width: $scaf) {
+      font-weight: bold;
+      font-size: 28px;
+    }
+    span {
+      display: block;
+      width: 100%;
+      font-size: 12px;
+      @media (min-width: $laptop-min) {
+        display: inline;
+        width: auto;
+        font-size: 16px;
+      }
+    }
+  }
+  &__text {
+    height: auto;
+    max-height: 0px;
+    overflow: hidden;
+    margin: 0;
+    visibility: hidden;
+    transition: max-height .3s, margin .3s;
+    &--show {
+      max-height: 500px;
+      margin: 20px 0;
+      visibility: visible;
+    }
+  }
+}
