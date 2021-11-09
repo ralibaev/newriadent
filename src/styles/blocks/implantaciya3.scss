@@ -1,0 +1,13 @@
+.implantaciya3 {
+  &__list {
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      svg {
+        margin-right: 20px;
+      }
+    }
+  }
+}

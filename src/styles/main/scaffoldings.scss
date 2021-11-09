@@ -40,6 +40,7 @@ body, p, span, ol, ul {
 	font-family: 'Montserrat';
 	font-weight: normal;
 	font-size: 14px;
+	line-height: 1.5em;
 	@media (min-width: $tablet-min) {
 		font-size: 16px;
 	}
@@ -47,6 +48,7 @@ body, p, span, ol, ul {
 h1 {
 	font-size: 20px;
 	font-weight: bold;
+	line-height: 1.5em;
 	@media (min-width: $tablet-min) {
 		font-size: 28px;
 	}
@@ -56,6 +58,7 @@ h1 {
 }
 h2 {
 	font-size: 18px;
+	line-height: 1.5em;
 	@media (min-width: $tablet-min) {
 		font-size: 24px;
 	}

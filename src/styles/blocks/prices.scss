@@ -1,0 +1,80 @@
+.prices {
+  color: white;
+  background-color: $violet;
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+  }
+  &__title {
+    max-width: 1000px;
+    text-align: center;
+    @media (min-width: $laptop-min) {
+      margin: 30px auto;
+    }
+  }
+  p {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  &__table {
+    padding: 20px;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    @media (min-width: $laptop-min) {
+      margin: 30px 0;
+      padding: 30px;
+    }
+    tr {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #D8D8D8;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:nth-child(2n) {
+        background-color: #eeeeee;
+      }
+      @media (min-width: $tablet-min) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      td {
+        padding: 10px;
+        &:nth-child(1) {
+          @media (min-width: $tablet-min) {
+            width: 75%;
+            border-right: 1px solid #D8D8D8;
+          }
+          @media (min-width: $scaf) {
+            width: 80%;
+          }
+        }
+        &:nth-child(2) {
+          font-weight: bold;
+          @media (min-width: $tablet-min) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+          }
+        }
+        &.prices__maintd {
+          border-right: none;
+        }
+        @media (min-width: $tablet-min) {
+          padding: 20px;
+        }
+        @media (min-width: $laptop-min) {
+          padding: 30px;
+        }
+      }
+    }
+    strong {
+      color: $violet;
+    }
+  }
+}

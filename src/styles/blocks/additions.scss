@@ -1,0 +1,189 @@
+.additions {
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+  }
+  &__title {
+    font-size: 20px;
+    @media (min-width: $tablet-min) {
+      font-size: 28px;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 40px;
+    }
+  }
+  &__logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &::before {
+      content: '';
+      display: block;
+      height: 1px;
+      flex-grow: 1;
+      background-color: #DDDDDD;
+    }
+    img {
+      width: 150px;
+      margin-left: 5%;
+      @media (min-width: $tablet-min) {
+        width: 240px;
+      }
+      @media (min-width: $laptop-min) {
+        width: 333px;
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+  }
+  &__item {
+    width: 280px;
+    margin: 0 20px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+      .additions__top {
+        filter: grayscale(0);
+      }
+      .additions__bottom {
+        background-color: $violet;
+        color: white
+      }
+      .additions__arrow {
+        background-color: white;
+      }
+      svg {
+        fill: black;
+      }
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:nth-child(1) .additions__top {
+      background: url('../img/additions1.jpg') center/cover no-repeat;
+    }
+    &:nth-child(2) .additions__top {
+      background: url('../img/additions2.jpg') center/cover no-repeat;
+    }
+    &:nth-child(3) .additions__top {
+      background: url('../img/additions3.jpg') center/cover no-repeat;
+    }
+    &:nth-child(4) .additions__top {
+      background: url('../img/additions4.jpg') center/cover no-repeat;
+    }
+    &:nth-child(5) .additions__top {
+      background: url('../img/additions5.jpg') center/cover no-repeat;
+    }
+    &:nth-child(6) .additions__top {
+      background: url('../img/additions6.jpg') center/cover no-repeat;
+    }
+    &:nth-child(7) .additions__top {
+      background: url('../img/additions7.jpg') center/cover no-repeat;
+    }
+    &:nth-child(8) .additions__top {
+      background: url('../img/additions8.jpg') center/cover no-repeat;
+    }
+    &:nth-child(9) .additions__top {
+      background: url('../img/additions9.jpg') center/cover no-repeat;
+    }
+    &:nth-child(10) .additions__top {
+      background: url('../img/additions10.jpg') center/cover no-repeat;
+    }
+    &:nth-child(11) .additions__top {
+      background: url('../img/additions11.jpg') center/cover no-repeat;
+    }
+    &:nth-child(12) .additions__top {
+      background: url('../img/additions12.jpg') center/cover no-repeat;
+    }
+    &:nth-child(13) .additions__top {
+      background: url('../img/additions13.jpg') center/cover no-repeat;
+    }
+    &:nth-child(14) .additions__top {
+      background: url('../img/additions14.jpg') center/cover no-repeat;
+    }
+    &:nth-child(15) .additions__top {
+      background: url('../img/additions15.jpg') center/cover no-repeat;
+    }
+    &:nth-child(16) .additions__top {
+      background: url('../img/additions16.jpg') center/cover no-repeat;
+    }
+    &:nth-child(17) .additions__top {
+      background: url('../img/additions17.jpg') center/cover no-repeat;
+    }
+    &:nth-child(18) .additions__top {
+      background: url('../img/additions18.jpg') center/cover no-repeat;
+    }
+    &:nth-child(19) .additions__top {
+      background: url('../img/additions19.jpg') center/cover no-repeat;
+    }
+    &:nth-child(20) .additions__top {
+      background: url('../img/additions20.jpg') center/cover no-repeat;
+    }
+    &:nth-child(21) .additions__top {
+      background: url('../img/additions21.jpg') center/cover no-repeat;
+    }
+    &:nth-child(22) .additions__top {
+      background: url('../img/additions22.jpg') center/cover no-repeat;
+    }
+    &:nth-child(23) .additions__top {
+      background: url('../img/additions23.jpg') center/cover no-repeat;
+    }
+    &:nth-child(24) .additions__top {
+      background: url('../img/additions24.jpg') center/cover no-repeat;
+    }
+    @media (min-width: $laptop-min) {
+      margin: 0 10px 20px;
+    }
+  }
+  &__top {
+    position: relative;
+    height: 95px;
+    filter: grayscale(100%);
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   height: 100%;
+    //   background: rgba(249, 249, 249, 0.8);
+    //   z-index: 10;
+    // }
+  }
+  &__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: black;
+    background-color: #F9F9F9;
+  }
+  &__arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    border-radius: 50%;
+    background-color: #797979;
+    svg {
+      fill: white;
+    }
+  }
+}
