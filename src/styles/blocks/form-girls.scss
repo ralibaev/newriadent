@@ -1,0 +1,76 @@
+.form-girls {
+  background-color: #f4f4f4;
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+    @media (min-width: $scaf) {
+      padding: 80px 0;
+    }
+  }
+  &__wrapper {
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 8px 22px rgba(24, 39, 75, 0.1), 0px 14px 64px rgba(24, 39, 75, 0.1);
+    overflow: hidden;
+    @media (min-width: $tablet-min) {
+      display: flex;
+      flex-direction: row-reverse;
+      max-width: 900px;
+      border-radius: 20px;
+    }
+  }
+  &__girls {
+    width: 100%;
+    padding-top: 80%;
+    background: url('../img/form-girls.jpg') top/cover no-repeat;
+    @media (min-width: $tablet-min) {
+      width: 50%;
+      padding-top: 0;
+      box-sizing: border-box;
+    }
+  }
+  &__text {
+    padding: 20px;
+    background-color: white;
+    @media (min-width: $tablet-min) {
+      width: 50%;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 50px;
+    }
+  }
+  &__title {
+    text-align: center;
+    color: $violet;
+    span {
+      display: inline-block;
+      width: 100%;
+      color: black;
+    }
+  }
+  &__form {
+    input, select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      background-color: #ECECEC;
+      border: none;
+      border-radius: 20px;
+    }
+    button {
+      width: 100%;
+      height: 50px;
+      padding: 0;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      background-color: $violet;
+    }
+  }
+}

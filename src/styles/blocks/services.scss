@@ -143,8 +143,14 @@
   }
 }
 body.webp .services {
-  background: url('../img/services-back1.webp') left bottom no-repeat, url('../img/services-back2.webp') right bottom no-repeat #EBEBEB;
+  background-color: #EBEBEB;
+  @media (min-width: $laptop-min) {
+    background: url('../img/services-back1.webp') left bottom no-repeat, url('../img/services-back2.webp') right bottom no-repeat #EBEBEB;
+  }
 }
 body.no-webp .services {
-  background: url('../img/services-back1.png') left bottom no-repeat, url('../img/services-back2.png') right bottom no-repeat #EBEBEB;
+  background-color: #EBEBEB;
+  @media (min-width: $laptop-min) {
+    background: url('../img/services-back1.png') left bottom no-repeat, url('../img/services-back2.png') right bottom no-repeat #EBEBEB;
+  }
 }

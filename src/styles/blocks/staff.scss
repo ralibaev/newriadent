@@ -81,7 +81,6 @@
     overflow: hidden;
   }
   &__list {
-    display: flex;
     width: 100%;
     padding-bottom: 20px;
     @media (min-width: $laptop-min) {
@@ -89,21 +88,27 @@
       overflow-y: hidden;
     }
   }
+  &__list-inner {
+    display: flex;
+    justify-content: space-between;
+    transition: all .3s ease-in-out;
+  }
   &__item {
-    padding: 20px;
-    min-width: 25%;
+    flex-grow: 1;
+    // padding: 20px;
+    // min-width: 25%;
     box-sizing: border-box;
-    @media (max-width: $tablet-max) {
-      min-width: 33.33%;
-      padding: 10px;
-    }
-    @media (max-width: $phone-max) {
-      min-width: 50%;
-    }
-    @media (max-width: 519px) {
-      min-width: 100%;
-      padding: 0;
-    }
+    // @media (max-width: $tablet-max) {
+    //   min-width: 33.33%;
+    //   padding: 10px;
+    // }
+    // @media (max-width: $phone-max) {
+    //   min-width: 50%;
+    // }
+    // @media (max-width: 519px) {
+    //   min-width: 100%;
+    //   padding: 0;
+    // }
   }
   &__item-inner {
     display: flex;
@@ -183,6 +188,9 @@
       height: 12px;
       border-top: 2px solid white;
     }
+    &:disabled, &[disabled] {
+      opacity: 0.5;
+    }
     &--prev {
       padding-left: 5px;
       &::before {
@@ -198,26 +206,13 @@
       }
     }
   }
-  &__buttons-list {
-    display: none;
-    position: absolute;
-    top: 20px;
+  &__numbers {
+    display: flex;
     justify-content: center;
-    width: 100%;
-    @media (min-width: $laptop-min) {
-      display: flex;
-    }
-  }
-  &__buttons-item {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background-color: white;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.7;
+    align-items: center;
+    span {
+      color: white;
+      font-size: 24px;
     }
   }
 }

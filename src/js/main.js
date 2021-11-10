@@ -241,15 +241,40 @@ if (someSlides.length) {
 
 // Слайдер врачей
 let staffMainWebp = document.querySelector('.staff__main-webp');
-let staffMainImg = document.querySelector('.staff__main-img');
-let staffItems = document.querySelectorAll('.staff__item-inner');
 if (staffMainWebp) {
-  staffItems.forEach((item, i) => {
-    item.addEventListener('click', function() {
-      staffMainWebp.attributes.srcset.textContent = item.querySelector('.staff__item-webp').attributes.srcset.textContent;
-      staffMainImg.attributes.src.textContent = item.querySelector('.staff__item-img').attributes.src.textContent;
-    })
-  });
+  let staffMainImg = document.querySelector('.staff__main-img');
+  let staffList = document.querySelector('.staff__list');
+  let staffListInner = document.querySelector('.staff__list-inner');
+  let staffItems = document.querySelectorAll('.staff__item-inner');
+  let staffNumSpan = document.querySelector('.staff__numspan');
+  let staffButtonPrev = document.querySelector('.staff__button--prev');
+  let staffButtonNext = document.querySelector('.staff__button--next');
+  let staffWidth = window.innerWidth - 80;
+  staffListInner.style.width = (staffItems.length * (window.innerWidth - 80)) + "px";
+  console.log(staffNumSpan.innerHTML);
+  // staffButtonPrev.setAttribute('disabled', 'disabled');
+  staffNumSpan.innerHTML = "1/" + staffItems.length;
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    staffListInner.style.transform = "translateX(0px)";
+    staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
+    console.log(staffMove);
+    staffButtonPrev.addEventListener('click', function() {
+      staffListInner.style.transform = "translateX(" + staffWidth + "px)";
+    });
+    staffButtonNext.addEventListener('click', function() {
+      staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
+      console.log(staffMove);
+      staffListInner.style.transform = "translateX(-" + (staffMove + staffWidth) + "px)";
+      staffNumSpan.innerHTML = "1/" + staffItems.length;
+    });
+  } else {
+    staffItems.forEach((item, i) => {
+      item.addEventListener('click', function() {
+        staffMainWebp.attributes.srcset.textContent = item.querySelector('.staff__item-webp').attributes.srcset.textContent;
+        staffMainImg.attributes.src.textContent = item.querySelector('.staff__item-img').attributes.src.textContent;
+      })
+    });
+  }
 };
 
 // Фотогалерея
@@ -380,13 +405,6 @@ if (faqItem) {
     timer(times);
   }
 })();
-
-// Слайдер врачей
-let staffItem = document.querySelectorAll('.staff__item');
-let staffButtonPrev = document.querySelector('.staff__button--prev');
-let staffButtonNext = document.querySelector('.staff__button--next');
-let staffButtonsList = document.querySelector('.staff__buttons-list');
-
 
 // Попап
 let toCallPopup = document.querySelector('.popup__child');
