@@ -1,6 +1,12 @@
 .smile {
-  padding: 100px 0;
+  padding: 30px 0;
   background: url('../img/smiles-back.svg') bottom no-repeat;
+  @media (min-width: $tablet-min) {
+    padding: 50px 0;
+  }
+  @media (min-width: $tablet-min) {
+    padding: 100px 0;
+  }
   &__smiles {
     display: flex;
     flex-direction: column;
@@ -10,15 +16,32 @@
     }
   }
   &__title {
-    font-size: 40px;
+    font-size: 24px;
     color: white;
     text-align: center;
     line-height: 3;
+    @media (min-width: $tablet-min) {
+      font-size: 32px;
+    }
+    @media (min-width: $tablet-min) {
+      font-size: 40px;
+    }
   }
   &__title2 {
     margin-top: 110px;
-    font-size: 40px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.3em;
     color: #462899;
+    @media (min-width: $tablet-min) {
+      margin-top: 110px;
+      font-size: 32px;
+      text-align: left;
+    }
+    @media (min-width: $tablet-min) {
+      margin-top: 110px;
+      font-size: 40px;
+    }
   }
   &__text {
     margin-top: 40px;
@@ -26,22 +49,37 @@
   }
   &__list {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-top: 50px;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+    }
   }
   &__item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    width: 15%;
     &:nth-child(2) svg {margin-bottom: 32px;}
-    svg {margin-bottom: 20px;}
+    @media (min-width: $tablet-min) {
+      flex-direction: column;
+      width: 15%;
+    }
+    svg {
+      margin-bottom: 20px;
+      @media (max-width: $phone-max) {
+        margin-right: 30px;
+      }
+    }
     span {font-size: 18px; text-align: center;}
   }
   &__icon-list {
     display: flex;
     justify-content: space-between;
     margin: 30px 80px 0;
+    @media (max-width: $phone-max) {
+      display: none;
+    }
   }
   &__icon-item {
     width: 22px;
@@ -52,5 +90,8 @@
   hr {
     margin: -12px 85px 0;
     border: 1px solid black;
+    @media (max-width: $phone-max) {
+      display: none;
+    }
   }
 }

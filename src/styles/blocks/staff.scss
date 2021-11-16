@@ -109,6 +109,10 @@
     //   min-width: 100%;
     //   padding: 0;
     // }
+    @media (min-width: $laptop-min) {
+      padding: 20px;
+      min-width: 25%;
+    }
   }
   &__item-inner {
     display: flex;

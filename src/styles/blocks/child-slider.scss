@@ -2,6 +2,9 @@
   color: white;
   // background-color: rgba(70, 40, 153, 0.8);
   background: url('../img/child-slider-img.png') bottom 0 right 230px no-repeat, url('../img/child-slider-back.png') bottom no-repeat rgba(70, 40, 153, 0.8);
+  @media (max-width: $tablet-max) {
+    display: none;
+  }
   &__container {
     padding-top: 5px;
     padding-bottom: 5px;

@@ -1,24 +1,46 @@
 .sam-form {
   background-color: #462899;
   &__left {
-    max-width: 600px;
     padding: 50px 0;
+    @media (min-width: $laptop-min) {
+      max-width: 600px;
+    }
   }
   &__title {
-    margin-top: 50px;
-    font-size: 40px;
+    margin-top: 30px;
+    font-size: 24px;
     font-weight: 600;
+    text-align: center;
     color: white;
+    @media (min-width: $tablet-min) {
+      margin-top: 40px;
+      font-size: 32px;
+    }
+    @media (min-width: $laptop-min) {
+      margin-top: 50px;
+      font-size: 40px;
+      text-align: left;
+    }
   }
   &__span {
     font-size: 18px;
     color: white;
   }
   &__form-block {
-    margin-top: 50px;
-    padding: 55px;
+    margin-top: 30px;
+    padding: 30px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
+    @media (min-width: $tablet-min) {
+      margin-top: 40px;
+      padding: 45px;
+      border-radius: 15px;
+    }
+    @media (min-width: $laptop-min) {
+      margin-top: 50px;
+      padding: 55px;
+      border-radius: 20px;
+    }
     h3 {
       font-size: 24px;
       font-weight: 600;
@@ -50,8 +72,12 @@
   }
 }
 body.webp .sam-form__container {
-  background: url('../img/sam-background.webp') right bottom no-repeat;
+  @media (min-width: $laptop-min) {
+    background: url('../img/sam-background.webp') right bottom no-repeat;
+  }
 }
 body.no-webp .sam-form__container {
-  background: url('../img/sam-background.png') right bottom no-repeat;
+  @media (min-width: $laptop-min) {
+    background: url('../img/sam-background.png') right bottom no-repeat;
+  }
 }

@@ -3,6 +3,9 @@
   justify-content: space-around;
   margin: 20px 0;
   overflow: hidden;
+  @media (max-width: $tablet-max) {
+    display: none;
+  }
   &__list {
     position: relative;
     display: flex;

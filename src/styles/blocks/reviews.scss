@@ -1,4 +1,14 @@
 .reviews {
+  padding: 50px 0;
+  @media (min-width: $tablet-min) {
+    padding: 80px 0;
+  }
+  @media (min-width: $laptop-min) {
+    padding: 100px 0;
+  }
+  &__title {
+    text-align: center;
+  }
   &__wrapper {
     display: flex;
     width: 400vw;
@@ -30,5 +40,18 @@
   &__item-wrapper {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  &__top {
+    @media (min-width: $laptop-min) {
+      height: 250px;
+    }
+  }
+  &__logo {
+    @media (min-width: $laptop-min) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 180px;
+    }
   }
 }

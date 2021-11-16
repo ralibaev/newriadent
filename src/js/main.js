@@ -12,20 +12,22 @@ let mainNavButton = document.querySelector('.main-nav__nav-button');
 if (mainNavButton) {
   let mainNavClose = document.querySelector('.main-nav__close-button');
   let mainNavWrapper = document.querySelector('.main-nav__wrapper');
-  let mainNavItemButton = document.querySelector('.main-nav__item-button');
+  let mainNavItemButton = document.querySelectorAll('.main-nav__item-button');
   mainNavButton.addEventListener('click', function() {
     mainNavWrapper.classList.add('main-nav__wrapper--show');
   });
   mainNavClose.addEventListener('click', function() {
     mainNavWrapper.classList.remove('main-nav__wrapper--show');
   });
-  mainNavItemButton.addEventListener('click', function() {
-    if (mainNavItemButton.classList.contains('main-nav__item-button--show')) {
-      mainNavItemButton.classList.remove('main-nav__item-button--show');
-    } else {
-      mainNavItemButton.classList.add('main-nav__item-button--show');
-    };
-  })
+  mainNavItemButton.forEach((item, i) => {
+    item.addEventListener('click', function() {
+      if (item.classList.contains('main-nav__item-button--show')) {
+        item.classList.remove('main-nav__item-button--show');
+      } else {
+        item.classList.add('main-nav__item-button--show');
+      };
+    })
+  });
 }
 
 // Главный слайдер
@@ -260,22 +262,31 @@ if (staffMainWebp) {
   let staffButtonPrev = document.querySelector('.staff__button--prev');
   let staffButtonNext = document.querySelector('.staff__button--next');
   let staffWidth = window.innerWidth - 80;
-  staffListInner.style.width = (staffItems.length * (window.innerWidth - 80)) + "px";
-  console.log(staffNumSpan.innerHTML);
+  let staffNumber = 0;
   // staffButtonPrev.setAttribute('disabled', 'disabled');
   staffNumSpan.innerHTML = "1/" + staffItems.length;
   if (window.matchMedia('(max-width: 768px)').matches) {
+    staffListInner.style.width = (staffItems.length * (window.innerWidth - 80)) + "px";
+    console.log(staffNumSpan.innerHTML);
     staffListInner.style.transform = "translateX(0px)";
     staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
     console.log(staffMove);
-    staffButtonPrev.addEventListener('click', function() {
-      staffListInner.style.transform = "translateX(" + staffWidth + "px)";
-    });
     staffButtonNext.addEventListener('click', function() {
       staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
       console.log(staffMove);
       staffListInner.style.transform = "translateX(-" + (staffMove + staffWidth) + "px)";
-      staffNumSpan.innerHTML = "1/" + staffItems.length;
+      staffNumber = staffMove / staffWidth + 2;
+      console.log(staffNumber);
+      staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+    });
+    staffButtonPrev.addEventListener('click', function() {
+      staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
+      console.log(staffListInner);
+      console.log(staffMove);
+      staffListInner.style.transform = "translateX(-" + (staffMove - staffWidth) + "px)";
+      staffNumber = staffMove / staffWidth;
+      console.log(staffNumber);
+      staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
     });
   } else {
     staffItems.forEach((item, i) => {

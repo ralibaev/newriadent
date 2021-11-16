@@ -1,8 +1,15 @@
 .about-us {
+  padding: 30px 0;
+  @media (min-width: $tablet-min) {
+    padding: 50px 0;
+  }
+  @media (min-width: $laptop-min) {
+    padding: 80px 0;
+  }
   &__list {
     position: relative;
     display: flex;
-    height: 1000px;
+    height: 1100px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -29,6 +36,7 @@
     color: #462899;
   }
   &__under-title {
+    margin: 30px 0;
     font-size: 40px;
     font-weight: 300;
   }
