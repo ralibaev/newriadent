@@ -9,14 +9,24 @@ Modernizr.on('webp', function(result) {
 
 // Меню
 let mainNavButton = document.querySelector('.main-nav__nav-button');
-let mainNavClose = document.querySelector('.main-nav__close-button');
-let mainNavWrapper = document.querySelector('.main-nav__wrapper');
-mainNavButton.addEventListener('click', function() {
-  mainNavWrapper.classList.add('main-nav__wrapper--show');
-});
-mainNavClose.addEventListener('click', function() {
-  mainNavWrapper.classList.remove('main-nav__wrapper--show');
-})
+if (mainNavButton) {
+  let mainNavClose = document.querySelector('.main-nav__close-button');
+  let mainNavWrapper = document.querySelector('.main-nav__wrapper');
+  let mainNavItemButton = document.querySelector('.main-nav__item-button');
+  mainNavButton.addEventListener('click', function() {
+    mainNavWrapper.classList.add('main-nav__wrapper--show');
+  });
+  mainNavClose.addEventListener('click', function() {
+    mainNavWrapper.classList.remove('main-nav__wrapper--show');
+  });
+  mainNavItemButton.addEventListener('click', function() {
+    if (mainNavItemButton.classList.contains('main-nav__item-button--show')) {
+      mainNavItemButton.classList.remove('main-nav__item-button--show');
+    } else {
+      mainNavItemButton.classList.add('main-nav__item-button--show');
+    };
+  })
+}
 
 // Главный слайдер
 let mainSlides = document.querySelectorAll('.main-slider__item');

@@ -14,11 +14,12 @@
       margin: 30px auto;
     }
   }
-  p {
+  p, ul {
     max-width: 1000px;
     margin: 0 auto;
   }
   &__table {
+    width: 100%;
     padding: 20px;
     color: black;
     background-color: white;
