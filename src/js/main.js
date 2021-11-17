@@ -125,7 +125,7 @@ if (centrNumber) {
   let timerIsDone = false;
 
   centrNumber.innerHTML = 0;
-  pacientNumber.innerHTML = 0;
+  pacientNumber.innerHTML = (0 + '+');
   clientNumber.innerHTML = (0 + '%');
 
   let advantagesList = document.querySelector('.numbers__list');
@@ -138,7 +138,7 @@ if (centrNumber) {
             clearInterval(timerId);
           }
           centrNumber.innerHTML = (Math.floor(lastCentrNumber / 100 * numberCount));
-          pacientNumber.innerHTML = (Math.floor(lastPacientNumber / 100 * numberCount));
+          pacientNumber.innerHTML = (Math.floor(lastPacientNumber / 100 * numberCount) + '+');
           clientNumber.innerHTML = (Math.floor(lastClientNumber / 100 * numberCount) + '%');
           numberCount++;
         }, 10);

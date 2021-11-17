@@ -28,12 +28,9 @@
     max-width: 570px;
     margin: 20px auto 0;
     @media (min-width: $tablet-min) {
-      width: 48%;
-      order: 0;
-      margin: 0 auto;
-    }
-    @media (min-width: $laptop-min) {
       width: 46%;
+      order: 0;
+      margin: 0 auto 0 0;
     }
     picture {
       border-radius: 10px;

@@ -1,0 +1,46 @@
+.implantaciya-zubov-pod-kluch6 {
+  h2 {
+    text-align: center;
+  }
+  &__columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      @media (min-width: $tablet-min) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      @media (min-width: $laptop-min) {
+        padding: 0 10%;
+        box-sizing: border-box;
+      }
+    }
+    li {
+      margin: 5px 0;
+      @media (min-width: $tablet-min) {
+        max-width: 50%;
+        flex-basis: 50%;
+        margin: 0 auto;
+        display: inline-block;
+      }
+    }
+    a {
+      font-size: 14px;
+      color: black;
+      text-decoration: none;
+      @media (min-width: $tablet-min) {
+        font-size: 16px;
+      }
+      @media (min-width: $laptop-min) {
+        font-size: 18px;
+      }
+    }
+  }
+}

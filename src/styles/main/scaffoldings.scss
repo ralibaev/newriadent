@@ -53,6 +53,9 @@ h1 {
 		font-size: 28px;
 	}
 	@media (min-width: $laptop-min) {
+		font-size: 36px;
+	}
+	@media (min-width: $desktop-min) {
 		font-size: 40px;
 	}
 }
@@ -60,10 +63,10 @@ h2 {
 	font-size: 18px;
 	line-height: 1.5em;
 	@media (min-width: $tablet-min) {
-		font-size: 24px;
+		font-size: 22px;
 	}
 	@media (min-width: $laptop-min) {
-		font-size: 32px;
+		font-size: 28px;
 	}
 }
 button {
