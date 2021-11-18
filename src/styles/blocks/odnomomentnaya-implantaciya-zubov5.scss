@@ -1,0 +1,7 @@
+.odnomomentnaya-implantaciya-zubov5 {
+  background-color: $violet;
+  color: white;
+  @media (min-width: $laptop-min) {
+    background: url('../img/three-items-back.svg') bottom/cover no-repeat $violet;
+  }
+}

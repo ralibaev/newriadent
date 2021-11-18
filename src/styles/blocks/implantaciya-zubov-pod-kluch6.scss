@@ -1,4 +1,11 @@
 .implantaciya-zubov-pod-kluch6 {
+  background-color: #eeeeee;
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $tablet-min) {
+      padding: 50px 0;
+    }
+  }
   h2 {
     text-align: center;
   }

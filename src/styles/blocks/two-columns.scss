@@ -1,0 +1,24 @@
+.two-columns {
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $tablet-min) {
+      padding: 50px 0;
+    }
+    h2 {
+      text-align: center;
+    }
+  }
+  &__columns {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: $laptop-min) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  &__column {
+    @media (min-width: $laptop-min) {
+      width: 48%;
+    }
+  }
+}

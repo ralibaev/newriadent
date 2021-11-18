@@ -67,6 +67,7 @@
     }
     svg {
       margin-bottom: 20px;
+      fill: $gray;
       @media (max-width: $phone-max) {
         margin-right: 30px;
       }
