@@ -93,10 +93,10 @@ if (mainSlides.length) {
     showMainSlide();
   }
 
-  let mainSlidesTime = 10000;
-  let mainSlidesTimer = setInterval(function() {
-    nextMainSlide();
-  }, mainSlidesTime);
+  // let mainSlidesTime = 10000;
+  // let mainSlidesTimer = setInterval(function() {
+  //   nextMainSlide();
+  // }, mainSlidesTime);
 
   for (let i = 0; i < mainSlidesCount; i++) {
     mainSlidesButtonList.childNodes[i].addEventListener('click', function() {
