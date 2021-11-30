@@ -86,7 +86,12 @@
     background-color: white;
     border-radius: 20px;
     box-sizing: border-box;
+    text-decoration: none;
+    color: black;
     cursor: pointer;
+    &:hover svg {
+      fill: $violet;
+    }
     @media (min-width: 1200px) {
       &:nth-child(5n) {margin-right: 0;}
     }

@@ -1,9 +1,21 @@
 .faq {
   &__container {
-    padding: 100px 0;
+    padding: 30px 0;
+    @media (min-width: $tablet-min) {
+      padding: 50px 0;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 100px 0;
+    }
   }
   &__title {
-    font-size: 40px;
+    font-size: 24px;
+    @media (min-width: $tablet-min) {
+      font-size: 28px;
+    }
+    @media (min-width: $laptop-min) {
+      font-size: 40px;
+    }
   }
   &__list {
     display: flex;
@@ -41,7 +53,7 @@
     visibility: hidden;
     transition: max-height .3s, margin .3s;
     &--show {
-      max-height: 200px;
+      max-height: 360px;
       margin: 20px 0;
       visibility: visible;
     }

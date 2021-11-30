@@ -109,6 +109,9 @@
     //   min-width: 100%;
     //   padding: 0;
     // }
+    @media (min-width: $tablet-min) {
+      flex-grow: 0.5;
+    }
     @media (min-width: $laptop-min) {
       padding: 20px;
       min-width: 25%;
@@ -121,6 +124,9 @@
     cursor: pointer;
     &:hover h3, &:hover span {
       opacity: 0.7;
+    }
+    @media (min-width: $tablet-min) {
+      padding: 10px;
     }
     picture {
       @media (max-width: $tablet-max) {
