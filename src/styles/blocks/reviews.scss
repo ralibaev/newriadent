@@ -16,6 +16,9 @@
     display: flex;
     justify-content: space-between;
     margin: 50px 20px 0;
+    @media (min-width: $scaf) {
+      display: none;
+    }
   }
   &__button {
     display: flex;
@@ -51,14 +54,19 @@
   }
   &__list {
     margin-top: -100px;
+    overflow: hidden;
+    @media (min-width: $scaf) {
+      margin-top: 0;
+    }
   }
   &__wrapper {
     display: flex;
     width: 400vw;
+    transition: .3s ease;
     @media (min-width: $tablet-min) {
       width: 200vw;
     }
-    @media (min-width: $laptop-min) {
+    @media (min-width: $scaf) {
       width: calc(100% - 100px);
     	max-width: 1200px;
     	margin-left: $desktop-paddings;
@@ -73,9 +81,9 @@
     @media (min-width: $tablet-min) {
       min-width: 50vw;
     }
-    @media (min-width: $laptop-min) {
-      min-width: 50%;
-    }
+    // @media (min-width: $laptop-min) {
+    //   min-width: 50%;
+    // }
     @media (min-width: $scaf) {
       min-width: 25%;
     }
@@ -93,9 +101,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    @media (min-width: $laptop-min) {
-      height: 180px;
-    }
+    height: 180px;
   }
   &__star-grade {
     display: flex;
