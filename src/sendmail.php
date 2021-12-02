@@ -8,7 +8,7 @@
   $mail = new PHPMailer(true);
   $mail->CharSet = 'UTF-8';
   $mail->setLanguage('ru', 'phpmailer/language/');
-  $mail->isHTML(true);
+  $mail->IsHTML(true);
   $mail->setFrom('ralibaev1@gmail.com', 'Заявка с сайта');
   $mail->addAddress('ralibaev@bk.ru');
   $mail->Subject = 'Заявка, епты';
@@ -17,6 +17,8 @@
   if (trim(!empty($_POST['name']))) {
     $body.='<p>'.$_POST['name'].'</p>'
   }
+
+  $mail->Body = $body;
 
   if (!$mail->send()) {
     $message = 'Ошибка';

@@ -510,69 +510,71 @@ if (accordionItem) {
 }
 
 // Отправка формы
-document.addEventListener('DOMContentLoaded', function() {
-  let form = document.querySelector('.form-block__form');
-  form.addEventListener('submit', formSend);
-  async function formSend(e) {
-    e.preventDefault();
-    formValidate(form);
-  };
-
-  function formValidate(form) {
-    let error = 0;
-    let formReq = document.querySelectorAll('.form-block__req');
-    let textAfterSend = document.querySelector('.form-block__text-after-send');
-
-    for (let index = 0; index < formReq.length; index++) {
-      let input = formReq[index];
-      formRemoveError(input);
-      if (input.classList.contains('form-block__phone')) {
-        if (!validatePhone(input.value)) {
-          formAddError(input);
-          console.log(input);
-          input.classList.add('form-block__req--error');
-          error++;
-        }
-      }
-    }
-    console.log(error);
-    if (error === 0) {
-      let formData = new formData(form);
-      let response = await fetch('sendmail.php', {
-        method: 'POST',
-        body: formData
-      });
-      if (response.ok) {
-        let result = await response.json();
-        alert(result.message);
-        formPreview.innerHTML = '';
-        form.reset();
-      } else {
-        alert ("Ошибка при отправке формы");
-      }
-      textAfterSend.innerHTML = "Форма отправляется";
-      textAfterSend.style.color = "#067f53";
-      formReq.forEach((item, i) => {
-        item.classList.remove('form-block__req--error');
-      });
-    } else {
-      textAfterSend.innerHTML = "Проверьте правильность данных";
-      textAfterSend.style.color = "red";
-    }
-  }
-
-  function formAddError(input) {
-    input.parentElement.classList.add('.form-block__error');
-    input.classList.add('.form-block__error');
-  };
-  function formRemoveError(input) {
-    input.parentElement.classList.remove('.form-block__error');
-    input.classList.remove('.form-block__error');
-  };
-
-  function validatePhone(phone){
-    let regex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
-    return regex.test(phone);
-  }
-
-})
+// document.addEventListener('DOMContentLoaded', function() {
+//   let form = document.querySelector('.form-block__form');
+//   form.addEventListener('submit', formSend);
+//   async function formSend(e) {
+//     e.preventDefault();
+//     formValidate(form);
+//     let formData = new FormData(form);
+//     console.log(formData);
+//     let response = await fetch('/sendmail.php', {
+//       method: 'POST',
+//       body: formData
+//     });
+//     console.log(response);
+//     if (response.ok) {
+//       let result = await response.json();
+//       alert(result.message);
+//       formPreview.innerHTML = '';
+//       form.reset();
+//     } else {
+//       alert ("Ошибка при отправке формы");
+//     };
+//   };
+//
+//   function formValidate(form) {
+//     let error = 0;
+//     let formReq = document.querySelectorAll('.form-block__req');
+//     let textAfterSend = document.querySelector('.form-block__text-after-send');
+//
+//     for (let index = 0; index < formReq.length; index++) {
+//       let input = formReq[index];
+//       formRemoveError(input);
+//       if (input.classList.contains('form-block__phone')) {
+//         if (!validatePhone(input.value)) {
+//           formAddError(input);
+//           console.log(input);
+//           input.classList.add('form-block__req--error');
+//           error++;
+//         }
+//       }
+//     }
+//     console.log(error);
+//     if (error === 0) {
+//       textAfterSend.innerHTML = "Форма отправляется";
+//       textAfterSend.style.color = "#067f53";
+//       formReq.forEach((item, i) => {
+//         item.classList.remove('form-block__req--error');
+//       });
+//     } else {
+//       textAfterSend.innerHTML = "Проверьте правильность данных";
+//       textAfterSend.style.color = "red";
+//     }
+//   }
+//
+//   function formAddError(input) {
+//     input.parentElement.classList.add('.form-block__error');
+//     input.classList.add('.form-block__error');
+//   };
+//   function formRemoveError(input) {
+//     input.parentElement.classList.remove('.form-block__error');
+//     input.classList.remove('.form-block__error');
+//   };
+//
+//   function validatePhone(phone){
+//     let regex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+//     return regex.test(phone);
+//   }
+//
+// })

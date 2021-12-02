@@ -23,10 +23,10 @@ section.child-form
       h2.form-block__title Записаться на бесплатную консультацию
       form(action="" id="childform").form-block__form
         label.form-block__name-label
-          input.form-block__name.form-block__req(type="text" placeholder="Имя")
+          input.form-block__name.form-block__req(type="text" name="name" placeholder="Имя")
         label.form-block__phone-label
-          input.form-block__phone.form-block__req(type="tel" placeholder="Телефон")
+          input.form-block__phone.form-block__req(type="tel" name="tel" placeholder="Телефон")
         label.form-block__mail-label
-          input.form-block__mail(type="email" placeholder="Email")
+          input.form-block__mail(type="email" name="email" placeholder="Email")
         span.form-block__text-after-send
-        button.form-block__submit(type="submit") Записаться на прием
+        input.form-block__submit(value="Записаться на прием")
