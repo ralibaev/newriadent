@@ -30,6 +30,64 @@ if (mainNavButton) {
   });
 }
 
+// Появление меню услуг
+let mainNavItemServices = document.querySelector('.main-nav__item--services');
+if (mainNavItemServices) {
+  let mainNavItemServicesLink = document.querySelector('.main-nav__item--services-link');
+  let newServicesWrapper = document.querySelector('.new-services__wrapper');
+  newServicesCloseButton = document.querySelector('.new-services__close-button')
+
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    mainNavItemServicesLink.removeAttribute('href');
+    mainNavItemServices.addEventListener('click', function() {
+      if (newServicesWrapper.classList.contains('new-services__wrapper--active')) {
+        newServicesWrapper.classList.remove('new-services__wrapper--active');
+      } else {
+        newServicesWrapper.classList.add('new-services__wrapper--active');
+      }
+    });
+    newServicesCloseButton.addEventListener('click', function(event) {
+      newServicesWrapper.classList.remove('new-services__wrapper--active');
+    });
+  }
+
+  let newServicesItems = document.querySelectorAll('.new-services__item');
+  let newServicesBlockItems = document.querySelectorAll('.new-services__block-item');
+  function showServiceBlockItem(i) {
+    for (let j = 0; j < newServicesBlockItems.length; j++) {
+      newServicesBlockItems[j].classList.remove('new-services__block-item--active');
+    }
+    newServicesBlockItems[i].classList.add('new-services__block-item--active');
+  };
+  newServicesItems.forEach((item, i) => {
+    item.addEventListener('click', function(event) {
+      for (let j = 0; j < newServicesItems.length; j++) {
+        newServicesItems[j].classList.remove('new-services__item--active');
+      }
+      item.classList.add('new-services__item--active');
+      showServiceBlockItem(i);
+    })
+  });
+}
+
+// var newServicesItems = document.querySelectorAll('.new-services__item');
+// var newServicesBlockItems = document.querySelectorAll('.new-services__block-item');
+// function showServiceBlockItem(i) {
+//   for (var j = 0; j < newServicesBlockItems.length; j++) {
+//     newServicesBlockItems[j].classList.remove('new-services__block-item--active');
+//   }
+//   newServicesBlockItems[i].classList.add('new-services__block-item--active');
+// }
+// newServicesItems.forEach((item, i) => {
+//   item.addEventListener('click', function(event) {
+//     for (var j = 0; j < newServicesItems.length; j++) {
+//       newServicesItems[j].classList.remove('new-services__item--active');
+//     }
+//     item.classList.add('new-services__item--active');
+//     showServiceBlockItem(i);
+//   })
+// });
+
 // Главный слайдер
 let mainSlides = document.querySelectorAll('.main-slider__item');
 if (mainSlides.length) {
@@ -451,24 +509,26 @@ if (faqItem) {
   }
 })();
 
-// Попап
+// Детская форма попап
 let toCallPopup = document.querySelector('.popup__child');
-let childOverlay = document.querySelector('.childform__overlay');
-let childForm = document.querySelector('.childform');
-let childFormClose = document.querySelector('.childform__close');
 if (toCallPopup) {
-  toCallPopup.addEventListener('click', function() {
-    childForm.classList.add('childform--show');
-    childOverlay.classList.add('childform__overlay--show');
-  });
-  childFormClose.addEventListener('click', function() {
-    childForm.classList.remove('childform--show');
-    childOverlay.classList.remove('childform__overlay--show');
-  });
-  childOverlay.addEventListener('click', function() {
-    childForm.classList.remove('childform--show');
-    childOverlay.classList.remove('childform__overlay--show');
-  });
+  let popupOverlay = document.querySelector('.popup__overlay');
+  let childForm = document.querySelector('.childform');
+  let childFormClose = document.querySelector('.childform__close');
+  if (toCallPopup) {
+    toCallPopup.addEventListener('click', function() {
+      childForm.classList.add('childform--show');
+      popupOverlay.classList.add('popup__overlay--show');
+    });
+    childFormClose.addEventListener('click', function() {
+      childForm.classList.remove('childform--show');
+      popupOverlay.classList.remove('popup__overlay--show');
+    });
+    popupOverlay.addEventListener('click', function() {
+      childForm.classList.remove('childform--show');
+      popupOverlay.classList.remove('popup__overlay--show');
+    });
+  };
 }
 
 // Слайдер отзывов

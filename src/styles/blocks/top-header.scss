@@ -45,6 +45,8 @@
   }
   &__socials-link {
     display: block;
+    width: 24px;
+    height: 24px;
     font-size: 0;
     letter-spacing: 0;
     cursor: pointer;
@@ -84,7 +86,7 @@
   &__time {
     display: none;
     padding-top: 10px;
-    @media (min-width: $laptop-min) {
+    @media (min-width: $scaf) {
       display: block;
     }
     span {

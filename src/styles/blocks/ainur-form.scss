@@ -1,0 +1,22 @@
+.ainur-form {
+  position: fixed;
+  top: 10%;
+  left: calc(50% - 140px);
+  display: none;
+  width: 280px;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 200;
+  animation: bounce 0.6s;
+  &--show {
+    display: flex;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+  }
+}
