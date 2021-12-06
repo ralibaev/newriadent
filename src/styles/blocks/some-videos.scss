@@ -33,9 +33,10 @@
   &__main-video {
     position: relative;
     width: 100%;
-    padding-top: 36.5625%;
+    padding-top: 56.25%;
     @media (min-width: $tablet-min) {
       width: 65%;
+      padding-top: 36.5625%;
     }
     iframe {
       position: absolute;

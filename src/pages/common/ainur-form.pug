@@ -1,10 +1,11 @@
-section.ainur-form.ainur-form--show
+section.ainur-form
   .ainur-form__img
   .ainur-form__text
     h2 Записаться на консультацию
-    p Обязательные для заполнения поля помечены знаком *
     form
       input(type="text" placeholder="Ваше имя")
       input(type="tel" placeholder="Телефон")
       input(type="email" placeholder="Email")
-      button Записаться на прием
+      .ainur-form__button-block
+        button Записаться на прием
+  button.ainur-form__close

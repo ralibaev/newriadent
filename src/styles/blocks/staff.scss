@@ -23,6 +23,9 @@
     @media (max-width: $tablet-max) {
       margin-bottom: 0;
     }
+    @media (max-width: $tablet-max) {
+      display: none;
+    }
   }
   &__photo, &__text {
     width: 50%;
@@ -46,7 +49,9 @@
   &__text {
     display: flex;
     flex-direction: column;
-    padding: 150px 30px 0;
+    justify-content: flex-end;
+    padding: 0 30px 35px;
+    color: white;
     @media (max-width: $tablet-max) {
       padding: 0;
     }
@@ -139,9 +144,9 @@
     }
   }
   &__text-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
     @media (max-width: $tablet-max) {
       color: white;
     }

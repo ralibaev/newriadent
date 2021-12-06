@@ -34,8 +34,8 @@
     cursor: pointer;
     &::after {
       content: '';
-      width: 18px;
-      height: 10px;
+      min-width: 18px;
+      min-height: 10px;
       background: url('../img/faq-arrow.svg') center no-repeat;
       transition: .3s;
     }

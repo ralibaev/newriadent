@@ -313,6 +313,7 @@ if (someSlides.length) {
 let staffMainWebp = document.querySelector('.staff__main-webp');
 if (staffMainWebp) {
   let staffMainImg = document.querySelector('.staff__main-img');
+  let staffText = document.querySelector('.staff__text');
   let staffList = document.querySelector('.staff__list');
   let staffListInner = document.querySelector('.staff__list-inner');
   let staffItems = document.querySelectorAll('.staff__item-inner');
@@ -327,6 +328,9 @@ if (staffMainWebp) {
     staffListInner.style.width = (staffItems.length * (window.innerWidth - 80)) + "px";
     console.log(staffNumSpan.innerHTML);
     staffListInner.style.transform = "translateX(0px)";
+    staffItems.forEach((item, i) => {
+      item.style.width = (window.innerWidth - 80) + "px";
+    });
     staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
     console.log(staffMove);
     staffButtonNext.addEventListener('click', function() {
@@ -375,6 +379,7 @@ if (staffMainWebp) {
       item.addEventListener('click', function() {
         staffMainWebp.attributes.srcset.textContent = item.querySelector('.staff__item-webp').attributes.srcset.textContent;
         staffMainImg.attributes.src.textContent = item.querySelector('.staff__item-img').attributes.src.textContent;
+        staffText.innerHTML = item.querySelector('.staff__text-block').innerHTML;
       })
     });
   }
@@ -531,6 +536,28 @@ if (toCallPopup) {
   };
 }
 
+// Взрослая форма попап
+let formCallPopup = document.querySelectorAll('.form__call-popup');
+if (formCallPopup.length) {
+  let popupOverlay = document.querySelector('.popup__overlay');
+  let ainurForm = document.querySelector('.ainur-form');
+  let ainurFormClose = document.querySelector('.ainur-form__close');
+  formCallPopup.forEach((item, i) => {
+    item.addEventListener('click', function() {
+      ainurForm.classList.add('ainur-form--show');
+      popupOverlay.classList.add('popup__overlay--show');
+    });
+  });
+  ainurFormClose.addEventListener('click', function() {
+    ainurForm.classList.remove('ainur-form--show');
+    popupOverlay.classList.remove('popup__overlay--show');
+  });
+  popupOverlay.addEventListener('click', function() {
+    ainurForm.classList.remove('ainur-form--show');
+    popupOverlay.classList.remove('popup__overlay--show');
+  });
+};
+
 // Слайдер отзывов
 let reviewSlides = document.querySelectorAll('.reviews__item');
 if (reviewSlides.length) {
@@ -544,12 +571,22 @@ if (reviewSlides.length) {
     reviewMove = parseInt(reviewWrapper.style.transform.match(/\d+/));
     reviewButtonNext.addEventListener('click', function() {
       reviewMove = parseInt(reviewWrapper.style.transform.match(/\d+/));
-      reviewWrapper.style.transform = "translateX(-" + (reviewMove + reviewWidth) + "px)";
+      console.log(reviewMove);
+      console.log(reviewWidth);
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        if (reviewMove <= (reviewWidth * 2)) {
+          reviewWrapper.style.transform = "translateX(-" + (reviewMove + reviewWidth) + "px)";
+        }
+      } else {
+        if (reviewMove <= reviewWidth) {
+          reviewWrapper.style.transform = "translateX(-" + (reviewMove + reviewWidth) + "px)";
+        }
+      }
     });
     reviewButtonPrev.addEventListener('click', function() {
       reviewMove = parseInt(reviewWrapper.style.transform.match(/\d+/));
       reviewWrapper.style.transform = "translateX(-" + (reviewMove - reviewWidth) + "px)";
-    })
+    });
   }
 }
 

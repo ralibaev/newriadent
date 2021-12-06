@@ -1,6 +1,7 @@
 .gallery {
   display: none;
   padding: 50px 0;
+  margin: 0;
   background: url('../img/background-symbol.png') left -200px top 0 no-repeat #462899;
   @media (min-width: $laptop-min) {
     display: block;
@@ -11,6 +12,8 @@
     justify-content: space-between;
   }
   &__title {
+    margin-top: 0;
+    margin-bottom: 50px;
     color: white;
     text-align: center;
   }

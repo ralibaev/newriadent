@@ -38,6 +38,9 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    @media (min-width: $laptop-min) {
+      justify-content: flex-start;
+    }
   }
   &__item {
     display: flex;
@@ -59,6 +62,7 @@
     @media (min-width: $laptop-min) {
       width: 18%;
       padding: 20px;
+      margin-right: 2%;
       margin-bottom: 20px;
       border-radius: 20px;
     }

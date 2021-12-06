@@ -141,7 +141,7 @@
       &:hover .main-nav__item-list {
         position: absolute;
         z-index: 100;
-        top: 25px;
+        top: 50px;
         left: 0;
         display: flex;
         flex-direction: column;
@@ -173,6 +173,8 @@
       font-weight: 600;
       &:hover {color: $violet;}
       @media (min-width: $laptop-min) {
+        display: flex;
+        align-items: center;
         width: auto;
         height: auto;
         padding: 0;
@@ -234,6 +236,8 @@
       font-weight: 600;
       &:hover {color: $violet;}
       @media (min-width: $laptop-min) {
+        display: flex;
+        align-items: center;
         width: auto;
         height: auto;
         padding: 0;
