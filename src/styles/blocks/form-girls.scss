@@ -43,17 +43,6 @@
     @media (min-width: $laptop-min) {
       padding: 50px;
     }
-  }
-  &__title {
-    text-align: center;
-    color: $violet;
-    span {
-      display: inline-block;
-      width: 100%;
-      color: black;
-    }
-  }
-  &__form {
     input, select {
       width: 100%;
       padding: 15px;
@@ -63,7 +52,7 @@
       border: none;
       border-radius: 20px;
     }
-    button {
+    input[type="submit"] {
       width: 100%;
       height: 50px;
       padding: 0;
@@ -71,6 +60,15 @@
       border: none;
       border-radius: 15px;
       background-color: $violet;
+    }
+  }
+  &__title {
+    text-align: center;
+    color: $violet;
+    span {
+      display: inline-block;
+      width: 100%;
+      color: black;
     }
   }
 }
