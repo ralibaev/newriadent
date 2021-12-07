@@ -7,6 +7,21 @@ Modernizr.on('webp', function(result) {
   }
 });
 
+// Выбор города
+let topHeaderPlaceSelect = document.querySelector('.top-header__place-select');
+if (topHeaderPlaceSelect) {
+  let topHeaderPlaceOptions = document.querySelector('.top-header__place-options');
+  topHeaderPlaceSelect.addEventListener('click', function() {
+    console.log(topHeaderPlaceSelect);
+    console.log(topHeaderPlaceOptions);
+    if (topHeaderPlaceOptions.classList.contains('top-header__place-options--show')) {
+      topHeaderPlaceOptions.classList.remove('top-header__place-options--show');
+    } else {
+      topHeaderPlaceOptions.classList.add('top-header__place-options--show');
+    }
+  })
+}
+
 // Меню
 let mainNavButton = document.querySelector('.main-nav__nav-button');
 if (mainNavButton) {
