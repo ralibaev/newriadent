@@ -1,0 +1,28 @@
+.ceni {
+  padding-bottom: 20px;
+  @media (min-width: $tablet-min) {
+    padding-bottom: 30px;
+  }
+  @media (min-width: $laptop-min) {
+    padding-bottom: 50px;
+  }
+  &__wrapper {
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+  &__item-button {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    &::after {
+      content: '';
+    }
+    &:last-of-type {
+      border: none;
+    }
+  }
+  &__item {
+    display: none;
+  }
+}
