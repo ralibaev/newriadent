@@ -1,0 +1,59 @@
+.history {
+  h1 {
+    color: $violet;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  &__icon-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100% - 220px);
+    padding: 70px 0 150px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      width: 2px;
+      height: calc(100% - 224px);
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 5;
+    }
+    @media (min-width: 520px) {
+      min-height: calc(100% - 270px);
+      padding: 100px 0 170px;
+      &::after {
+        height: calc(100% - 274px);
+      }
+    }
+  }
+  &__icon-item {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $violet;
+    z-index: 10;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    max-width: 400px;
+    margin-bottom: 20px;
+    img {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    span {
+      font-weight: bold;
+    }
+  }
+}

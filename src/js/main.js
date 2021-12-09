@@ -621,6 +621,23 @@ if (accordionItem) {
   });
 }
 
+// Цены
+let ceniItem = document.querySelectorAll('.ceni__item');
+if (ceniItem) {
+  ceniItem.forEach((item, i) => {
+    item.addEventListener('click', function() {
+      if (item.querySelector('.ceni__table').classList.contains('ceni__table--show')) {
+        item.querySelector('.ceni__table').classList.remove('ceni__table--show');
+        item.querySelector('.ceni__item-title').classList.remove('ceni__item-title--show');
+      } else {
+        item.querySelector('.ceni__table').classList.add('ceni__table--show');
+        item.querySelector('.ceni__item-title').classList.add('ceni__item-title--show');
+      }
+    })
+  });
+
+}
+
 // Отправка формы
 // document.addEventListener('DOMContentLoaded', function() {
 //   let form = document.querySelector('.form-block__form');
