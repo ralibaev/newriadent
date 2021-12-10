@@ -16,10 +16,12 @@
     @media (min-width: $laptop-min) {
       position: static;
     }
-    img {
+    svg {
       width: 110px;
+      fill: white;
       @media (min-width: $laptop-min) {
         width: 141px;
+        fill: black;
       }
     }
   }

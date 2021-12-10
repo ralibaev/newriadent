@@ -1,4 +1,11 @@
 .history {
+  padding-bottom: 20px;
+  @media (min-width: $tablet-min) {
+    padding-bottom: 30px;
+  }
+  @media (min-width: $laptop-min) {
+    padding-bottom: 50px;
+  }
   h1 {
     color: $violet;
   }
@@ -6,7 +13,11 @@
     display: flex;
     justify-content: space-between;
     max-width: 450px;
-    margin: 0 auto;
+    margin: 30px auto 0;
+    @media (min-width: $laptop-min) {
+      max-width: 900px;
+      margin: 50px auto 0;
+    }
   }
   &__icon-list {
     position: relative;
@@ -33,6 +44,21 @@
         height: calc(100% - 274px);
       }
     }
+    @media (min-width: $tablet-min) {
+      min-height: calc(100% - 300px);
+      padding: 100px 0 200px;
+      &::after {
+        height: calc(100% - 304px);
+      }
+    }
+    @media (min-width: $laptop-min) {
+      min-height: calc(100% - 210px);
+      padding: 90px 0 120px;
+      margin-right: 50px;
+      &::after {
+        height: calc(100% - 214px);
+      }
+    }
   }
   &__icon-item {
     width: 12px;
@@ -48,9 +74,19 @@
   &__item {
     max-width: 400px;
     margin-bottom: 20px;
+    @media (min-width: $laptop-min) {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      max-width: none;
+    }
     img {
       border-radius: 10px;
       overflow: hidden;
+      @media (min-width: $laptop-min) {
+        min-width: 400px;
+        margin-left: 100px;
+      }
     }
     span {
       font-weight: bold;
