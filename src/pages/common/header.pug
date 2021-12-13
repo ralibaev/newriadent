@@ -3,7 +3,9 @@ header.page-header
     .container.top-header__container
       .top-header__logo
         a(href="/")
-          img(width="141" height="31" src="img/logo.svg")
+          picture
+            source(media="(min-width: 1024px)" srcset="img/logo-ng-wh.png")
+            img(width="141" height="31" src="img/logo-mobile.png")
       .top-header__socials
         ul.top-header__socials-list
           li.top-header__socials-item

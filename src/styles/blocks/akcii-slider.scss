@@ -1,0 +1,11 @@
+.akcii-slider {
+  &__button-block {
+    margin-top: 30px;
+    @media (min-width: $tablet-min) {
+      margin-top: 60px;
+    }
+    @media (min-width: $laptop-min) {
+      margin-top: 100px;
+    }
+  }
+}

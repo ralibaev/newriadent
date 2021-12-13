@@ -16,6 +16,11 @@
     @media (min-width: $laptop-min) {
       position: static;
     }
+    img {
+      @media (max-width: $tablet-max) {
+        width: 27px;
+      }
+    }
     svg {
       width: 110px;
       fill: white;
@@ -72,6 +77,7 @@
       display: block;
       width: 25px;
       height: 25px;
+      margin-right: 10px;
       background: url('../img/location.png') center no-repeat;
     }
     @media (min-width: $laptop-min) {
