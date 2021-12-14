@@ -1,8 +1,9 @@
 .new-services {
   position: relative;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  @media (max-width: $scaf) {
+  @media (max-width: $tablet-max) {
     display: none;
   }
   a {

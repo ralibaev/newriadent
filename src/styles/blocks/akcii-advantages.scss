@@ -1,0 +1,74 @@
+.akcii-advantages {
+  padding: 30px 0;
+  color: white;
+  background: url('../img/akcii-advantages-back1.svg') left top/80% no-repeat, url('../img/akcii-advantages-back2.svg') right bottom/80% no-repeat $violet;
+  @media (min-width: $tablet-min) {
+    padding: 50px 0;
+  }
+  @media (min-width: $laptop-min) {
+    padding: 100px 0;
+  }
+  h2 {
+    position: relative;
+    text-align: center;
+    @media (min-width: $tablet-min) {
+      display: none;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      margin-top: -15px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+    }
+    legend {
+      font-size: 18px;
+      font-weight: 700;
+    	line-height: 1.5em;
+      @media (max-width: $phone-max) {
+        display: none;
+      }
+    	@media (min-width: $tablet-min) {
+        margin: 0 10px;
+    		font-size: 22px;
+    	}
+    	@media (min-width: $laptop-min) {
+    		font-size: 28px;
+    	}
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+    margin-bottom: 20px;
+    @media (min-width: $tablet-min) {
+      width: auto;
+      padding: 10px;
+    }
+  }
+  &__img {
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  &__text {
+    text-align: center;
+    @media (min-width: $tablet-min) {
+      padding: 10px;
+    }
+    span {
+      @media (min-width: $laptop-min) {
+        font-size: 20px;
+      }
+    }
+  }
+}

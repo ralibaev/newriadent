@@ -166,10 +166,10 @@ if (mainSlides.length) {
     showMainSlide();
   }
 
-  // let mainSlidesTime = 10000;
-  // let mainSlidesTimer = setInterval(function() {
-  //   nextMainSlide();
-  // }, mainSlidesTime);
+  let mainSlidesTime = 10000;
+  let mainSlidesTimer = setInterval(function() {
+    nextMainSlide();
+  }, mainSlidesTime);
 
   for (let i = 0; i < mainSlidesCount; i++) {
     mainSlidesButtonList.childNodes[i].addEventListener('click', function() {
@@ -625,7 +625,7 @@ if (accordionItem) {
 let ceniItem = document.querySelectorAll('.ceni__item');
 if (ceniItem) {
   ceniItem.forEach((item, i) => {
-    item.addEventListener('click', function() {
+    item.querySelector('.ceni__item-title').addEventListener('click', function() {
       if (item.querySelector('.ceni__table').classList.contains('ceni__table--show')) {
         item.querySelector('.ceni__table').classList.remove('ceni__table--show');
         item.querySelector('.ceni__item-title').classList.remove('ceni__item-title--show');

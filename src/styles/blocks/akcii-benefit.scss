@@ -1,0 +1,56 @@
+.akcii-benefit {
+  padding: 50px 0;
+  background-color: black;
+  &__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  &__img-wrapper {
+    position: relative;
+    width: 120px;
+    height: 109px;
+    img {
+      position: absolute;
+      width: 120px;
+      height: 109px;
+      z-index: 10;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: white;
+      opacity: 0.5;
+      filter: blur(50px);
+    }
+  }
+  &__text {
+    color: white;
+    text-align: center;
+    span {
+      font-size: 20px;
+      font-weight: bold;
+      @media (min-width: $tablet-min) {
+        font-size: 32px;
+      }
+      @media (min-width: $laptop-min) {
+        font-size: 44px;
+      }
+    }
+    p {
+      font-size: 16px;
+      @media (min-width: $tablet-min) {
+        font-size: 20px;
+      }
+      @media (min-width: $laptop-min) {
+        font-size: 24px;
+      }
+    }
+  }
+}
