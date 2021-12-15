@@ -1,0 +1,61 @@
+.akcii1-slider, .akcii2-slider, .akcii3-slider, .akcii4-slider {
+  padding: 30px 0 0;
+  @media (min-width: $tablet-min) {
+    padding: 0;
+  }
+  &__container {
+    position: relative;
+    @media (min-width: $tablet-min) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__wrapper {
+    @media (min-width: $tablet-min) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 50%;
+      padding: 30px 0;
+    }
+    @media (min-width: $laptop-min) {
+      width: 38%;
+    }
+  }
+  &__text {
+    p {
+      text-align: center;
+      @media (min-width: $laptop-min) {
+        text-align: left;
+      }
+    }
+  }
+  &__img {
+    line-height: 0;
+    @media (min-width: $tablet-min) {
+      width: 50%;
+    }
+    @media (min-width: $laptop-min) {
+      width: 60%;
+    }
+  }
+  &__button-block {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 40px);
+    @media (min-width: $tablet-min) {
+      position: static;
+      width: 100%;
+    }
+  }
+  &__button {
+    width: 220px;
+    height: 50px;
+    color: white;
+    background-color: $violet;
+    border: none;
+    border-radius: 25px;
+  }
+}
