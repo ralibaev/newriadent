@@ -66,6 +66,9 @@
   }
   &__title {
     color: white;
+    @media (min-width: $tablet-min) {
+      text-align: left;
+    }
   }
   &__text {
     margin: 30px 0;
