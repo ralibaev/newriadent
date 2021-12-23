@@ -1,0 +1,7 @@
+.lechenie-pulpita2 {
+  padding: 30px 0;
+  background-color: #eeeeee;
+  @media (min-width: $laptop-min) {
+    padding: 50px 0;
+  }
+}
