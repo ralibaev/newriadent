@@ -1,0 +1,8 @@
+.sinus-lifting9 {
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $tablet-min) {
+      padding: 50px 0;
+    }
+  }
+}
