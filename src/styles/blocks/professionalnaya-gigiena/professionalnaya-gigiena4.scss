@@ -1,0 +1,9 @@
+.professionalnaya-gigiena4 {
+  background-color: #eeeeee;
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $tablet-min) {
+      padding: 50px 0;
+    }
+  }
+}
