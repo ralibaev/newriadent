@@ -347,7 +347,7 @@ if (staffMainWebp) {
     staffItems.forEach((item, i) => {
       item.style.width = (window.innerWidth - 80) + "px";
     });
-    staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
+    let staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
     console.log(staffMove);
     staffButtonNext.addEventListener('click', function() {
       staffMove = parseInt(staffListInner.style.transform.match(/\d+/));

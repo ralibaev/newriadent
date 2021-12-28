@@ -26,6 +26,9 @@
     padding-top: 100%;
     background: url("../img/form-background-ainur.jpg") no-repeat top/cover;
     border-radius: 10px 10px 0 0;
+    @media (max-width: $phone-max) {
+      display: none;
+    }
     @media (min-width: $tablet-min) {
       width: 50%;
       padding-top: 60%;

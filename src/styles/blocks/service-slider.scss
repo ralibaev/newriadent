@@ -1,6 +1,7 @@
 .service-slider {
   padding: 30px 0;
   background-color: $violet;
+  overflow: hidden;
   @media (min-width: $laptop-min) {
     padding: 50px 0;
   }
