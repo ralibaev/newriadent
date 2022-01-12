@@ -636,8 +636,48 @@ if (ceniItem) {
       }
     })
   });
-
 }
+
+// Выбор города в вакансиях
+let vacanciesSelect = document.querySelector('.vacancies-main__select-options');
+if (vacanciesSelect) {
+  let vacanciesActualCity = document.querySelector('.vacancies-main__vacancies-actual-city');
+  let vacanciesCities = document.querySelectorAll('.vacancies-main__vacancies-city');
+  for (let i=0; i<vacanciesCities.length; i++) {
+    vacanciesSelect.options[i].addEventListener('click', function() {
+      console.log('asdasd');
+      for (let j=0; j<vacanciesCities.length; j++) {
+        vacanciesCities[j].classList.remove('vacancies-main__vacancies-city--active');
+      }
+      vacanciesCities[i].classList.add('vacancies-main__vacancies-city--active');
+      vacanciesActualCity.innerHTML = vacanciesCities[i].innerHTML;
+      let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
+      vacanciesItem.forEach((item, i) => {
+        item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
+          if (item.querySelector('.vacancies-main__vacancy').classList.contains('vacancies-main__vacancy--show')) {
+            item.querySelector('.vacancies-main__vacancy').classList.remove('vacancies-main__vacancy--show');
+            item.querySelector('.vacancies-main__vacancy-title').classList.remove('vacancies-main__vacancy-title--show');
+          } else {
+            item.querySelector('.vacancies-main__vacancy').classList.add('vacancies-main__vacancy--show');
+            item.querySelector('.vacancies-main__vacancy-title').classList.add('vacancies-main__vacancy-title--show');
+          }
+        })
+      });
+    });
+  }
+  let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
+  vacanciesItem.forEach((item, i) => {
+    item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
+      if (item.querySelector('.vacancies-main__vacancy').classList.contains('vacancies-main__vacancy--show')) {
+        item.querySelector('.vacancies-main__vacancy').classList.remove('vacancies-main__vacancy--show');
+        item.querySelector('.vacancies-main__vacancy-title').classList.remove('vacancies-main__vacancy-title--show');
+      } else {
+        item.querySelector('.vacancies-main__vacancy').classList.add('vacancies-main__vacancy--show');
+        item.querySelector('.vacancies-main__vacancy-title').classList.add('vacancies-main__vacancy-title--show');
+      }
+    })
+  });
+};
 
 // Отправка формы
 // document.addEventListener('DOMContentLoaded', function() {

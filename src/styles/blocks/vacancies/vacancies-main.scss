@@ -1,0 +1,102 @@
+.vacancies-main {
+  &__title {
+    font-size: 20px;
+    color: $violet;
+    @media (min-width: $tablet-min) {
+  		font-size: 28px;
+  	}
+  	@media (min-width: $laptop-min) {
+  		font-size: 36px;
+  	}
+  	@media (min-width: $desktop-min) {
+  		font-size: 40px;
+  	}
+  }
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+  }
+  &__select-options {
+    padding: 5px 20px 5px 5px;
+  }
+  &__vacancies-actual-city {
+    margin: 30px 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    @media (min-width: $laptop-min) {
+      margin: 50px 0;
+    }
+  }
+  &__vacancies-item {
+    &:last-of-type {
+      .vacancies-main__vacancy-title {
+        border-bottom: 0;
+      }
+    }
+  }
+  &__vacancy-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    cursor: pointer;
+    &::after {
+      content: '';
+      display: block;
+      min-width: 17px;
+      min-height: 8px;
+      margin-left: 10px;
+      background: url('../img/ceni-arrow.svg') center/cover no-repeat;
+      transition: .3s;
+    }
+    &:hover {
+      background-color: #edeaf5;
+    }
+    &--show {
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__vacancy {
+    display: none;
+    height: auto;
+    max-width: 100%;
+    padding: 20px;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    visibility: hidden;
+    transition: max-height .3s,margin .3s;
+    &--show {
+      display: block;
+      max-height: 10000px;
+      border-bottom: 1px solid black;
+      visibility: visible;
+    }
+  }
+  &__vacancies-hidden {
+    position: absolute;
+  	width: 1px;
+  	height: 1px;
+  	margin: -1px;
+  	border: 0;
+  	padding: 0;
+  	white-space: nowrap;
+  	clip-path: inset(100%);
+  	clip: rect(0 0 0 0);
+  	overflow: hidden;
+  }
+}
