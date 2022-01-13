@@ -639,32 +639,68 @@ if (ceniItem) {
 }
 
 // Выбор города в вакансиях
-let vacanciesSelect = document.querySelector('.vacancies-main__select-options');
-if (vacanciesSelect) {
-  let vacanciesActualCity = document.querySelector('.vacancies-main__vacancies-actual-city');
+// let vacanciesSelect = document.querySelector('.vacancies-main__select-options');
+// if (vacanciesSelect) {
+//   let vacanciesActualCity = document.querySelector('.vacancies-main__vacancies-actual-city');
+//   let vacanciesCities = document.querySelectorAll('.vacancies-main__vacancies-city');
+//   for (let i=0; i<vacanciesCities.length; i++) {
+//     vacanciesSelect.options[i].addEventListener('click', function() {
+//       console.log('asdasd');
+//       for (let j=0; j<vacanciesCities.length; j++) {
+//         vacanciesCities[j].classList.remove('vacancies-main__vacancies-city--active');
+//       }
+//       vacanciesCities[i].classList.add('vacancies-main__vacancies-city--active');
+//       vacanciesActualCity.innerHTML = vacanciesCities[i].innerHTML;
+//       let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
+//       vacanciesItem.forEach((item, i) => {
+//         item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
+//           if (item.querySelector('.vacancies-main__vacancy').classList.contains('vacancies-main__vacancy--show')) {
+//             item.querySelector('.vacancies-main__vacancy').classList.remove('vacancies-main__vacancy--show');
+//             item.querySelector('.vacancies-main__vacancy-title').classList.remove('vacancies-main__vacancy-title--show');
+//           } else {
+//             item.querySelector('.vacancies-main__vacancy').classList.add('vacancies-main__vacancy--show');
+//             item.querySelector('.vacancies-main__vacancy-title').classList.add('vacancies-main__vacancy-title--show');
+//           }
+//         })
+//       });
+//     });
+//   }
+//   let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
+//   vacanciesItem.forEach((item, i) => {
+//     item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
+//       if (item.querySelector('.vacancies-main__vacancy').classList.contains('vacancies-main__vacancy--show')) {
+//         item.querySelector('.vacancies-main__vacancy').classList.remove('vacancies-main__vacancy--show');
+//         item.querySelector('.vacancies-main__vacancy-title').classList.remove('vacancies-main__vacancy-title--show');
+//       } else {
+//         item.querySelector('.vacancies-main__vacancy').classList.add('vacancies-main__vacancy--show');
+//         item.querySelector('.vacancies-main__vacancy-title').classList.add('vacancies-main__vacancy-title--show');
+//       }
+//     })
+//   });
+// };
+
+let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
+vacanciesItem.forEach((item, i) => {
+  item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
+    if (item.querySelector('.vacancies-main__vacancy').classList.contains('vacancies-main__vacancy--show')) {
+      item.querySelector('.vacancies-main__vacancy').classList.remove('vacancies-main__vacancy--show');
+      item.querySelector('.vacancies-main__vacancy-title').classList.remove('vacancies-main__vacancy-title--show');
+    } else {
+      item.querySelector('.vacancies-main__vacancy').classList.add('vacancies-main__vacancy--show');
+      item.querySelector('.vacancies-main__vacancy-title').classList.add('vacancies-main__vacancy-title--show');
+    }
+  })
+});
+
+function fun1() {
+  let vacanciesIndex = document.querySelector('.vacancies-main__select-options').selectedIndex;
   let vacanciesCities = document.querySelectorAll('.vacancies-main__vacancies-city');
-  for (let i=0; i<vacanciesCities.length; i++) {
-    vacanciesSelect.options[i].addEventListener('click', function() {
-      console.log('asdasd');
-      for (let j=0; j<vacanciesCities.length; j++) {
-        vacanciesCities[j].classList.remove('vacancies-main__vacancies-city--active');
-      }
-      vacanciesCities[i].classList.add('vacancies-main__vacancies-city--active');
-      vacanciesActualCity.innerHTML = vacanciesCities[i].innerHTML;
-      let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
-      vacanciesItem.forEach((item, i) => {
-        item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
-          if (item.querySelector('.vacancies-main__vacancy').classList.contains('vacancies-main__vacancy--show')) {
-            item.querySelector('.vacancies-main__vacancy').classList.remove('vacancies-main__vacancy--show');
-            item.querySelector('.vacancies-main__vacancy-title').classList.remove('vacancies-main__vacancy-title--show');
-          } else {
-            item.querySelector('.vacancies-main__vacancy').classList.add('vacancies-main__vacancy--show');
-            item.querySelector('.vacancies-main__vacancy-title').classList.add('vacancies-main__vacancy-title--show');
-          }
-        })
-      });
-    });
-  }
+  let vacanciesActualCity = document.querySelector('.vacancies-main__vacancies-actual-city');
+  for (let j=0; j<vacanciesCities.length; j++) {
+    vacanciesCities[j].classList.remove('vacancies-main__vacancies-city--active');
+  };
+  vacanciesCities[vacanciesIndex].classList.add('vacancies-main__vacancies-city--active');
+  vacanciesActualCity.innerHTML = vacanciesCities[vacanciesIndex].innerHTML;
   let vacanciesItem = document.querySelectorAll('.vacancies-main__vacancies-item');
   vacanciesItem.forEach((item, i) => {
     item.querySelector('.vacancies-main__vacancy-title').addEventListener('click', function() {
@@ -679,72 +715,44 @@ if (vacanciesSelect) {
   });
 };
 
-// Отправка формы
-// document.addEventListener('DOMContentLoaded', function() {
-//   let form = document.querySelector('.form-block__form');
-//   form.addEventListener('submit', formSend);
-//   async function formSend(e) {
-//     e.preventDefault();
-//     formValidate(form);
-//     let formData = new FormData(form);
-//     console.log(formData);
-//     let response = await fetch('/sendmail.php', {
-//       method: 'POST',
-//       body: formData
-//     });
-//     console.log(response);
-//     if (response.ok) {
-//       let result = await response.json();
-//       alert(result.message);
-//       formPreview.innerHTML = '';
-//       form.reset();
-//     } else {
-//       alert ("Ошибка при отправке формы");
-//     };
-//   };
-//
-//   function formValidate(form) {
-//     let error = 0;
-//     let formReq = document.querySelectorAll('.form-block__req');
-//     let textAfterSend = document.querySelector('.form-block__text-after-send');
-//
-//     for (let index = 0; index < formReq.length; index++) {
-//       let input = formReq[index];
-//       formRemoveError(input);
-//       if (input.classList.contains('form-block__phone')) {
-//         if (!validatePhone(input.value)) {
-//           formAddError(input);
-//           console.log(input);
-//           input.classList.add('form-block__req--error');
-//           error++;
-//         }
-//       }
-//     }
-//     console.log(error);
-//     if (error === 0) {
-//       textAfterSend.innerHTML = "Форма отправляется";
-//       textAfterSend.style.color = "#067f53";
-//       formReq.forEach((item, i) => {
-//         item.classList.remove('form-block__req--error');
+// Поиск по ценам
+// function searchPrices() {
+//   window.onload = () => {
+//     let searchInput = document.querySelector('.ceni__search-input');
+//     let listPrices = document.querySelectorAll('td');
+//     let tBody = document.querySelector('.ceni__search-tbody');
+//     if (value) {
+//       listPrices.forEach(elem => {
+//         if (elem.innerText.search(value) != -1) {
+//           tBody.appendChild(elem.parentNode);
+//         };
 //       });
 //     } else {
-//       textAfterSend.innerHTML = "Проверьте правильность данных";
-//       textAfterSend.style.color = "red";
+//       listPrices.forEach(elem => {
+//         tBody.innerHTML = '';
+//       });
 //     }
 //   }
-//
-//   function formAddError(input) {
-//     input.parentElement.classList.add('.form-block__error');
-//     input.classList.add('.form-block__error');
-//   };
-//   function formRemoveError(input) {
-//     input.parentElement.classList.remove('.form-block__error');
-//     input.classList.remove('.form-block__error');
-//   };
-//
-//   function validatePhone(phone){
-//     let regex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
-//     return regex.test(phone);
-//   }
-//
-// })
+// }
+let searchInput = document.querySelector('.ceni__search-input');
+if (searchInput) {
+  window.onload = () => {
+    let listPrices = document.querySelectorAll('td');
+    let tBody = document.querySelector('.ceni__search-tbody');
+    searchInput.oninput = function() {
+      let value = this.value.trim();
+      tBody.innerHTML = '';
+      if (value) {
+        listPrices.forEach(elem => {
+          if (elem.innerText.search(value) != -1) {
+            tBody.appendChild(elem.parentNode);
+          };
+        });
+      } else {
+        listPrices.forEach(elem => {
+          tBody.innerHTML = '';
+        });
+      }
+    }
+  }
+}
