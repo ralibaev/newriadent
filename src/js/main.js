@@ -716,41 +716,54 @@ function fun1() {
 };
 
 // Поиск по ценам
-// function searchPrices() {
-//   window.onload = () => {
-//     let searchInput = document.querySelector('.ceni__search-input');
-//     let listPrices = document.querySelectorAll('td');
-//     let tBody = document.querySelector('.ceni__search-tbody');
-//     if (value) {
-//       listPrices.forEach(elem => {
-//         if (elem.innerText.search(value) != -1) {
-//           tBody.appendChild(elem.parentNode);
-//         };
-//       });
-//     } else {
-//       listPrices.forEach(elem => {
-//         tBody.innerHTML = '';
-//       });
-//     }
-//   }
-// }
 let searchInput = document.querySelector('.ceni__search-input');
 if (searchInput) {
   window.onload = () => {
-    let listPrices = document.querySelectorAll('td');
+    let listPrices = document.querySelectorAll('.ceni__wrapper td');
+    let searchTable = document.querySelector('.ceni__search-table');
     let tBody = document.querySelector('.ceni__search-tbody');
+    let tableTitles = document.querySelectorAll('.ceni__item-title');
+    let searchInfo = document.querySelector('.ceni__search-info');
+    let searchCount = 0;
     searchInput.oninput = function() {
       let value = this.value.trim();
+      let someClone;
+      let someTitle;
+      let tableTitlesShow = [];
+      for (let i = 0; i < tableTitles.length; i++) {
+        tableTitlesShow[i] = 0;
+      }
       tBody.innerHTML = '';
+      searchCount = 0;
+      searchInfo.innerHTML = '';
+      searchTable.classList.remove('ceni__search-table--show');
       if (value) {
         listPrices.forEach(elem => {
           if (elem.innerText.search(value) != -1) {
-            tBody.appendChild(elem.parentNode);
+            someClone = elem.parentNode.cloneNode(true);
+            if (!elem.classList.contains('ceni__item-strong')) {
+              someTitle = elem.parentNode.parentNode.parentNode.parentNode.firstChild.innerHTML;
+              tableTitles.forEach((item, i) => {
+                if ((someTitle == item.innerHTML) && (!tableTitlesShow[i])) {
+                  let someRow = document.createElement('tr');
+                  someRow.classList.add('ceni__search-title');
+                  someRow.innerHTML = item.innerHTML;
+                  tBody.append(someRow);
+                  tableTitlesShow[i] = 1;
+                }
+              });
+              tBody.appendChild(someClone);
+              searchTable.classList.add('ceni__search-table--show');
+              searchCount++;
+            }
           };
         });
+        searchInfo.innerHTML = 'Найдено ' + searchCount + ' свопадений';
       } else {
         listPrices.forEach(elem => {
           tBody.innerHTML = '';
+          searchTable.classList.remove('ceni__search-table--show');
+          searchCount = 0;
         });
       }
     }

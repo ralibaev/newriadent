@@ -13,13 +13,99 @@
       text-align: left;
     }
   }
+  &__search-input {
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    @media (min-width: $laptop-min) {
+      font-size: 18px;
+    }
+  }
+  &__search-info {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    @media (min-width: $laptop-min) {
+      display: inline;
+      width: auto;
+      margin-left: 20px;
+    }
+  }
+  &__search-table {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    &--show {
+      border: 1px solid black;
+    }
+    @media (min-width: $laptop-min) {
+      margin: 25px 0;
+    }
+    tbody {
+      display: block;
+      width: 100%;
+    }
+    tr {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      border-bottom: 1px solid #9A9A9A;
+      &:nth-child(2n) {
+        background-color: #eeeeee;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      &.ceni__search-title {
+        padding: 20px;
+        font-size: 18px;
+        color: $violet;
+        font-weight: bold;
+      }
+      @media (min-width: $laptop-min) {
+        flex-direction: row;
+        padding: 0;
+      }
+      td {
+        font-size: 14px;
+        @media (min-width: $laptop-min) {
+          padding: 20px;
+          font-size: 16px;
+        }
+        &:first-child {
+          margin-bottom: 20px;
+          font-weight: 500;
+          font-size: 15px;
+          @media (min-width: $laptop-min) {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            margin-bottom: 0;
+            border-right: 1px solid #d8d8d8;
+          }
+        }
+        &:nth-child(2) {
+          &::after {
+            content: ' руб';
+          }
+          @media (min-width: $laptop-min) {
+            display: inline-block;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
   &__wrapper {
-    margin-top: 30px;
     border: 1px solid black;
     border-radius: 10px;
-    @media (min-width: $laptop-min) {
-      margin-top: 50px;
-    }
   }
   &__item {
     &:first-of-type {
