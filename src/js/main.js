@@ -371,7 +371,7 @@ if (staffMainWebp) {
     staffWidth = window.innerWidth - 100;
     console.log(staffNumSpan.innerHTML);
     staffListInner.style.transform = "translateX(0px)";
-    staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
+    let staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
     console.log(staffMove);
     staffButtonNext.addEventListener('click', function() {
       staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
@@ -768,4 +768,54 @@ if (searchInput) {
       }
     }
   }
+};
+
+// Галерея лицензий
+let licensesList = document.querySelectorAll('.pravovaya-informaciya__item');
+if (licensesList.length) {
+  let popupOverlay = document.querySelector('.popup__overlay');
+  let licenseShowed = document.querySelector('.pravovaya-informaciya__showed-license');
+  let licenseClose = document.querySelector('.pravovaya-informaciya__close');
+  let licensePrevButton = document.querySelector('.pravovaya-informaciya__button--prev');
+  let licenseNextButton = document.querySelector('.pravovaya-informaciya__button--next');
+  licensesList.forEach((item, i) => {
+    item.addEventListener('click', function() {
+      licenseShowed.classList.add('pravovaya-informaciya__showed-license--show');
+      licenseShowed.querySelector('source').attributes.srcset.textContent = item.querySelector('source').attributes.srcset.textContent;
+      licenseShowed.querySelector('img').attributes.src.textContent = item.querySelector('img').attributes.src.textContent;
+      popupOverlay.classList.add('popup__overlay--show');
+    });
+  });
+  licenseClose.addEventListener('click', function() {
+    licenseShowed.classList.remove('pravovaya-informaciya__showed-license--show');
+    popupOverlay.classList.remove('popup__overlay--show');
+  });
+  popupOverlay.addEventListener('click', function() {
+    licenseShowed.classList.remove('pravovaya-informaciya__showed-license--show');
+    popupOverlay.classList.remove('popup__overlay--show');
+  });
+  licensePrevButton.addEventListener('click', function() {
+    let licenseNumber = licenseShowed.querySelector('img').attributes.src.textContent;
+    licenseNumber = parseInt(licenseNumber.match(/\d+/));
+    console.log(licenseNumber);
+    if (licenseNumber == 1) {
+      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license' + (licensesList.length) + '.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license' + (licensesList.length) + '.jpg';
+    } else {
+      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license' + (licenseNumber - 1) + '.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license' + (licenseNumber - 1) + '.jpg';
+    }
+  });
+  licenseNextButton.addEventListener('click', function() {
+    let licenseNumber = licenseShowed.querySelector('img').attributes.src.textContent;
+    licenseNumber = parseInt(licenseNumber.match(/\d+/));
+    console.log(licenseNumber);
+    if (licenseNumber == 5) {
+      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license1.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license1.jpg';
+    } else {
+      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license' + (licenseNumber + 1) + '.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license' + (licenseNumber + 1) + '.jpg';
+    }
+  });
 }

@@ -1,0 +1,8 @@
+.politika-konfidencialnosti {
+  &__container {
+    padding-bottom: 30px;
+    @media (min-width: $laptop-min) {
+      padding-bottom: 50px;
+    }
+  }
+}
