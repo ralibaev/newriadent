@@ -99,6 +99,10 @@ button {
     90% {transform: translateY(-10px);}
     100% {transform: translateY(0);}
 }
+@keyframes scroll {
+    0% {transform: translate(0, 0);}
+    100% {transform: translate(-100%, 0);}
+}
 @keyframes from-top {
 	0% {transform: translateY(-2000px);}
 	70% {transform: translateY(30px);}
