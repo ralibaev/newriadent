@@ -1,0 +1,211 @@
+.otzivi {
+  height: 860px;
+  background-color: #AEAEAE;
+  @media (max-width: 959px) {height: 820px;}
+  @media (max-width: 959px) {height: 770px;}
+  @media (max-width: $phone-max) {display: none;}
+  &__container {
+    height: 100%;
+    padding: 100px 0;
+    box-sizing: border-box;
+    @media (max-width: 959px) {padding: 80px 0;}
+  }
+  &__slider {
+    position: relative;
+    height: 100%;
+  }
+  &__button {
+    position: absolute;
+    top: calc(50% - 15px);
+    padding: 0;
+    line-height: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    &:hover {opacity: 0.5;}
+    &--prev {left: -30px;}
+    &--next {right: -30px;}
+  }
+  &__list {
+    position: relative;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    // @media (max-width: $tablet-max) {
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   width: 100%;
+    //   padding-top: 73.3%;
+    // }
+  }
+  &__item {
+    position: absolute;
+    width: 100%;
+    transition: all .5s ease;
+    &:nth-child(1) {left: -100%;}
+    &:nth-child(2) {left: 0;}
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    margin: 0 auto;
+    @media (max-width: 1300px) {width: 900px;}
+    @media (max-width: 960px) {width: 100%;}
+  }
+  &__left-block, &__right-block {width: 47%;}
+  &__photo, &__doctor, &__info {background-color: white; box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);}
+  &__photo {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    // cursor: pointer;
+    &:hover {
+      .otzivi__eye {opacity: 0;}
+      .otzivi__photo-hover {z-index: 5; opacity: 1;}
+      // &::before {opacity: 0;}
+      // picture {opacity: 0;}
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.7;
+      z-index: 3;
+      transition: all .2s ease;
+    }
+    picture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: 0;
+      z-index: 2;
+      transition: all .2s ease;
+    }
+  }
+  &__eye {
+    position: absolute;
+    left: calc(50% - 47px);
+    top: calc(50% - 33px);
+    z-index: 4;
+    transition: all .2s ease;
+  }
+  &__photo-hover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: all .2s ease;
+  }
+  &__video-link {
+    position: absolute;
+    left: calc(50% - 101px);
+    top: calc(50% - 59px);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    z-index: 2;
+    cursor: pointer;
+    // a {
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    // }
+    // svg {
+    //   position: absolute;
+    // }
+  }
+  &__doctor {
+    display: flex;
+    height: 175px;
+    margin-top: 50px;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+  &__ebalnik {
+    width: 105px;
+    height: 105px;
+    background: url('../img/silanteva-round.jpg') no-repeat center/cover;
+    border-radius: 50%;
+  }
+  &__doctor-info {
+    margin-left: 30px;
+    strong {font-size: 16px;}
+    p {
+      padding-left: 10px;
+      border-left: 1px solid black;
+      font-size: 14px;
+    }
+  }
+  // &__right-block {}
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    p {margin: 0; font-size: 16px;}
+  }
+  &__name {margin: 0; font-size: 32px;}
+  &__trouble, &__solve {margin: 0;}
+  &__trouble {color: #F41212;}
+  &__solve {color: #219653;}
+  &__li {
+    display: flex;
+    &::before {
+      content: '';
+      display: block;
+      width: 62px;
+      height: 62px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 62px;
+    }
+    &--1::before {background-image: url('../img/srok.png')}
+    &--2::before {background-image: url('../img/price.png')}
+    &--3::before {background-image: url('../img/already.png')}
+  }
+  &__li-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 40px;
+    span {font-size: 14px;}
+    strong {font-size: 22px;}
+  }
+  &__button-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  &__button-item {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0 5px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    opacity: 1;
+    cursor: pointer;
+    &:hover {opacity: 0.5;}
+    &--active {opacity: 0.7;}
+  }
+}
