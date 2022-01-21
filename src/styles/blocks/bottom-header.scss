@@ -14,8 +14,8 @@
     font-size: 14px;
     color: white;
     text-transform: uppercase;
-    background-color: #462899;
-    border: 1px solid #462899;
+    background-color: $violet;
+    border: 1px solid $violet;
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
@@ -31,7 +31,7 @@
       animation: 5s moveLight infinite;
     }
     &:hover {
-      color: #462899;
+      color: $violet;
       background-color: white;
     }
     @media (min-width: $laptop-min) {

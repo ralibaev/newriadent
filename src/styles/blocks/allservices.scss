@@ -1,7 +1,7 @@
 .allservices {
   padding: 30px 0;
   color: white;
-  background: url('../img/allservices-back.png') right -5px bottom -5px no-repeat #462899;
+  background: url('../img/allservices-back.png') right -5px bottom -5px no-repeat $violet;
   @media (min-width: $tablet-min) {
     padding: 50px 0;
   }

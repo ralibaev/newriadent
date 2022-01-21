@@ -54,11 +54,11 @@
     }
     &:nth-child(2) {
       left: 100%;
-      background-color: #462899;
+      background-color: $violet;
     }
     &:nth-child(3) {
       left: 200%;
-      background-color: #462899;
+      background-color: $violet;
       picture {
         margin-right: 50px;
       }
@@ -72,7 +72,7 @@
     }
     &:nth-child(5) {
       left: 400%;
-      background-color: #462899;
+      background-color: $violet;
       picture {
         align-self: flex-end;
       }

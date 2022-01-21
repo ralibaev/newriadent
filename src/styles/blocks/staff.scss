@@ -12,7 +12,7 @@
     @media (max-width: $tablet-max) {
       padding: 20px;
       box-sizing: border-box;
-      background: #462899;
+      background: $violet;
       border-radius: 20px;
     }
   }
@@ -45,6 +45,10 @@
       width: 82.5%;
       line-height: 0;
     }
+  }
+  &__main-img {
+    border-radius: 20px;
+    overflow: hidden;
   }
   &__text {
     display: flex;
@@ -142,6 +146,10 @@
       }
     }
   }
+  &__item-img {
+    border-radius: 10px;
+    overflow: hidden;
+  }
   &__text-block {
     // display: flex;
     // flex-direction: column;
@@ -170,10 +178,25 @@
         font-weight: 400;
       }
     }
-    p {
+    p, .staff__perehod {
       font-size: 14px;
       font-weight: 400;
       @media (min-width: $laptop-min) {display: none;}
+    }
+  }
+  &__perehod {
+    display: flex;
+    justify-content: center;
+    max-width: 150px;
+    padding: 20px;
+    margin: 0 auto;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #1a684c;
+    border-radius: 20px;
+    @media (min-width: $laptop-min) {
+      margin: 0;
     }
   }
   &__buttons {

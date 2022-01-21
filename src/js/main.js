@@ -349,15 +349,19 @@ if (staffMainWebp) {
     let staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
     staffButtonNext.addEventListener('click', function() {
       staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
-      staffListInner.style.transform = "translateX(-" + (staffMove + staffWidth) + "px)";
-      staffNumber = staffMove / staffWidth + 2;
-      staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+      if ((staffMove + staffWidth) < (staffItems.length * staffWidth)) {
+        staffListInner.style.transform = "translateX(-" + (staffMove + staffWidth) + "px)";
+        staffNumber = staffMove / staffWidth + 2;
+        staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+      };
     });
     staffButtonPrev.addEventListener('click', function() {
       staffMove = parseInt(staffListInner.style.transform.match(/\d+/));
-      staffListInner.style.transform = "translateX(-" + (staffMove - staffWidth) + "px)";
-      staffNumber = staffMove / staffWidth;
-      staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+      if (staffNumber != 1) {
+        staffListInner.style.transform = "translateX(-" + (staffMove - staffWidth) + "px)";
+        staffNumber = staffMove / staffWidth;
+        staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+      };
     });
   } else if (window.matchMedia('(max-width: 1023px)').matches) {
     staffListInner.style.width = (Math.floor(staffItems.length / 2) * (window.innerWidth - 100)) + "px";
@@ -897,101 +901,105 @@ if (certificateList) {
 
 // Отзывы
 let otziviSlides = document.querySelectorAll('.otzivi__item');
-let otziviCount = 0;
-for (let i = 0; i < otziviSlides.length; i++) {
-  otziviCount++;
-}
-let otziviButtonList = document.querySelector('.otzivi__button-list');
-for (let i = 0; i < otziviCount; i++) {
-  let otziviButton = document.createElement('button');
-  otziviButton.classList.add('otzivi__button-item');
-  otziviButtonList.append(otziviButton);
-}
-otziviButtonList.childNodes[0].classList.add('otzivi__button-item--active');
-for (let i = 0; i < otziviSlides.length; i++) {
-  otziviSlides[i].style.left = (i * 100) + '%';
-}
-function showOtziv() {
+if (otziviSlides.length) {
+  let otziviCount = 0;
+  for (let i = 0; i < otziviSlides.length; i++) {
+    otziviCount++;
+  }
+  let otziviButtonList = document.querySelector('.otzivi__button-list');
   for (let i = 0; i < otziviCount; i++) {
-    if (otziviButtonList.childNodes[i].classList.contains('otzivi__button-item--active')) {
-      for (let j = 0; j < otziviSlides.length; j++) {
-        otziviSlides[j].style.left = (j * 100) - (i * 100) + '%';
+    let otziviButton = document.createElement('button');
+    otziviButton.classList.add('otzivi__button-item');
+    otziviButtonList.append(otziviButton);
+  }
+  otziviButtonList.childNodes[0].classList.add('otzivi__button-item--active');
+  for (let i = 0; i < otziviSlides.length; i++) {
+    otziviSlides[i].style.left = (i * 100) + '%';
+  }
+  function showOtziv() {
+    for (let i = 0; i < otziviCount; i++) {
+      if (otziviButtonList.childNodes[i].classList.contains('otzivi__button-item--active')) {
+        for (let j = 0; j < otziviSlides.length; j++) {
+          otziviSlides[j].style.left = (j * 100) - (i * 100) + '%';
+        }
       }
     }
   }
-}
-function prevOtziv() {
-  let x = 0;
-  for (let i = 0; i < otziviCount; i++) {
-    if (otziviButtonList.childNodes[i].classList.contains('otzivi__button-item--active')) {
-      x = i;
+  function prevOtziv() {
+    let x = 0;
+    for (let i = 0; i < otziviCount; i++) {
+      if (otziviButtonList.childNodes[i].classList.contains('otzivi__button-item--active')) {
+        x = i;
+      }
     }
-  }
-  otziviButtonList.childNodes[x].classList.remove('otzivi__button-item--active');
-  if (x == 0) {
-    otziviButtonList.lastChild.classList.add('otzivi__button-item--active');
-  } else {
-    otziviButtonList.childNodes[x - 1].classList.add('otzivi__button-item--active');
-  }
-  showOtziv();
-}
-
-function nextOtziv() {
-  let x = 0;
-  for (let i = 0; i < otziviCount; i++) {
-    if (otziviButtonList.childNodes[i].classList.contains('otzivi__button-item--active')) {
-      x = i;
+    otziviButtonList.childNodes[x].classList.remove('otzivi__button-item--active');
+    if (x == 0) {
+      otziviButtonList.lastChild.classList.add('otzivi__button-item--active');
+    } else {
+      otziviButtonList.childNodes[x - 1].classList.add('otzivi__button-item--active');
     }
-  }
-  otziviButtonList.childNodes[x].classList.remove('otzivi__button-item--active');
-  if (x == (otziviCount - 1)) {
-    otziviButtonList.firstChild.classList.add('otzivi__button-item--active');
-  } else {
-    otziviButtonList.childNodes[x + 1].classList.add('otzivi__button-item--active');
-  }
-  showOtziv();
-}
-for (let i = 0; i < otziviCount; i++) {
-  otziviButtonList.childNodes[i].addEventListener('click', function() {
-    for (let j = 0; j < otziviSlides.length; j++) {
-      otziviButtonList.childNodes[j].classList.remove('otzivi__button-item--active')
-    }
-    otziviButtonList.childNodes[i].classList.add('otzivi__button-item--active');
     showOtziv();
-  });
+  }
+
+  function nextOtziv() {
+    let x = 0;
+    for (let i = 0; i < otziviCount; i++) {
+      if (otziviButtonList.childNodes[i].classList.contains('otzivi__button-item--active')) {
+        x = i;
+      }
+    }
+    otziviButtonList.childNodes[x].classList.remove('otzivi__button-item--active');
+    if (x == (otziviCount - 1)) {
+      otziviButtonList.firstChild.classList.add('otzivi__button-item--active');
+    } else {
+      otziviButtonList.childNodes[x + 1].classList.add('otzivi__button-item--active');
+    }
+    showOtziv();
+  }
+  for (let i = 0; i < otziviCount; i++) {
+    otziviButtonList.childNodes[i].addEventListener('click', function() {
+      for (let j = 0; j < otziviSlides.length; j++) {
+        otziviButtonList.childNodes[j].classList.remove('otzivi__button-item--active')
+      }
+      otziviButtonList.childNodes[i].classList.add('otzivi__button-item--active');
+      showOtziv();
+    });
+  }
+  let otziviPrevButton = document.querySelector('.otzivi__button--prev');
+  otziviPrevButton.addEventListener('click', prevOtziv);
+  let otziviNextButton = document.querySelector('.otzivi__button--next');
+  otziviNextButton.addEventListener('click', nextOtziv);
 }
-let otziviPrevButton = document.querySelector('.otzivi__button--prev');
-otziviPrevButton.addEventListener('click', prevOtziv);
-let otziviNextButton = document.querySelector('.otzivi__button--next');
-otziviNextButton.addEventListener('click', nextOtziv);
 
 // Видео-отзывы
-let overlay = document.querySelector('.video-otzivi__overlay');
 let videoLinks = document.querySelectorAll('.otzivi__video-link');
-let video = document.querySelectorAll('.video-otzivi__video');
-let iframeVideo = document.querySelectorAll('.video-otzivi__iframe');
-let buttonCloseVideo = document.querySelectorAll('.video-otzivi__close');
+if (videoLinks.length) {
+  let overlay = document.querySelector('.video-otzivi__overlay');
+  let video = document.querySelectorAll('.video-otzivi__video');
+  let iframeVideo = document.querySelectorAll('.video-otzivi__iframe');
+  let buttonCloseVideo = document.querySelectorAll('.video-otzivi__close');
 
-videoLinks.forEach((item, i) => {
-  item.addEventListener('click', function(event) {
-    event.preventDefault();
-    overlay.classList.add('video-otzivi__overlay--active');
-    video[i].classList.add('video-otzivi__video--active');
-  })
-});
+  videoLinks.forEach((item, i) => {
+    item.addEventListener('click', function(event) {
+      event.preventDefault();
+      overlay.classList.add('video-otzivi__overlay--active');
+      video[i].classList.add('video-otzivi__video--active');
+    })
+  });
 
-overlay.addEventListener('click', function(event) {
-  overlay.classList.remove('video-otzivi__overlay--active');
-  for (var i = 0; i < video.length; i++) {
-    video[i].classList.remove('video-otzivi__video--active');
-    iframeVideo[i].src = iframeVideo[i].src;
-  }
-})
-
-buttonCloseVideo.forEach((item, i) => {
-  item.addEventListener('click', function(event) {
+  overlay.addEventListener('click', function(event) {
     overlay.classList.remove('video-otzivi__overlay--active');
-    video[i].classList.remove('video-otzivi__video--active');
-    iframeVideo[i].src = iframeVideo[i].src;
+    for (var i = 0; i < video.length; i++) {
+      video[i].classList.remove('video-otzivi__video--active');
+      iframeVideo[i].src = iframeVideo[i].src;
+    }
   })
-});
+
+  buttonCloseVideo.forEach((item, i) => {
+    item.addEventListener('click', function(event) {
+      overlay.classList.remove('video-otzivi__overlay--active');
+      video[i].classList.remove('video-otzivi__video--active');
+      iframeVideo[i].src = iframeVideo[i].src;
+    })
+  });
+}

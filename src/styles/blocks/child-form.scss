@@ -1,5 +1,5 @@
 .child-form {
-  background: url('../img/child-form-back.svg') bottom/cover no-repeat #462899;
+  background: url('../img/child-form-back.svg') bottom/cover no-repeat $violet;
   &__container {
     display: flex;
     flex-direction: column;
@@ -83,10 +83,10 @@
     color: #067F53;
   }
   &__minutes-span {
-    color: #462899;
+    color: $violet;
   }
   &__seconds-span {
-    color: #462899;
+    color: $violet;
   }
   &__right {
     box-sizing: border-box;

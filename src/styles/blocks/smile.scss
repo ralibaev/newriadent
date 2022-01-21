@@ -10,7 +10,7 @@
   &__smiles {
     display: flex;
     flex-direction: column;
-    background-color: #462899;
+    background-color: $violet;
     picture {
       margin-bottom: -70px
     }
@@ -32,7 +32,7 @@
     text-align: center;
     font-size: 24px;
     line-height: 1.3em;
-    color: #462899;
+    color: $violet;
     @media (min-width: $tablet-min) {
       margin-top: 110px;
       font-size: 32px;

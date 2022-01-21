@@ -50,15 +50,15 @@
     transition: .3s ease;
     &:nth-child(1) {
       left: 0;
-      background: url('../img/slider-back1.svg') bottom/cover no-repeat #462899;
+      background: url('../img/slider-back1.svg') bottom/cover no-repeat $violet;
     }
     &:nth-child(2) {
       left: 100%;
-      background: url('../img/slider-back1.svg') bottom/cover no-repeat #462899;
+      background: url('../img/slider-back1.svg') bottom/cover no-repeat $violet;
     }
     &:nth-child(3) {
       left: 200%;
-      background: url('../img/slider-back1.svg') bottom/cover no-repeat #462899;
+      background: url('../img/slider-back1.svg') bottom/cover no-repeat $violet;
     }
     @media (min-width: $tablet-min) {
       flex-direction: row-reverse;
@@ -121,7 +121,7 @@
     button {
       width: 250px;
       height: 55px;
-      color: #462899;
+      color: $violet;
       font-size: 18px;
       font-weight: 600;
       border: 1px solid white;
@@ -199,10 +199,10 @@
     border-radius: 10px;
     overflow: hidden;
     &:nth-child(1), &:nth-child(4) {
-      background-color: #462899;
+      background-color: $violet;
       h3, span {color: white;}
       button {
-        color: #462899;
+        color: $violet;
         background-color: white;
       }
     }
@@ -210,7 +210,7 @@
       background-color: #F8F8F8;
       button {
         color: white;
-        background-color: #462899;
+        background-color: $violet;
       }
     }
     &:nth-child(1) {
