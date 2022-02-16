@@ -1005,3 +1005,24 @@ if (videoLinks.length) {
 }
 
 // ДО после врачей
+let beforeImg = document.querySelectorAll('.beforeafter__img-block');
+let afterImg = document.querySelectorAll('.beforeafter__before-img');
+let afterImgImg = document.querySelectorAll('.beforeafter__after-img');
+
+document.addEventListener('DOMContentLoaded', () => {
+  beforeImg.forEach((item, i) => {
+    let width = item.offsetWidth;
+    console.log(afterImgImg[i].style.width);
+    afterImgImg[i].style.width = +width + 'px';
+    console.log(afterImgImg[i].style);
+  });
+
+  // let width = beforeImg[0].offsetWidth;
+  // console.log(width);
+});
+// console.log(beforeImg[0].style.offsetWidth);
+// afterImgImg.style.width = beforeImg.style.offsetWidth;
+// beforeImg.addEventListener('mousemove', (event) => {
+//   let x = event.offsetX;
+//
+// })
