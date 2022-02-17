@@ -1005,24 +1005,120 @@ if (videoLinks.length) {
 }
 
 // ДО после врачей
-let beforeImg = document.querySelectorAll('.beforeafter__img-block');
-let afterImg = document.querySelectorAll('.beforeafter__before-img');
-let afterImgImg = document.querySelectorAll('.beforeafter__after-img');
+
+let beforeAfter = document.querySelectorAll('.beforeafter__beforeafter');
+let beforeBlock = document.querySelectorAll('.beforeafter__before-block');
+let beforeImg = document.querySelectorAll('.beforeafter__before-img');
+let change = document.querySelectorAll('.beforeafter__change');
+let body = document.body;
+let isActive = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   beforeImg.forEach((item, i) => {
-    let width = item.offsetWidth;
-    console.log(afterImgImg[i].style.width);
-    afterImgImg[i].style.width = +width + 'px';
-    console.log(afterImgImg[i].style);
+    let width = beforeAfter[i].offsetWidth;
+    item.style.minWidth = width + 'px';
   });
-
-  // let width = beforeImg[0].offsetWidth;
-  // console.log(width);
 });
-// console.log(beforeImg[0].style.offsetWidth);
-// afterImgImg.style.width = beforeImg.style.offsetWidth;
-// beforeImg.addEventListener('mousemove', (event) => {
-//   let x = event.offsetX;
-//
-// })
+
+let beforeAfterSlider = (x, i) => {
+  let shift = Math.max(0, Math.min(x, beforeAfter[i].offsetWidth));
+  beforeBlock[i].style.width = shift + 'px';
+  change[i].style.left = shift + 'px';
+}
+
+let pauseEvents = (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+  return false;
+}
+
+beforeAfter.forEach((item, i) => {
+  item.addEventListener('mousedown', () => {
+    isActive = true;
+    // console.log('down');
+  });
+  item.addEventListener('mouseup', () => {
+    isActive = false;
+  });
+  item.addEventListener('mouseleave', () => {
+    isActive = false;
+  });
+  item.addEventListener('mousemove', (e) => {
+    if (!isActive) {
+      return;
+    }
+    let x  = e.pageX;
+    x -= item.getBoundingClientRect().left;
+    beforeAfterSlider(x, i);
+    pauseEvents(e);
+  })
+
+  item.addEventListener('touchstart', () => {
+    isActive = true;
+    console.log('down');
+  });
+  item.addEventListener('touchend', () => {
+    isActive = false;
+    console.log('up');
+  });
+  item.addEventListener('touchcancel', () => {
+    isActive = false;
+  });
+  body.addEventListener('touchmove', (e) => {
+    if (!isActive) {
+      return;
+    };
+    let x;
+    let y;
+    // console.log(e.changedTouches.length);
+
+    for (y = 0; e < e.changedTouches.length; y++) {
+      x = e.changedTouches[y].pageX;
+      console.log(e.changedTouches[y].pageX);
+      // console.log(x);
+    };
+
+    x -= item.getBoundingClientRect().left;
+    beforeAfterSlider(x, i);
+    pauseEvents(e);
+  });
+});
+
+// let beforeImg = document.querySelectorAll('.beforeafter__img-block');
+// if (beforeImg.length) {
+//   let afterImg = document.querySelectorAll('.beforeafter__before-img');
+//   let afterImgImg = document.querySelectorAll('.beforeafter__after-img');
+//   document.addEventListener('DOMContentLoaded', () => {
+//     beforeImg.forEach((item, i) => {
+//       let width = item.offsetWidth;
+//       afterImgImg[i].style.minWidth = +width + 'px';
+//     });
+//   });
+//   // beforeImg.forEach((item, i) => {
+//   //   let width = item.offsetWidth;
+//   //   item.addEventListener('mousemove', (event) => {
+//   //     let x = width - event.offsetX;
+//   //     afterImg[i].style.width = x + 'px';
+//   //   });
+//   // });
+//   // beforeImg.forEach((item, i) => {
+//   //   let width = item.offsetWidth;
+//   //   item.addEventListener('mouseleave', (event) => {
+//   //     afterImg[i].style.width = 50 + '%';
+//   //   });
+//   // });
+//   beforeImg.forEach((item, i) => {
+//     let width = item.offsetWidth;
+//     item.addEventListener('touchmove', (event) => {
+//       let x = width - event.offsetX;
+//       console.log(event);
+//       afterImg[i].style.width = x + 'px';
+//     });
+//   });
+//   beforeImg.forEach((item, i) => {
+//     let width = item.offsetWidth;
+//     item.addEventListener('touchend', (event) => {
+//       afterImg[i].style.width = 50 + '%';
+//     });
+//   });
+// }
