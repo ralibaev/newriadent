@@ -98,8 +98,11 @@
     }
   }
   &__certificate-inner {
-    width: calc(100% - 100px);
+    width: calc(100% - 60px);
     overflow: hidden;
+    @media (min-width: $tablet-min) {
+      width: calc(100% - 100px);
+    }
   }
   &__certificate-list {
     display: flex;

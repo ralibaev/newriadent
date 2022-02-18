@@ -1004,121 +1004,183 @@ if (videoLinks.length) {
   });
 }
 
+// Слайдер ДО-после
+let beforeAfterList = document.querySelector('.beforeafter__list');
+if (beforeAfterList) {
+  let beforeAfterItem = document.querySelectorAll('.beforeafter__item');
+  beforeAfterList.style.width = '' + (beforeAfterItem.length * 100) + '%';
+  let beforeAfterPrevButton = document.querySelector('.beforeafter__button--prev');
+  let beforeAfterNextButton = document.querySelector('.beforeafter__button--next');
+  let beforeAfterMove;
+  let beforeAfterWidth = window.innerWidth - 40;
+  beforeAfterList.style.transform = "translateX(0px)";
+  beforeAfterItem.forEach((item, i) => {
+    item.style.width = beforeAfterWidth + "px";
+  });
+  beforeAfterMove = parseInt(beforeAfterList.style.transform.match(/\d+/));
+  beforeAfterNextButton.addEventListener('click', function() {
+    beforeAfterMove = parseInt(beforeAfterList.style.transform.match(/\d+/));
+    if (beforeAfterMove + beforeAfterWidth < beforeAfterWidth * beforeAfterItem.length) {
+      beforeAfterList.style.transform = "translateX(-" + (beforeAfterMove + beforeAfterWidth) + "px)";
+    };
+  });
+  beforeAfterPrevButton.addEventListener('click', function() {
+    beforeAfterMove = parseInt(beforeAfterList.style.transform.match(/\d+/));
+    beforeAfterList.style.transform = "translateX(-" + (beforeAfterMove - beforeAfterWidth) + "px)";
+  });
+
+  // if (window.matchMedia('(max-width: 767px)').matches) {
+  //   let certificateWidth = window.innerWidth - 100;
+  //   certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   certificateItem.forEach((item, i) => {
+  //     item.style.width = certificateWidth + "px";
+  //   });
+  //   let certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //   certificateNextButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     if (certificateMove + certificateWidth < certificateWidth * certificateItem.length) {
+  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+  //     };
+  //   });
+  //   certificatePrevButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+  //   });
+  // } else if (window.matchMedia('(max-width: 1023px)').matches) {
+  //   let certificateWidth = window.innerWidth - 160;
+  //   certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   if ((certificateItem.length % 2) != 0) {
+  //     certificateItem.forEach((item, i) => {
+  //       item.style.width = (certificateWidth / 2) + 'px';
+  //     });
+  //   };
+  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //   certificateNextButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 2)) {
+  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+  //     };
+  //   });
+  //   certificatePrevButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+  //   });
+  // } else if (window.matchMedia('(max-width: 1200px)').matches) {
+  //   let certificateWidth = window.innerWidth - 200;
+  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   if ((certificateItem.length % 3) != 0) {
+  //     certificateItem.forEach((item, i) => {
+  //       item.style.width = (certificateWidth / 3) + 'px';
+  //     });
+  //   };
+  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //   certificateNextButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
+  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+  //     };
+  //   });
+  //   certificatePrevButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+  //   });
+  // } else {
+  //   let certificateWidth =  1100;
+  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   if ((certificateItem.length % 3) != 0) {
+  //     certificateItem.forEach((item, i) => {
+  //       item.style.width = (certificateWidth / 3) + 'px';
+  //     });
+  //   };
+  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //   certificateNextButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
+  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+  //     };
+  //   });
+  //   certificatePrevButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+  //   });
+  // }
+}
 // ДО после врачей
-
 let beforeAfter = document.querySelectorAll('.beforeafter__beforeafter');
-let beforeBlock = document.querySelectorAll('.beforeafter__before-block');
-let beforeImg = document.querySelectorAll('.beforeafter__before-img');
-let change = document.querySelectorAll('.beforeafter__change');
-let body = document.body;
-let isActive = false;
+if (beforeAfter.length) {
+  let beforeBlock = document.querySelectorAll('.beforeafter__before-block');
+  let beforeImg = document.querySelectorAll('.beforeafter__before-img');
+  let change = document.querySelectorAll('.beforeafter__change');
+  let body = document.body;
+  let isActive = false;
 
-document.addEventListener('DOMContentLoaded', () => {
-  beforeImg.forEach((item, i) => {
-    let width = beforeAfter[i].offsetWidth;
-    item.style.minWidth = width + 'px';
+  document.addEventListener('DOMContentLoaded', () => {
+    beforeImg.forEach((item, i) => {
+      let width = beforeAfter[i].offsetWidth;
+      item.style.minWidth = width + 'px';
+    });
   });
-});
 
-let beforeAfterSlider = (x, i) => {
-  let shift = Math.max(0, Math.min(x, beforeAfter[i].offsetWidth));
-  beforeBlock[i].style.width = shift + 'px';
-  change[i].style.left = shift + 'px';
-}
+  let beforeAfterSlider = (x, i) => {
+    let shift = Math.max(0, Math.min(x, beforeAfter[i].offsetWidth));
+    beforeBlock[i].style.width = shift + 'px';
+    change[i].style.left = shift + 'px';
+  }
 
-let pauseEvents = (e) => {
-  e.stopPropagation();
-  e.preventDefault();
-  return false;
-}
+  let pauseEvents = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    return false;
+  }
 
-beforeAfter.forEach((item, i) => {
-  item.addEventListener('mousedown', () => {
-    isActive = true;
-    // console.log('down');
-  });
-  item.addEventListener('mouseup', () => {
-    isActive = false;
-  });
-  item.addEventListener('mouseleave', () => {
-    isActive = false;
-  });
-  item.addEventListener('mousemove', (e) => {
-    if (!isActive) {
-      return;
-    }
-    let x  = e.pageX;
-    x -= item.getBoundingClientRect().left;
-    beforeAfterSlider(x, i);
-    pauseEvents(e);
-  })
+  beforeAfter.forEach((item, i) => {
+    item.addEventListener('mousedown', () => {
+      isActive = true;
+      // console.log('down');
+    });
+    item.addEventListener('mouseup', () => {
+      isActive = false;
+    });
+    item.addEventListener('mouseleave', () => {
+      isActive = false;
+    });
+    item.addEventListener('mousemove', (e) => {
+      if (!isActive) {
+        return;
+      }
+      let x  = e.pageX;
+      x -= item.getBoundingClientRect().left;
+      beforeAfterSlider(x, i);
+      pauseEvents(e);
+    })
 
-  item.addEventListener('touchstart', () => {
-    isActive = true;
-    console.log('down');
-  });
-  item.addEventListener('touchend', () => {
-    isActive = false;
-    console.log('up');
-  });
-  item.addEventListener('touchcancel', () => {
-    isActive = false;
-  });
-  body.addEventListener('touchmove', (e) => {
-    if (!isActive) {
-      return;
-    };
-    let x;
-    let y;
-    // console.log(e.changedTouches.length);
+    item.addEventListener('touchstart', () => {
+      isActive = true;
+    });
+    item.addEventListener('touchend', () => {
+      isActive = false;
+    });
+    item.addEventListener('touchcancel', () => {
+      isActive = false;
+    });
+    item.addEventListener('touchmove', (e) => {
+      // if (!isActive) {
+      //   return;
+      // };
+      let mobileX;
+      let y;
 
-    for (y = 0; e < e.changedTouches.length; y++) {
-      x = e.changedTouches[y].pageX;
-      console.log(e.changedTouches[y].pageX);
-      // console.log(x);
-    };
+      for (y = 0; y < e.changedTouches.length; y++) {
+        mobileX = e.changedTouches[y].pageX;
+      };
 
-    x -= item.getBoundingClientRect().left;
-    beforeAfterSlider(x, i);
-    pauseEvents(e);
+      mobileX -= item.getBoundingClientRect().left;
+      beforeAfterSlider(mobileX, i);
+      pauseEvents(e);
+    });
   });
-});
-
-// let beforeImg = document.querySelectorAll('.beforeafter__img-block');
-// if (beforeImg.length) {
-//   let afterImg = document.querySelectorAll('.beforeafter__before-img');
-//   let afterImgImg = document.querySelectorAll('.beforeafter__after-img');
-//   document.addEventListener('DOMContentLoaded', () => {
-//     beforeImg.forEach((item, i) => {
-//       let width = item.offsetWidth;
-//       afterImgImg[i].style.minWidth = +width + 'px';
-//     });
-//   });
-//   // beforeImg.forEach((item, i) => {
-//   //   let width = item.offsetWidth;
-//   //   item.addEventListener('mousemove', (event) => {
-//   //     let x = width - event.offsetX;
-//   //     afterImg[i].style.width = x + 'px';
-//   //   });
-//   // });
-//   // beforeImg.forEach((item, i) => {
-//   //   let width = item.offsetWidth;
-//   //   item.addEventListener('mouseleave', (event) => {
-//   //     afterImg[i].style.width = 50 + '%';
-//   //   });
-//   // });
-//   beforeImg.forEach((item, i) => {
-//     let width = item.offsetWidth;
-//     item.addEventListener('touchmove', (event) => {
-//       let x = width - event.offsetX;
-//       console.log(event);
-//       afterImg[i].style.width = x + 'px';
-//     });
-//   });
-//   beforeImg.forEach((item, i) => {
-//     let width = item.offsetWidth;
-//     item.addEventListener('touchend', (event) => {
-//       afterImg[i].style.width = 50 + '%';
-//     });
-//   });
-// }
+};
