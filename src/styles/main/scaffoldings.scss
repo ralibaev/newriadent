@@ -55,14 +55,14 @@ h1 {
 	line-height: 1.5em;
 	text-align: center;
 	@media (min-width: $tablet-min) {
-		font-size: 28px;
+		font-size: 24px;
 	}
 	@media (min-width: $laptop-min) {
-		font-size: 36px;
+		font-size: 32px;
 		text-align: left;
 	}
 	@media (min-width: $desktop-min) {
-		font-size: 40px;
+		font-size: 36px;
 	}
 }
 h2 {
@@ -144,4 +144,10 @@ button {
   20% {transform: translateX(600px) skewX(-45deg);}
   40% {background-color: rgba(255, 255, 255, 0);}
 	100% {transform: translateX(-100px) skewX(-45deg); background-color: rgba(255, 255, 255, 0);}
+}
+@keyframes shake {
+	10%, 90% {transform: translate3d(-1px,0,0);}
+	20%, 80% {transform: translate3d(2px,0,0);}
+	30%, 50%, 70% {transform: translate3d(-4px,0,0);}
+	40%, 60% {transform: translate3d(4px,0,0);}
 }

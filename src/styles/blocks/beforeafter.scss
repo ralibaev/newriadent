@@ -6,29 +6,89 @@
       padding: 50px 0;
     }
   }
+  &__finger {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+    transform: translate3d(0,0,0);
+    animation: shake 4s cubic-bezier(0.4, 0.1, 0.2, 1) infinite both;
+    @media (min-width: $laptop-min) {
+      display: none;
+    }
+    img {
+      width: 50px;
+    }
+  }
   &__slider {
     position: relative;
   }
   &__button {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    top: calc(50% - 12px);
+    width: 25px;
+    height: 25px;
     border: none;
     border-radius: 50%;
+    background-color: white;
+    @media (min-width: $tablet-min) {
+      width: 50px;
+      height: 50px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 7px;
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid black;
+      @media (min-width: $tablet-min) {
+        top: 14px;
+        width: 20px;
+        height: 20px;
+      }
+    }
     &--prev {
-      left: -20px;
+      left: -10px;
+      @media (min-width: $tablet-min) {
+        left: -15px;
+      }
+      &::after {
+        left: 9px;
+        border-left: 1px solid black;
+        transform: rotate(-45deg);
+        @media (min-width: $tablet-min) {
+          left: 18px;
+        }
+      }
     }
     &--next {
-      right: -20px;
+      right: -10px;
+      @media (min-width: $tablet-min) {
+        right: -15px;
+      }
+      &::after {
+        right: 9px;
+        border-right: 1px solid black;
+        transform: rotate(45deg);
+        @media (min-width: $tablet-min) {
+          right: 18px;
+        }
+      }
     }
   }
   &__inner {
     overflow: hidden;
-    width: 100%;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    @media (min-width: $tablet-min) {
+      width: calc(100% - 80px);
+    }
   }
   &__list {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     transition: all 0.3s;
   }
   &__item {
@@ -82,12 +142,16 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 50px;
-      height: 50px;
+      width: 30px;
+      height: 30px;
       background-color: $violet;
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 10;
+      @media (min-width: $laptop-min) {
+        width: 50px;
+        height: 50px;
+      }
     }
   }
   &__text-block {

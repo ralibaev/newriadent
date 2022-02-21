@@ -1012,7 +1012,17 @@ if (beforeAfterList) {
   let beforeAfterPrevButton = document.querySelector('.beforeafter__button--prev');
   let beforeAfterNextButton = document.querySelector('.beforeafter__button--next');
   let beforeAfterMove;
-  let beforeAfterWidth = window.innerWidth - 40;
+  let beforeAfterMoving = false;
+  let beforeAfterWidth;
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    beforeAfterWidth = window.innerWidth - 70;
+  } else if (window.matchMedia('(max-width: 1023px)').matches) {
+    beforeAfterWidth = window.innerWidth - 140;
+  } else if (window.matchMedia('(max-width: 1299px)').matches) {
+    beforeAfterWidth = window.innerWidth - 180;
+  } else if (window.matchMedia('(min-width: 1300px)').matches) {
+    beforeAfterWidth = 1120;
+  };
   beforeAfterList.style.transform = "translateX(0px)";
   beforeAfterItem.forEach((item, i) => {
     item.style.width = beforeAfterWidth + "px";
@@ -1022,12 +1032,47 @@ if (beforeAfterList) {
     beforeAfterMove = parseInt(beforeAfterList.style.transform.match(/\d+/));
     if (beforeAfterMove + beforeAfterWidth < beforeAfterWidth * beforeAfterItem.length) {
       beforeAfterList.style.transform = "translateX(-" + (beforeAfterMove + beforeAfterWidth) + "px)";
+      beforeAfterList.style.height = beforeAfterItem[(beforeAfterMove + beforeAfterWidth) / beforeAfterWidth].offsetHeight + 'px';
     };
   });
   beforeAfterPrevButton.addEventListener('click', function() {
     beforeAfterMove = parseInt(beforeAfterList.style.transform.match(/\d+/));
-    beforeAfterList.style.transform = "translateX(-" + (beforeAfterMove - beforeAfterWidth) + "px)";
+    if ((beforeAfterMove - beforeAfterWidth) / beforeAfterWidth >= 0) {
+      beforeAfterList.style.transform = "translateX(-" + (beforeAfterMove - beforeAfterWidth) + "px)";
+      beforeAfterList.style.height = beforeAfterItem[(beforeAfterMove - beforeAfterWidth) / beforeAfterWidth].offsetHeight + 'px';
+    }
   });
+  // let pauseEvents = (e) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   return false;
+  // }
+  // beforeAfterList.addEventListener('touchstart', () => {
+  //   beforeAfterMoving = true;
+  // });
+  // beforeAfterList.addEventListener('touchend', () => {
+  //   beforeAfterMoving = false;
+  // });
+  // beforeAfterList.addEventListener('touchcancel', () => {
+  //   beforeAfterMoving = false;
+  // });
+  // beforeAfterList.addEventListener('touchmove', (e) => {
+  //   if (!beforeAfterMoving) {
+  //     return;
+  //   };
+  //   let moveSlideX;
+  //   let j;
+  //   console.log(e);
+  //
+  //   for (j = 0; j < e.changedTouches.length; j++) {
+  //     moveSlideX = e.changedTouches[j].pageX;
+  //     console.log(e);
+  //   };
+  //   // console.log(moveSlideX);
+  //   //
+  //   // moveSlideX -= beforeAfterList.getBoundingClientRect().left;
+  //   // beforeAfterList.style.transform = "translateX(-" + moveSlideX + "px)";
+  // });
 
   // if (window.matchMedia('(max-width: 767px)').matches) {
   //   let certificateWidth = window.innerWidth - 100;
@@ -1168,9 +1213,9 @@ if (beforeAfter.length) {
       isActive = false;
     });
     item.addEventListener('touchmove', (e) => {
-      // if (!isActive) {
-      //   return;
-      // };
+      if (!isActive) {
+        return;
+      };
       let mobileX;
       let y;
 
