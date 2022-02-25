@@ -340,6 +340,8 @@ if (staffMainWebp) {
   let staffNumber = 0;
   // staffButtonPrev.setAttribute('disabled', 'disabled');
   staffNumSpan.innerHTML = "1/" + staffItems.length;
+  staffListInner.style.height = staffItems[0].offsetHeight + "px";
+  console.log(staffItems[0].offsetHeight);
   if (window.matchMedia('(max-width: 767px)').matches) {
     staffListInner.style.width = (staffItems.length * (window.innerWidth - 80)) + "px";
     staffListInner.style.transform = "translateX(0px)";
@@ -353,6 +355,7 @@ if (staffMainWebp) {
         staffListInner.style.transform = "translateX(-" + (staffMove + staffWidth) + "px)";
         staffNumber = staffMove / staffWidth + 2;
         staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+        staffListInner.style.height = staffItems[staffNumber - 1].offsetHeight + "px";
       };
     });
     staffButtonPrev.addEventListener('click', function() {
@@ -361,6 +364,7 @@ if (staffMainWebp) {
         staffListInner.style.transform = "translateX(-" + (staffMove - staffWidth) + "px)";
         staffNumber = staffMove / staffWidth;
         staffNumSpan.innerHTML = staffNumber + "/" + staffItems.length;
+        staffListInner.style.height = staffItems[staffNumber - 1].offsetHeight + "px";
       };
     });
   } else if (window.matchMedia('(max-width: 1023px)').matches) {
