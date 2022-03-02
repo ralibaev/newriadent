@@ -14,9 +14,19 @@
       margin: 30px auto;
     }
   }
-  p, ul {
+  &__table p, ul {
     max-width: 1000px;
     margin: 0 auto;
+  }
+  &__font {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px;
+    @media (min-width: $tablet-min) {
+      font-size: 20px;
+      max-width: 60%;
+      margin: 0 auto 40px;
+    }
   }
   &__table {
     width: 100%;
