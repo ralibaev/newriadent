@@ -1,5 +1,14 @@
 .map {
   line-height: 0;
+  &__inner {
+    padding: 0 20px;
+    @media (min-width: $tablet-min) {
+      padding: 0 30px;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 0 50px;
+    }
+  }
   iframe {
     width: 100%;
   }
