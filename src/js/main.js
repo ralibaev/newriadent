@@ -821,25 +821,109 @@ if (certificateList) {
   certificateList.style.width = '' + (certificateItem.length * 100) + '%';
   let certificatePrevButton = document.querySelector('.some-staff__button--prev');
   let certificateNextButton = document.querySelector('.some-staff__button--next');
+  let certificateButtonList = document.querySelector('.some-staff__button-list');
   let certificateMove;
+  let posInit;
+  let posFinal;
+  let posX1;
+  let posX2;
+  let slideIndex = 0;
+  function getEvent() {
+    return (event.type.search('touch') !== -1) ? event.touches[0] : event;
+  };
   if (window.matchMedia('(max-width: 767px)').matches) {
     let certificateWidth = window.innerWidth - 100;
     certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
     certificateList.style.transform = "translateX(0px)";
+    for (let i = 0; i < certificateItem.length; i++) {
+      let certificateButtonItem = document.createElement('button');
+      certificateButtonItem.classList.add('some-staff__button-item');
+      certificateButtonList.append(certificateButtonItem);
+    };
+    certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
     certificateItem.forEach((item, i) => {
       item.style.width = certificateWidth + "px";
     });
-    let certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-    certificateNextButton.addEventListener('click', function() {
+    function certificateSwitchSlide(x) {
+      certificateButtonList.childNodes.forEach((item, i) => {
+        if (item.classList.contains('some-staff__button-item--active')) {
+          let x1 = i;
+          item.classList.remove('some-staff__button-item--active');
+        }
+      });
+      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    }
+    function certificateNextSlide(x) {
       certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-      if (certificateMove + certificateWidth < certificateWidth * certificateItem.length) {
+      // slideIndex = certificateMove / certificateWidth + 1;
+      // console.log(certificateMove);
+      // console.log(slideIndex);
+      if (x < certificateItem.length) {
         certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+        certificateButtonList.childNodes.forEach((item, i) => {
+          item.classList.remove('some-staff__button-item--active');
+        });
+        certificateButtonList.childNodes[(certificateMove + certificateWidth) / certificateWidth].classList.add('some-staff__button-item--active');
       };
-    });
-    certificatePrevButton.addEventListener('click', function() {
+    };
+    function certificatePrevSlide() {
       certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
       certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+      console.log((certificateMove - certificateWidth) / certificateWidth);
+      if ((certificateMove - certificateWidth) / certificateWidth + 1) {
+        certificateButtonList.childNodes.forEach((item, i) => {
+          item.classList.remove('some-staff__button-item--active');
+        });
+        certificateButtonList.childNodes[(certificateMove - certificateWidth) / certificateWidth].classList.add('some-staff__button-item--active');
+      };
+    }
+    let certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+    certificateNextButton.addEventListener('click', function() {
+      // certificateNextSlide(++slideIndex);
+      console.log('click');
+      if (slideIndex < (certificateItem.length - 1)) {
+        certificateSwitchSlide(++slideIndex);
+        console.log(slideIndex);
+      }
     });
+    certificatePrevButton.addEventListener('click', function() {
+      console.log('click');
+      if (slideIndex > 0) {
+        certificateSwitchSlide(--slideIndex);
+        console.log(slideIndex);
+      }
+    });
+    function swipeStart() {
+      certificateList.classList.remove('some-staff__certificate-list--tr');
+      let evt = getEvent();
+      posInit = posX1 = evt.clientX;
+      // console.log(posInit);
+      certificateList.addEventListener('touchmove', swipeAction);
+      certificateList.addEventListener('touchend', swipeEnd);
+    }
+    function swipeAction() {
+      let evt = getEvent();
+      let transform = parseInt(certificateList.style.transform.match(/\d+/));
+      // console.log(posX2);
+      // console.log(posX1);
+      posX2 = posX1 - evt.clientX;
+      posX1 = evt.clientX;
+      certificateList.style.transform = "translateX(-" + (transform + posX2) + "px)";
+    }
+    function swipeEnd() {
+      posFinal = posInit - posX1;
+      certificateList.removeEventListener('touchmove', swipeAction);
+      certificateList.removeEventListener('touchend', swipeEnd);
+      certificateList.classList.add('some-staff__certificate-list--tr');
+
+      // if (Math.abs(posFinal) > certificateWidth * 0.3)) {
+      //   if (posInit < posX1) {
+      //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+      //   };
+      // };
+    }
+    certificateList.addEventListener('touchstart', swipeStart);
   } else if (window.matchMedia('(max-width: 1023px)').matches) {
     let certificateWidth = window.innerWidth - 160;
     certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
