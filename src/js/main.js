@@ -806,9 +806,10 @@ if (licensesList.length) {
 // Галерея сертификатов
 let certificateList = document.querySelector('.some-staff__certificate-list');
 if (certificateList) {
-  let certificateWrapper = document.querySelector('.some-staff__certificate-wrapper');
+  let certificateWrapper = document.querySelector('.some-staff__certificate');
   let certificateItem = document.querySelectorAll('.some-staff__certificate-item');
   certificateList.style.width = '' + (certificateItem.length * 100) + '%';
+  let certificateWidth;
   let certificatePrevButton = document.querySelector('.some-staff__button--prev');
   let certificateNextButton = document.querySelector('.some-staff__button--next');
   let certificateButtonList = document.querySelector('.some-staff__button-list');
@@ -819,11 +820,163 @@ if (certificateList) {
   let posX1;
   let posX2;
   let slideIndex = 0;
+
+  // Переключение слайдера
+  function certificateSwitchSlide(x) {
+    event.preventDefault();
+    certificateButtonList.childNodes.forEach((item, i) => {
+      if (item.classList.contains('some-staff__button-item--active')) {
+        item.classList.remove('some-staff__button-item--active');
+      }
+    });
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    } else if (window.matchMedia('(max-width: 1023px)').matches) {
+      if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+        certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+        certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+      } else {
+        if (x < (certificateItem.length - 1)) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+        };
+        if (x == (certificateItem.length - 2)) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+          certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+        } else {
+          certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+        };
+      }
+    } else {};
+  };
+
+  // События движения тач-слайдера
   function getEvent() {
     return (event.type.search('touch') !== -1) ? event.touches[0] : event;
   };
+
+  // Кнопка перключения следующего слайда
+  certificateNextButton.addEventListener('click', function() {
+    event.preventDefault();
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      if (slideIndex < (certificateItem.length - 1)) {
+        certificateSwitchSlide(++slideIndex);
+      }
+    } else if (window.matchMedia('(max-width: 1023px)').matches) {
+      if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+        if (slideIndex < (certificateItem.length - 1)) {
+          certificateSwitchSlide(++slideIndex);
+        }
+      } else {
+        if (slideIndex < (certificateItem.length - 2)) {
+          certificateSwitchSlide(++slideIndex);
+        }
+      }
+    } else {};
+  });
+
+  // Включение попап галереи
+  function bigGallery(x) {
+    certificateWrapper.classList.add('some-staff__certificate--show');
+    popupOverlay.classList.add('popup__overlay--show');
+    certificateWidth = window.innerWidth - 200;
+    certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
+    while (certificateButtonList.firstChild) {
+      certificateButtonList.removeChild(certificateButtonList.firstChild);
+    }
+    for (let i = 0; i < certificateItem.length; i++) {
+      let certificateButtonItem = document.createElement('button');
+      certificateButtonItem.classList.add('some-staff__button-item');
+      certificateButtonList.append(certificateButtonItem);
+    };
+    certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    certificateItem.forEach((item, i) => {
+      item.style.width = certificateWidth + "px";
+    });
+    certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+  };
+
+  // Три функции для перключения слайда скроллом
+  function swipeStart() {
+    certificateList.classList.remove('some-staff__certificate-list--tr');
+    let evt = getEvent();
+    posInit = posX1 = evt.clientX;
+    certificateList.addEventListener('touchmove', swipeAction);
+    certificateList.addEventListener('touchend', swipeEnd);
+  };
+
+  function swipeAction() {
+    let evt = getEvent();
+    let transform = parseInt(certificateList.style.transform.match(/\d+/));
+    posX2 = posX1 - evt.clientX;
+    posX1 = evt.clientX;
+    certificateList.style.transform = "translateX(-" + (transform + posX2) + "px)";
+  };
+
+  function swipeEnd() {
+    posFinal = posInit - posX1;
+    certificateList.removeEventListener('touchmove', swipeAction);
+    certificateList.removeEventListener('touchend', swipeEnd);
+    certificateList.classList.add('some-staff__certificate-list--tr');
+
+    if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
+      if (posInit < posX1) {
+        if (slideIndex > 0) {
+          certificateSwitchSlide(--slideIndex);
+        } else {
+          certificateSwitchSlide(slideIndex);
+        }
+      } else {
+        if (slideIndex < (certificateItem.length - 1)) {
+          certificateSwitchSlide(++slideIndex);
+        } else {
+          certificateSwitchSlide(slideIndex);
+        }
+      };
+    } else {
+      certificateSwitchSlide(slideIndex);
+    };
+    if (!posFinal) {
+      certificateWrapper.classList.add('some-staff__certificate--show');
+      popupOverlay.classList.add('popup__overlay--show');
+    }
+  };
+  function swipeEnd() {
+    posFinal = posInit - posX1;
+    certificateList.removeEventListener('touchmove', swipeAction);
+    certificateList.removeEventListener('touchend', swipeEnd);
+    certificateList.classList.add('some-staff__certificate-list--tr');
+
+    if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
+      if (posInit < posX1) {
+        if (slideIndex > 0) {
+          certificateSwitchSlide(--slideIndex);
+        } else {
+          certificateSwitchSlide(slideIndex);
+        }
+      } else {
+        if (slideIndex < (certificateItem.length - 2)) {
+          certificateSwitchSlide(++slideIndex);
+        } else {
+          certificateSwitchSlide(slideIndex);
+        }
+      };
+    } else {
+      certificateSwitchSlide(slideIndex);
+    };
+    if (!posFinal) {
+      certificateItem.forEach((item, i) => {
+        if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
+          slideIndex = i;
+        }
+      });
+      bigGallery(slideIndex);
+    }
+  }
+
+
   if (window.matchMedia('(max-width: 767px)').matches) {
-    let certificateWidth = window.innerWidth - 100;
+    certificateWidth = window.innerWidth - 100;
     certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
     certificateList.style.transform = "translateX(0px)";
     for (let i = 0; i < certificateItem.length; i++) {
@@ -835,42 +988,22 @@ if (certificateList) {
     certificateItem.forEach((item, i) => {
       item.style.width = certificateWidth + "px";
     });
-    function certificateSwitchSlide(x) {
-      event.preventDefault();
-      certificateButtonList.childNodes.forEach((item, i) => {
-        if (item.classList.contains('some-staff__button-item--active')) {
-          item.classList.remove('some-staff__button-item--active');
-        }
-      });
-      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-    };
-    certificateNextButton.addEventListener('click', function() {
-      event.preventDefault();
-      if (slideIndex < (certificateItem.length - 1)) {
-        certificateSwitchSlide(++slideIndex);
-      }
-    });
+    // function certificateSwitchSlide(x) {
+    //   event.preventDefault();
+    //   certificateButtonList.childNodes.forEach((item, i) => {
+    //     if (item.classList.contains('some-staff__button-item--active')) {
+    //       item.classList.remove('some-staff__button-item--active');
+    //     }
+    //   });
+    //   certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+    //   certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    // };
     certificatePrevButton.addEventListener('click', function() {
       event.preventDefault();
       if (slideIndex > 0) {
         certificateSwitchSlide(--slideIndex);
       }
     });
-    function swipeStart() {
-      certificateList.classList.remove('some-staff__certificate-list--tr');
-      let evt = getEvent();
-      posInit = posX1 = evt.clientX;
-      certificateList.addEventListener('touchmove', swipeAction);
-      certificateList.addEventListener('touchend', swipeEnd);
-    }
-    function swipeAction() {
-      let evt = getEvent();
-      let transform = parseInt(certificateList.style.transform.match(/\d+/));
-      posX2 = posX1 - evt.clientX;
-      posX1 = evt.clientX;
-      certificateList.style.transform = "translateX(-" + (transform + posX2) + "px)";
-    }
     function swipeEnd() {
       posFinal = posInit - posX1;
       certificateList.removeEventListener('touchmove', swipeAction);
@@ -895,7 +1028,7 @@ if (certificateList) {
         certificateSwitchSlide(slideIndex);
       };
       if (!posFinal) {
-        certificateWrapper.classList.add('some-staff__certificate-wrapper--show');
+        certificateWrapper.classList.add('some-staff__certificate--show');
         popupOverlay.classList.add('popup__overlay--show');
       }
     }
@@ -907,15 +1040,15 @@ if (certificateList) {
       })
     });
     popupOverlay.addEventListener('click', function() {
-      certificateWrapper.classList.remove('some-staff__certificate-wrapper--show');
+      certificateWrapper.classList.remove('some-staff__certificate--show');
       popupOverlay.classList.remove('popup__overlay--show');
     });
     certificateClose.addEventListener('click', function() {
-      certificateWrapper.classList.remove('some-staff__certificate-wrapper--show');
+      certificateWrapper.classList.remove('some-staff__certificate--show');
       popupOverlay.classList.remove('popup__overlay--show');
     });
   } else if (window.matchMedia('(max-width: 1023px)').matches) {
-    let certificateWidth = window.innerWidth - 160;
+    certificateWidth = window.innerWidth - 160;
     certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
     certificateList.style.transform = "translateX(0px)";
     for (let i = 0; i < (certificateItem.length / 2); i++) {
@@ -929,50 +1062,29 @@ if (certificateList) {
         item.style.width = (certificateWidth / 2) + 'px';
       });
     };
-    function certificateSwitchSlide(x) {
-      event.preventDefault();
-      certificateButtonList.childNodes.forEach((item, i) => {
-        if (item.classList.contains('some-staff__button-item--active')) {
-          item.classList.remove('some-staff__button-item--active');
-        }
-      });
-      console.log(x);
-      if (x < (certificateItem.length - 1)) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-      };
-      if (x == (certificateItem.length - 2)) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-      } else {
-        certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
-      };
-    };
-    certificateNextButton.addEventListener('click', function() {
-      event.preventDefault();
-      if (slideIndex < (certificateItem.length - 2)) {
-        certificateSwitchSlide(++slideIndex);
-      }
-    });
+    // function certificateSwitchSlide(x) {
+    //   event.preventDefault();
+    //   certificateButtonList.childNodes.forEach((item, i) => {
+    //     if (item.classList.contains('some-staff__button-item--active')) {
+    //       item.classList.remove('some-staff__button-item--active');
+    //     }
+    //   });
+    //   if (x < (certificateItem.length - 1)) {
+    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+    //   };
+    //   if (x == (certificateItem.length - 2)) {
+    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+    //     certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+    //   } else {
+    //     certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+    //   };
+    // };
     certificatePrevButton.addEventListener('click', function() {
       event.preventDefault();
       if (slideIndex > 0) {
         certificateSwitchSlide(--slideIndex);
       }
     });
-    function swipeStart() {
-      certificateList.classList.remove('some-staff__certificate-list--tr');
-      let evt = getEvent();
-      posInit = posX1 = evt.clientX;
-      certificateList.addEventListener('touchmove', swipeAction);
-      certificateList.addEventListener('touchend', swipeEnd);
-    }
-    function swipeAction() {
-      let evt = getEvent();
-      let transform = parseInt(certificateList.style.transform.match(/\d+/));
-      posX2 = posX1 - evt.clientX;
-      posX1 = evt.clientX;
-      certificateList.style.transform = "translateX(-" + (transform + posX2) + "px)";
-    }
     function swipeEnd() {
       posFinal = posInit - posX1;
       certificateList.removeEventListener('touchmove', swipeAction);
@@ -987,7 +1099,7 @@ if (certificateList) {
             certificateSwitchSlide(slideIndex);
           }
         } else {
-          if (slideIndex < (certificateItem.length - 1)) {
+          if (slideIndex < (certificateItem.length - 2)) {
             certificateSwitchSlide(++slideIndex);
           } else {
             certificateSwitchSlide(slideIndex);
@@ -996,40 +1108,37 @@ if (certificateList) {
       } else {
         certificateSwitchSlide(slideIndex);
       };
-      // if (!posFinal) {
-      //   certificateWrapper.classList.add('some-staff__certificate-wrapper--show');
-      //   popupOverlay.classList.add('popup__overlay--show');
-      // }
+      if (!posFinal) {
+        certificateItem.forEach((item, i) => {
+          if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
+            slideIndex = i;
+          }
+        });
+        bigGallery(slideIndex);
+      }
     }
     certificateList.addEventListener('touchstart', swipeStart);
     certificateButtonList.childNodes.forEach((item, i) => {
       item.addEventListener('click', function() {
-        certificateSwitchSlide(i);
-        slideIndex = i;
+        if (((i + 1) * 2) < certificateItem.length) {
+          certificateSwitchSlide(i*2);
+          slideIndex = i*2;
+        } else {
+          certificateSwitchSlide(certificateItem.length - 2);
+          slideIndex = certificateItem.length - 2;
+        }
       })
     });
-    // Конец
-    // let certificateWidth = window.innerWidth - 160;
-    // certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
-    // certificateList.style.transform = "translateX(0px)";
-    // if ((certificateItem.length % 2) != 0) {
-    //   certificateItem.forEach((item, i) => {
-    //     item.style.width = (certificateWidth / 2) + 'px';
-    //   });
-    // };
-    // certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-    // certificateNextButton.addEventListener('click', function() {
-    //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-    //   if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 2)) {
-    //     certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-    //   };
-    // });
-    // certificatePrevButton.addEventListener('click', function() {
-    //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-    //   certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-    // });
+    popupOverlay.addEventListener('click', function() {
+      certificateWrapper.classList.remove('some-staff__certificate--show');
+      popupOverlay.classList.remove('popup__overlay--show');
+    });
+    certificateClose.addEventListener('click', function() {
+      certificateWrapper.classList.remove('some-staff__certificate--show');
+      popupOverlay.classList.remove('popup__overlay--show');
+    });
   } else if (window.matchMedia('(max-width: 1200px)').matches) {
-    let certificateWidth = window.innerWidth - 200;
+    certificateWidth = window.innerWidth - 200;
     certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
     certificateList.style.transform = "translateX(0px)";
     if ((certificateItem.length % 3) != 0) {
@@ -1049,7 +1158,7 @@ if (certificateList) {
       certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
     });
   } else {
-    let certificateWidth =  1100;
+    certificateWidth =  1100;
     certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
     certificateList.style.transform = "translateX(0px)";
     if ((certificateItem.length % 3) != 0) {
@@ -1214,114 +1323,6 @@ if (beforeAfterList) {
       beforeAfterList.style.height = beforeAfterItem[(beforeAfterMove - beforeAfterWidth) / beforeAfterWidth].offsetHeight + 'px';
     }
   });
-  // let pauseEvents = (e) => {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   return false;
-  // }
-  // beforeAfterList.addEventListener('touchstart', () => {
-  //   beforeAfterMoving = true;
-  // });
-  // beforeAfterList.addEventListener('touchend', () => {
-  //   beforeAfterMoving = false;
-  // });
-  // beforeAfterList.addEventListener('touchcancel', () => {
-  //   beforeAfterMoving = false;
-  // });
-  // beforeAfterList.addEventListener('touchmove', (e) => {
-  //   if (!beforeAfterMoving) {
-  //     return;
-  //   };
-  //   let moveSlideX;
-  //   let j;
-  //
-  //   for (j = 0; j < e.changedTouches.length; j++) {
-  //     moveSlideX = e.changedTouches[j].pageX;
-  //   };
-  //   //
-  //   // moveSlideX -= beforeAfterList.getBoundingClientRect().left;
-  //   // beforeAfterList.style.transform = "translateX(-" + moveSlideX + "px)";
-  // });
-
-  // if (window.matchMedia('(max-width: 767px)').matches) {
-  //   let certificateWidth = window.innerWidth - 100;
-  //   certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   certificateItem.forEach((item, i) => {
-  //     item.style.width = certificateWidth + "px";
-  //   });
-  //   let certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //   certificateNextButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     if (certificateMove + certificateWidth < certificateWidth * certificateItem.length) {
-  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-  //     };
-  //   });
-  //   certificatePrevButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-  //   });
-  // } else if (window.matchMedia('(max-width: 1023px)').matches) {
-  //   let certificateWidth = window.innerWidth - 160;
-  //   certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   if ((certificateItem.length % 2) != 0) {
-  //     certificateItem.forEach((item, i) => {
-  //       item.style.width = (certificateWidth / 2) + 'px';
-  //     });
-  //   };
-  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //   certificateNextButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 2)) {
-  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-  //     };
-  //   });
-  //   certificatePrevButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-  //   });
-  // } else if (window.matchMedia('(max-width: 1200px)').matches) {
-  //   let certificateWidth = window.innerWidth - 200;
-  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   if ((certificateItem.length % 3) != 0) {
-  //     certificateItem.forEach((item, i) => {
-  //       item.style.width = (certificateWidth / 3) + 'px';
-  //     });
-  //   };
-  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //   certificateNextButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
-  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-  //     };
-  //   });
-  //   certificatePrevButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-  //   });
-  // } else {
-  //   let certificateWidth =  1100;
-  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   if ((certificateItem.length % 3) != 0) {
-  //     certificateItem.forEach((item, i) => {
-  //       item.style.width = (certificateWidth / 3) + 'px';
-  //     });
-  //   };
-  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //   certificateNextButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
-  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-  //     };
-  //   });
-  //   certificatePrevButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-  //   });
-  // }
 }
 // ДО после врачей
 let beforeAfter = document.querySelectorAll('.beforeafter__beforeafter');
