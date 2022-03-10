@@ -847,7 +847,17 @@ if (certificateList) {
           certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
         };
       }
-    } else {};
+    } else if (window.matchMedia('(max-width: 1200px)').matches) {
+      if (x < (certificateItem.length - 1)) {
+        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+      };
+      if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
+        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+      } else {
+        certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
+      };
+    } else {}
   };
 
   // События движения тач-слайдера
@@ -872,7 +882,19 @@ if (certificateList) {
           certificateSwitchSlide(++slideIndex);
         }
       }
+    } else if (window.matchMedia('(max-width: 1200px)').matches) {
+      if (slideIndex < (certificateItem.length - 3)) {
+        certificateSwitchSlide(++slideIndex);
+      }
     } else {};
+  });
+
+  // Кнопка перключения предыдущего слайда
+  certificatePrevButton.addEventListener('click', function() {
+    event.preventDefault();
+    if (slideIndex > 0) {
+      certificateSwitchSlide(--slideIndex);
+    }
   });
 
   // Включение попап галереи
@@ -894,6 +916,7 @@ if (certificateList) {
       item.style.width = certificateWidth + "px";
     });
     certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+    certificateButtons()
   };
 
   // Три функции для перключения слайда скроллом
@@ -902,7 +925,9 @@ if (certificateList) {
     let evt = getEvent();
     posInit = posX1 = evt.clientX;
     certificateList.addEventListener('touchmove', swipeAction);
+    certificateList.addEventListener('mousemove', swipeAction);
     certificateList.addEventListener('touchend', swipeEnd);
+    certificateList.addEventListener('mouseup', swipeEnd);
   };
 
   function swipeAction() {
@@ -916,7 +941,9 @@ if (certificateList) {
   function swipeEnd() {
     posFinal = posInit - posX1;
     certificateList.removeEventListener('touchmove', swipeAction);
+    certificateList.removeEventListener('mousemove', swipeAction);
     certificateList.removeEventListener('touchend', swipeEnd);
+    certificateList.removeEventListener('mouseup', swipeEnd);
     certificateList.classList.add('some-staff__certificate-list--tr');
 
     if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
@@ -927,188 +954,28 @@ if (certificateList) {
           certificateSwitchSlide(slideIndex);
         }
       } else {
-        if (slideIndex < (certificateItem.length - 1)) {
-          certificateSwitchSlide(++slideIndex);
-        } else {
-          certificateSwitchSlide(slideIndex);
-        }
-      };
-    } else {
-      certificateSwitchSlide(slideIndex);
-    };
-    if (!posFinal) {
-      certificateWrapper.classList.add('some-staff__certificate--show');
-      popupOverlay.classList.add('popup__overlay--show');
-    }
-  };
-  function swipeEnd() {
-    posFinal = posInit - posX1;
-    certificateList.removeEventListener('touchmove', swipeAction);
-    certificateList.removeEventListener('touchend', swipeEnd);
-    certificateList.classList.add('some-staff__certificate-list--tr');
-
-    if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
-      if (posInit < posX1) {
-        if (slideIndex > 0) {
-          certificateSwitchSlide(--slideIndex);
-        } else {
-          certificateSwitchSlide(slideIndex);
-        }
-      } else {
-        if (slideIndex < (certificateItem.length - 2)) {
-          certificateSwitchSlide(++slideIndex);
-        } else {
-          certificateSwitchSlide(slideIndex);
-        }
-      };
-    } else {
-      certificateSwitchSlide(slideIndex);
-    };
-    if (!posFinal) {
-      certificateItem.forEach((item, i) => {
-        if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
-          slideIndex = i;
-        }
-      });
-      bigGallery(slideIndex);
-    }
-  }
-
-
-  if (window.matchMedia('(max-width: 767px)').matches) {
-    certificateWidth = window.innerWidth - 100;
-    certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
-    certificateList.style.transform = "translateX(0px)";
-    for (let i = 0; i < certificateItem.length; i++) {
-      let certificateButtonItem = document.createElement('button');
-      certificateButtonItem.classList.add('some-staff__button-item');
-      certificateButtonList.append(certificateButtonItem);
-    };
-    certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
-    certificateItem.forEach((item, i) => {
-      item.style.width = certificateWidth + "px";
-    });
-    // function certificateSwitchSlide(x) {
-    //   event.preventDefault();
-    //   certificateButtonList.childNodes.forEach((item, i) => {
-    //     if (item.classList.contains('some-staff__button-item--active')) {
-    //       item.classList.remove('some-staff__button-item--active');
-    //     }
-    //   });
-    //   certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-    //   certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-    // };
-    certificatePrevButton.addEventListener('click', function() {
-      event.preventDefault();
-      if (slideIndex > 0) {
-        certificateSwitchSlide(--slideIndex);
-      }
-    });
-    function swipeEnd() {
-      posFinal = posInit - posX1;
-      certificateList.removeEventListener('touchmove', swipeAction);
-      certificateList.removeEventListener('touchend', swipeEnd);
-      certificateList.classList.add('some-staff__certificate-list--tr');
-
-      if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
-        if (posInit < posX1) {
-          if (slideIndex > 0) {
-            certificateSwitchSlide(--slideIndex);
-          } else {
-            certificateSwitchSlide(slideIndex);
-          }
-        } else {
+        if (window.matchMedia('(max-width: 767px)').matches) {
           if (slideIndex < (certificateItem.length - 1)) {
             certificateSwitchSlide(++slideIndex);
           } else {
             certificateSwitchSlide(slideIndex);
           }
-        };
-      } else {
-        certificateSwitchSlide(slideIndex);
-      };
-      if (!posFinal) {
-        certificateWrapper.classList.add('some-staff__certificate--show');
-        popupOverlay.classList.add('popup__overlay--show');
-      }
-    }
-    certificateList.addEventListener('touchstart', swipeStart);
-    certificateButtonList.childNodes.forEach((item, i) => {
-      item.addEventListener('click', function() {
-        certificateSwitchSlide(i);
-        slideIndex = i;
-      })
-    });
-    popupOverlay.addEventListener('click', function() {
-      certificateWrapper.classList.remove('some-staff__certificate--show');
-      popupOverlay.classList.remove('popup__overlay--show');
-    });
-    certificateClose.addEventListener('click', function() {
-      certificateWrapper.classList.remove('some-staff__certificate--show');
-      popupOverlay.classList.remove('popup__overlay--show');
-    });
-  } else if (window.matchMedia('(max-width: 1023px)').matches) {
-    certificateWidth = window.innerWidth - 160;
-    certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
-    certificateList.style.transform = "translateX(0px)";
-    for (let i = 0; i < (certificateItem.length / 2); i++) {
-      let certificateButtonItem = document.createElement('button');
-      certificateButtonItem.classList.add('some-staff__button-item');
-      certificateButtonList.append(certificateButtonItem);
-    };
-    certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
-    if ((certificateItem.length % 2) != 0) {
-      certificateItem.forEach((item, i) => {
-        item.style.width = (certificateWidth / 2) + 'px';
-      });
-    };
-    // function certificateSwitchSlide(x) {
-    //   event.preventDefault();
-    //   certificateButtonList.childNodes.forEach((item, i) => {
-    //     if (item.classList.contains('some-staff__button-item--active')) {
-    //       item.classList.remove('some-staff__button-item--active');
-    //     }
-    //   });
-    //   if (x < (certificateItem.length - 1)) {
-    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-    //   };
-    //   if (x == (certificateItem.length - 2)) {
-    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-    //     certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-    //   } else {
-    //     certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
-    //   };
-    // };
-    certificatePrevButton.addEventListener('click', function() {
-      event.preventDefault();
-      if (slideIndex > 0) {
-        certificateSwitchSlide(--slideIndex);
-      }
-    });
-    function swipeEnd() {
-      posFinal = posInit - posX1;
-      certificateList.removeEventListener('touchmove', swipeAction);
-      certificateList.removeEventListener('touchend', swipeEnd);
-      certificateList.classList.add('some-staff__certificate-list--tr');
-
-      if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
-        if (posInit < posX1) {
-          if (slideIndex > 0) {
-            certificateSwitchSlide(--slideIndex);
-          } else {
-            certificateSwitchSlide(slideIndex);
-          }
-        } else {
+        } else if (window.matchMedia('(max-width: 1023px)').matches) {
           if (slideIndex < (certificateItem.length - 2)) {
             certificateSwitchSlide(++slideIndex);
           } else {
             certificateSwitchSlide(slideIndex);
           }
-        };
-      } else {
-        certificateSwitchSlide(slideIndex);
+        }
       };
-      if (!posFinal) {
+    } else {
+      certificateSwitchSlide(slideIndex);
+    };
+    if (!posFinal) {
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        certificateWrapper.classList.add('some-staff__certificate--show');
+        popupOverlay.classList.add('popup__overlay--show');
+      } else if (window.matchMedia('(max-width: 1023px)').matches) {
         certificateItem.forEach((item, i) => {
           if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
             slideIndex = i;
@@ -1117,67 +984,312 @@ if (certificateList) {
         bigGallery(slideIndex);
       }
     }
-    certificateList.addEventListener('touchstart', swipeStart);
+  };
+  certificateList.addEventListener('touchstart', swipeStart);
+
+  // Кнопки закрытия попап галереи
+  popupOverlay.addEventListener('click', function() {
+    certificateWrapper.classList.remove('some-staff__certificate--show');
+    popupOverlay.classList.remove('popup__overlay--show');
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      if (slideIndex == (certificateItem.length - 1)) {
+        riaSlider(--slideIndex);
+      } else {
+        riaSlider(slideIndex);
+      }
+    };
+  });
+  certificateClose.addEventListener('click', function() {
+    certificateWrapper.classList.remove('some-staff__certificate--show');
+    popupOverlay.classList.remove('popup__overlay--show');
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      if (slideIndex == (certificateItem.length - 1)) {
+        riaSlider(--slideIndex);
+      } else {
+        riaSlider(slideIndex);
+      }
+    };
+  });
+
+  // Построение слайдера
+  function riaSlider(x) {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      certificateWidth = window.innerWidth - 100;
+      certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
+      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+      while (certificateButtonList.firstChild) {
+        certificateButtonList.removeChild(certificateButtonList.firstChild);
+      }
+      for (let i = 0; i < certificateItem.length; i++) {
+        let certificateButtonItem = document.createElement('button');
+        certificateButtonItem.classList.add('some-staff__button-item');
+        certificateButtonList.append(certificateButtonItem);
+      };
+      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+      certificateItem.forEach((item, i) => {
+        item.style.width = certificateWidth + "px";
+      });
+    } else if (window.matchMedia('(max-width: 1023px)').matches) {
+      certificateWidth = window.innerWidth - 160;
+      certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
+      while (certificateButtonList.firstChild) {
+        certificateButtonList.removeChild(certificateButtonList.firstChild);
+      };
+      for (let i = 0; i < (certificateItem.length / 2); i++) {
+        let certificateButtonItem = document.createElement('button');
+        certificateButtonItem.classList.add('some-staff__button-item');
+        certificateButtonList.append(certificateButtonItem);
+      };
+      if (x < (certificateItem.length - 1)) {
+        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+      };
+      if (x == (certificateItem.length - 2)) {
+        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+      } else {
+        certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+      };
+      if ((certificateItem.length % 2) != 0) {
+        certificateItem.forEach((item, i) => {
+          item.style.width = (certificateWidth / 2) + 'px';
+        });
+      };
+    } else if (window.matchMedia('(max-width: 1200px)').matches) {
+      certificateWidth = window.innerWidth - 200;
+      certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+      while (certificateButtonList.firstChild) {
+        certificateButtonList.removeChild(certificateButtonList.firstChild);
+      };
+      for (let i = 0; i < (certificateItem.length / 3); i++) {
+        let certificateButtonItem = document.createElement('button');
+        certificateButtonItem.classList.add('some-staff__button-item');
+        certificateButtonList.append(certificateButtonItem);
+      };
+      if (x < (certificateItem.length - 1)) {
+        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+      };
+      if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 2))) {
+        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+      } else {
+        certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
+      };
+      if ((certificateItem.length % 3) != 0) {
+        certificateItem.forEach((item, i) => {
+          item.style.width = (certificateWidth / 3) + 'px';
+        });
+      };
+    } else {}
+    certificateButtons();
+  };
+
+  // Переключение слайда по нижним кнопкам
+  function certificateButtons() {
     certificateButtonList.childNodes.forEach((item, i) => {
-      item.addEventListener('click', function() {
-        if (((i + 1) * 2) < certificateItem.length) {
-          certificateSwitchSlide(i*2);
-          slideIndex = i*2;
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        item.addEventListener('click', function() {
+          certificateSwitchSlide(i);
+          slideIndex = i;
+        })
+      } else if (window.matchMedia('(max-width: 1023px)').matches) {
+        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+          item.addEventListener('click', function() {
+            certificateSwitchSlide(i);
+            slideIndex = i;
+          })
         } else {
-          certificateSwitchSlide(certificateItem.length - 2);
-          slideIndex = certificateItem.length - 2;
+          item.addEventListener('click', function() {
+            if (((i + 1) * 2) < certificateItem.length) {
+              certificateSwitchSlide(i*2);
+              slideIndex = i*2;
+            } else {
+              certificateSwitchSlide(certificateItem.length - 2);
+              slideIndex = certificateItem.length - 2;
+            }
+          })
         }
-      })
-    });
-    popupOverlay.addEventListener('click', function() {
-      certificateWrapper.classList.remove('some-staff__certificate--show');
-      popupOverlay.classList.remove('popup__overlay--show');
-    });
-    certificateClose.addEventListener('click', function() {
-      certificateWrapper.classList.remove('some-staff__certificate--show');
-      popupOverlay.classList.remove('popup__overlay--show');
-    });
-  } else if (window.matchMedia('(max-width: 1200px)').matches) {
-    certificateWidth = window.innerWidth - 200;
-    certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-    certificateList.style.transform = "translateX(0px)";
-    if ((certificateItem.length % 3) != 0) {
-      certificateItem.forEach((item, i) => {
-        item.style.width = (certificateWidth / 3) + 'px';
-      });
-    };
-    certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-    certificateNextButton.addEventListener('click', function() {
-      certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-      if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
-        certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-      };
-    });
-    certificatePrevButton.addEventListener('click', function() {
-      certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-      certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-    });
-  } else {
-    certificateWidth =  1100;
-    certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-    certificateList.style.transform = "translateX(0px)";
-    if ((certificateItem.length % 3) != 0) {
-      certificateItem.forEach((item, i) => {
-        item.style.width = (certificateWidth / 3) + 'px';
-      });
-    };
-    certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-    certificateNextButton.addEventListener('click', function() {
-      certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-      if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
-        certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-      };
-    });
-    certificatePrevButton.addEventListener('click', function() {
-      certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-      certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+      } else {}
     });
   }
+
+  riaSlider(0);
+
+
+  // if (window.matchMedia('(max-width: 767px)').matches) {
+  //   certificateWidth = window.innerWidth - 100;
+  //   certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   for (let i = 0; i < certificateItem.length; i++) {
+  //     let certificateButtonItem = document.createElement('button');
+  //     certificateButtonItem.classList.add('some-staff__button-item');
+  //     certificateButtonList.append(certificateButtonItem);
+  //   };
+  //   certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
+  //   certificateItem.forEach((item, i) => {
+  //     item.style.width = certificateWidth + "px";
+  //   });
+  //   // function certificateSwitchSlide(x) {
+  //   //   event.preventDefault();
+  //   //   certificateButtonList.childNodes.forEach((item, i) => {
+  //   //     if (item.classList.contains('some-staff__button-item--active')) {
+  //   //       item.classList.remove('some-staff__button-item--active');
+  //   //     }
+  //   //   });
+  //   //   certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+  //   //   certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+  //   // };
+  //   // function swipeEnd() {
+  //   //   posFinal = posInit - posX1;
+  //   //   certificateList.removeEventListener('touchmove', swipeAction);
+  //   //   certificateList.removeEventListener('touchend', swipeEnd);
+  //   //   certificateList.classList.add('some-staff__certificate-list--tr');
+  //   //
+  //   //   if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
+  //   //     if (posInit < posX1) {
+  //   //       if (slideIndex > 0) {
+  //   //         certificateSwitchSlide(--slideIndex);
+  //   //       } else {
+  //   //         certificateSwitchSlide(slideIndex);
+  //   //       }
+  //   //     } else {
+  //   //       if (slideIndex < (certificateItem.length - 1)) {
+  //   //         certificateSwitchSlide(++slideIndex);
+  //   //       } else {
+  //   //         certificateSwitchSlide(slideIndex);
+  //   //       }
+  //   //     };
+  //   //   } else {
+  //   //     certificateSwitchSlide(slideIndex);
+  //   //   };
+  //   //   if (!posFinal) {
+  //   //     certificateWrapper.classList.add('some-staff__certificate--show');
+  //   //     popupOverlay.classList.add('popup__overlay--show');
+  //   //   }
+  //   // }
+  //   certificateList.addEventListener('touchstart', swipeStart);
+  //   certificateButtonList.childNodes.forEach((item, i) => {
+  //     item.addEventListener('click', function() {
+  //       certificateSwitchSlide(i);
+  //       slideIndex = i;
+  //     })
+  //   });
+  // } else if (window.matchMedia('(max-width: 1023px)').matches) {
+  //   certificateWidth = window.innerWidth - 160;
+  //   certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   for (let i = 0; i < (certificateItem.length / 2); i++) {
+  //     let certificateButtonItem = document.createElement('button');
+  //     certificateButtonItem.classList.add('some-staff__button-item');
+  //     certificateButtonList.append(certificateButtonItem);
+  //   };
+  //   certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
+  //   if ((certificateItem.length % 2) != 0) {
+  //     certificateItem.forEach((item, i) => {
+  //       item.style.width = (certificateWidth / 2) + 'px';
+  //     });
+  //   };
+  //   // function certificateSwitchSlide(x) {
+  //   //   event.preventDefault();
+  //   //   certificateButtonList.childNodes.forEach((item, i) => {
+  //   //     if (item.classList.contains('some-staff__button-item--active')) {
+  //   //       item.classList.remove('some-staff__button-item--active');
+  //   //     }
+  //   //   });
+  //   //   if (x < (certificateItem.length - 1)) {
+  //   //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+  //   //   };
+  //   //   if (x == (certificateItem.length - 2)) {
+  //   //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+  //   //     certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+  //   //   } else {
+  //   //     certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+  //   //   };
+  //   // };
+  //   // function swipeEnd() {
+  //   //   posFinal = posInit - posX1;
+  //   //   certificateList.removeEventListener('touchmove', swipeAction);
+  //   //   certificateList.removeEventListener('touchend', swipeEnd);
+  //   //   certificateList.classList.add('some-staff__certificate-list--tr');
+  //   //
+  //   //   if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
+  //   //     if (posInit < posX1) {
+  //   //       if (slideIndex > 0) {
+  //   //         certificateSwitchSlide(--slideIndex);
+  //   //       } else {
+  //   //         certificateSwitchSlide(slideIndex);
+  //   //       }
+  //   //     } else {
+  //   //       if (slideIndex < (certificateItem.length - 2)) {
+  //   //         certificateSwitchSlide(++slideIndex);
+  //   //       } else {
+  //   //         certificateSwitchSlide(slideIndex);
+  //   //       }
+  //   //     };
+  //   //   } else {
+  //   //     certificateSwitchSlide(slideIndex);
+  //   //   };
+  //   //   if (!posFinal) {
+  //   //     certificateItem.forEach((item, i) => {
+  //   //       if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
+  //   //         slideIndex = i;
+  //   //       }
+  //   //     });
+  //   //     bigGallery(slideIndex);
+  //   //   }
+  //   // }
+  //   certificateList.addEventListener('touchstart', swipeStart);
+  //   certificateButtonList.childNodes.forEach((item, i) => {
+  //     item.addEventListener('click', function() {
+  //       if (((i + 1) * 2) < certificateItem.length) {
+  //         certificateSwitchSlide(i*2);
+  //         slideIndex = i*2;
+  //       } else {
+  //         certificateSwitchSlide(certificateItem.length - 2);
+  //         slideIndex = certificateItem.length - 2;
+  //       }
+  //     })
+  //   })
+  // } else if (window.matchMedia('(max-width: 1200px)').matches) {
+  //   certificateWidth = window.innerWidth - 200;
+  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   if ((certificateItem.length % 3) != 0) {
+  //     certificateItem.forEach((item, i) => {
+  //       item.style.width = (certificateWidth / 3) + 'px';
+  //     });
+  //   };
+  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //   certificateNextButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
+  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+  //     };
+  //   });
+  //   certificatePrevButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+  //   });
+  // } else {
+  //   certificateWidth =  1100;
+  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+  //   certificateList.style.transform = "translateX(0px)";
+  //   if ((certificateItem.length % 3) != 0) {
+  //     certificateItem.forEach((item, i) => {
+  //       item.style.width = (certificateWidth / 3) + 'px';
+  //     });
+  //   };
+  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //   certificateNextButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
+  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
+  //     };
+  //   });
+  //   certificatePrevButton.addEventListener('click', function() {
+  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
+  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
+  //   });
+  // }
 }
 
 // Отзывы
