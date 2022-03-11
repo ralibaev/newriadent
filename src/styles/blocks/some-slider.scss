@@ -94,6 +94,7 @@
     }
     @media (min-width: $tablet-min) {
       flex-direction: row;
+      justify-content: space-around;
     }
   }
   &__text {

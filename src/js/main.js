@@ -338,7 +338,7 @@ if (staffMainWebp) {
   let staffNumber = 0;
   // staffButtonPrev.setAttribute('disabled', 'disabled');
   staffNumSpan.innerHTML = "1/" + staffItems.length;
-  staffListInner.style.height = staffItems[0].offsetHeight + "px";
+  // staffListInner.style.height = staffItems[0].offsetHeight + "px";
   if (window.matchMedia('(max-width: 767px)').matches) {
     staffListInner.style.width = (staffItems.length * (window.innerWidth - 80)) + "px";
     staffListInner.style.transform = "translateX(0px)";
@@ -821,6 +821,29 @@ if (certificateList) {
   let posX2;
   let slideIndex = 0;
 
+  function isMobile() {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      return true;
+    }
+  };
+  function isTablet() {
+    if ((window.matchMedia('(max-width: 1023px)').matches) && (window.matchMedia('(min-width: 768px)').matches)) {
+      return true;
+    }
+  };
+  function isLaptop() {
+    if (window.matchMedia('(max-width: 1200px)').matches) {
+      return true;
+    }
+  };
+
+  if (isMobile()) {
+    console.log('mobile');
+  }
+  if (isTablet()) {
+    console.log('tablet');
+  }
+
   // Переключение слайдера
   function certificateSwitchSlide(x) {
     event.preventDefault();
@@ -961,10 +984,18 @@ if (certificateList) {
             certificateSwitchSlide(slideIndex);
           }
         } else if (window.matchMedia('(max-width: 1023px)').matches) {
-          if (slideIndex < (certificateItem.length - 2)) {
-            certificateSwitchSlide(++slideIndex);
+          if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+            if (slideIndex < (certificateItem.length - 1)) {
+              certificateSwitchSlide(++slideIndex);
+            } else {
+              certificateSwitchSlide(slideIndex);
+            }
           } else {
-            certificateSwitchSlide(slideIndex);
+            if (slideIndex < (certificateItem.length - 2)) {
+              certificateSwitchSlide(++slideIndex);
+            } else {
+              certificateSwitchSlide(slideIndex);
+            }
           }
         }
       };

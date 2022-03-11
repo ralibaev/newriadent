@@ -37,6 +37,13 @@ picture {
 		padding-right: $desktop-paddings;
 	}
 }
+.bt_bb_row {
+	margin: 0 !important;
+}
+.bt_bb_row .bt_bb_column {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
 body, p, span, ol, ul {
 	font-family: 'Montserrat';
 	font-weight: normal;
