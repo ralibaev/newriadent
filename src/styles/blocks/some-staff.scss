@@ -144,6 +144,12 @@
     &--tr {
       transition: 0.3s ease;
     }
+    &--grab {
+      cursor: grab;
+    }
+    &--grabbing {
+      cursor: grabbing;
+    }
     @media (min-width: $tablet-min) {
       background-color: rgba(0, 0, 0, 0.2);
     }
@@ -160,6 +166,9 @@
     @media (min-width: $tablet-min) {
       padding: 20px;
       background-color: transparent;
+    }
+    img {
+      pointer-events: none;
     }
   }
   &__close {

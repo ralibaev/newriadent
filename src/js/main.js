@@ -837,13 +837,6 @@ if (certificateList) {
     }
   };
 
-  if (isMobile()) {
-    console.log('mobile');
-  }
-  if (isTablet()) {
-    console.log('tablet');
-  }
-
   // Переключение слайдера
   function certificateSwitchSlide(x) {
     event.preventDefault();
@@ -948,9 +941,12 @@ if (certificateList) {
     let evt = getEvent();
     posInit = posX1 = evt.clientX;
     certificateList.addEventListener('touchmove', swipeAction);
-    certificateList.addEventListener('mousemove', swipeAction);
     certificateList.addEventListener('touchend', swipeEnd);
+    certificateList.addEventListener('mousemove', swipeAction);
     certificateList.addEventListener('mouseup', swipeEnd);
+
+    certificateList.classList.remove('some-staff__certificate-list--grab');
+    certificateList.classList.add('some-staff__certificate-list--grabbing');
   };
 
   function swipeAction() {
@@ -968,6 +964,8 @@ if (certificateList) {
     certificateList.removeEventListener('touchend', swipeEnd);
     certificateList.removeEventListener('mouseup', swipeEnd);
     certificateList.classList.add('some-staff__certificate-list--tr');
+    certificateList.classList.add('some-staff__certificate-list--grab');
+    certificateList.classList.remove('some-staff__certificate-list--grabbing');
 
     if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
       if (posInit < posX1) {
@@ -1017,6 +1015,7 @@ if (certificateList) {
     }
   };
   certificateList.addEventListener('touchstart', swipeStart);
+  certificateList.addEventListener('mousedown', swipeStart);
 
   // Кнопки закрытия попап галереи
   popupOverlay.addEventListener('click', function() {
@@ -1139,7 +1138,9 @@ if (certificateList) {
             }
           })
         }
-      } else {}
+      } else if (window.matchMedia('(max-width: 1200px)').matches) {
+        
+      }
     });
   }
 

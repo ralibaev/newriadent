@@ -13,6 +13,10 @@
     }
   }
   &__pizdesh-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: -60px;
     padding: 100px 120px 0 50px;
     @media (max-width: $phone-max) {
       display: none;
@@ -33,6 +37,9 @@
       color: white;
       text-align: center;
     }
+    // img {
+    //   margin-bottom: -50px;
+    // }
   }
   &__sign {
     margin: 0 auto;
