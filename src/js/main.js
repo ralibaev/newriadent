@@ -820,22 +820,40 @@ if (certificateList) {
   let posX1;
   let posX2;
   let slideIndex = 0;
+  let screenWidth;
 
-  function isMobile() {
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      return true;
+  // function isMobile() {
+  //   if (window.matchMedia('(max-width: 767px)').matches) {
+  //     return true;
+  //   }
+  // };
+  // function isTablet() {
+  //   if ((window.matchMedia('(max-width: 1023px)').matches) && (window.matchMedia('(min-width: 768px)').matches)) {
+  //     return true;
+  //   }
+  // };
+  // function isLaptop() {
+  //   if (window.matchMedia('(max-width: 1200px)').matches) {
+  //     return true;
+  //   }
+  // };
+
+  function knowScreenWidth() {
+    switch (true) {
+      case (window.matchMedia('(max-width: 767px)').matches) :
+        screenWidth = 1; break;
+      case (window.matchMedia('(max-width: 1023px)').matches) :
+        screenWidth = 2; break;
+      case (window.matchMedia('(max-width: 1200px)').matches) :
+        screenWidth = 3; break;
+      default: screenWidth = 4;
     }
-  };
-  function isTablet() {
-    if ((window.matchMedia('(max-width: 1023px)').matches) && (window.matchMedia('(min-width: 768px)').matches)) {
-      return true;
-    }
-  };
-  function isLaptop() {
-    if (window.matchMedia('(max-width: 1200px)').matches) {
-      return true;
-    }
-  };
+  }
+  knowScreenWidth()
+
+  window.addEventListener('resize', event => {
+    knowScreenWidth()
+  }, false);
 
   // Переключение слайдера
   function certificateSwitchSlide(x) {
@@ -845,35 +863,70 @@ if (certificateList) {
         item.classList.remove('some-staff__button-item--active');
       }
     });
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-    } else if (window.matchMedia('(max-width: 1023px)').matches) {
-      if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+    switch (screenWidth) {
+      case (1) :
         certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
         certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-      } else {
-        if (x < (certificateItem.length - 1)) {
-          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+        break;
+      case (2) :
+        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+          certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+          certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+        } else {
+          if (x < (certificateItem.length - 1)) {
+            certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+          };
+          if (x == (certificateItem.length - 2)) {
+            certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+            certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+          } else {
+            certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+          };
         };
-        if (x == (certificateItem.length - 2)) {
-          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+        break;
+      case (3) :
+        if (x < (certificateItem.length - 1)) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+        };
+        if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
           certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
         } else {
-          certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+          certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
         };
-      }
-    } else if (window.matchMedia('(max-width: 1200px)').matches) {
-      if (x < (certificateItem.length - 1)) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
-      };
-      if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
-        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-      } else {
-        certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
-      };
-    } else {}
+        break;
+      case (4) :
+        break;
+    }
+    // if (window.matchMedia('(max-width: 767px)').matches) {
+    //   certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+    //   certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    // } else if (window.matchMedia('(max-width: 1023px)').matches) {
+    //   if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+    //     certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+    //     certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    //   } else {
+    //     if (x < (certificateItem.length - 1)) {
+    //       certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+    //     };
+    //     if (x == (certificateItem.length - 2)) {
+    //       certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+    //       certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+    //     } else {
+    //       certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+    //     };
+    //   }
+    // } else if (window.matchMedia('(max-width: 1200px)').matches) {
+    //   if (x < (certificateItem.length - 1)) {
+    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+    //   };
+    //   if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
+    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+    //     certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+    //   } else {
+    //     certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
+    //   };
+    // } else {}
   };
 
   // События движения тач-слайдера
@@ -1139,7 +1192,22 @@ if (certificateList) {
           })
         }
       } else if (window.matchMedia('(max-width: 1200px)').matches) {
-        
+        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+          item.addEventListener('click', function() {
+            certificateSwitchSlide(i);
+            slideIndex = i;
+          })
+        } else {
+          item.addEventListener('click', function() {
+            if (((i + 1) * 2) < certificateItem.length) {
+              certificateSwitchSlide(i*2);
+              slideIndex = i*2;
+            } else {
+              certificateSwitchSlide(certificateItem.length - 2);
+              slideIndex = certificateItem.length - 2;
+            }
+          })
+        }
       }
     });
   }

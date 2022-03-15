@@ -169,6 +169,7 @@
     }
     img {
       pointer-events: none;
+      user-select: none;
     }
   }
   &__close {
