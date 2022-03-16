@@ -711,6 +711,7 @@ if (searchInput) {
     let tableTitles = document.querySelectorAll('.ceni__item-title');
     let searchInfo = document.querySelector('.ceni__search-info');
     let searchCount = 0;
+    let somestring;
     searchInput.oninput = function() {
       let value = this.value.trim();
       let someClone;
@@ -725,7 +726,8 @@ if (searchInput) {
       searchTable.classList.remove('ceni__search-table--show');
       if (value) {
         listPrices.forEach(elem => {
-          if (elem.innerText.search(value) != -1) {
+          somestring = elem.innerText.toLowerCase();
+          if (somestring.search(value) != -1) {
             someClone = elem.parentNode.cloneNode(true);
             if (!elem.classList.contains('ceni__item-strong')) {
               someTitle = elem.parentNode.parentNode.parentNode.parentNode.firstChild.innerHTML;
@@ -1610,3 +1612,16 @@ if (beforeAfter.length) {
     });
   });
 };
+
+// Поиск по сайту
+let searchSite = document.querySelector('.main-nav__search-input');
+if (searchSite) {
+  searchSite.addEventListener('click', function() {
+    searchSite.classList.add('main-nav__search-input--active');
+  });
+  document.addEventListener('mousedown', (e) => {
+    if (e.target != searchSite) {
+      searchSite.classList.remove('main-nav__search-input--active');
+    }
+  })
+}
