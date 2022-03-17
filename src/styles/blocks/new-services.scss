@@ -43,7 +43,7 @@
     position: relative;
     margin: 0;
     border-bottom: 1px solid #a7bfc6;
-    &:first-child {
+    &--first {
       border-top: 1px solid #a7bfc6
     }
     &--active {
