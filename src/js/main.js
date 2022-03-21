@@ -1625,3 +1625,20 @@ if (searchSite) {
     }
   })
 }
+
+// Риаквиз
+let riaQuiz = document.querySelector('.riaquiz');
+if (riaQuiz) {
+  let riaQuizBegin = document.querySelector('.riaquiz__begin');
+  let riaQuizClose = document.querySelector('.riaquiz__close');
+  let riaQuizStart = document.querySelector('.riaquiz__button-start');
+  riaQuizBegin.addEventListener('click', function() {
+    riaQuiz.classList.add('riaquiz--show');
+  });
+  riaQuizClose.addEventListener('click', function() {
+    riaQuiz.classList.remove('riaquiz--show');
+  });
+  riaQuizStart.addEventListener('click', function() {
+    riaQuiz.classList.add('riaquiz--questions');
+  });
+}
