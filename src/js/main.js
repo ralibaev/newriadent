@@ -1641,75 +1641,62 @@ if (riaQuiz) {
   riaQuizStart.addEventListener('click', function() {
     riaQuiz.classList.add('riaquiz--questions');
   });
-  // ;(function() {
-  //   class ScrollBox {
-  //     static #SCROLLER_HEIGHT_MIN = 25;
-  //
-  //     constructor(container) {
-  //       this.viewport = container.querySelector('.riaquiz__questions-view');
-  //       this.contentBox = container.querySelector('.riaquiz__questions-content');
-  //       console.log('constructor');
-  //       console.log(this.viewport);
-  //       this.pressed = false;
-  //       this.init();
-  //     }
-  //
-  //     init() {
-  //       this.viewportHeight = this.viewport.offsetHeight;
-  //       this.contentHeight = this.contentBox.scrollHeight;
-  //       // if (this.viewportHeight >= this.contentHeight) return;
-  //       this.max = this.viewport.clientHeight - this.contentHeight;
-  //       this.ratio = this.viewportHeight / this.contentHeight;
-  //       this.createScrollbar();
-  //       console.log('init');
-  //       this.registerEventsHandler();
-  //     }
-  //
-  //     createScrollbar() {
-  //       const scrollbar = document.createElement('div');
-  //       const scroller = document.createElement('div');
-  //       scrollbar.className = 'riaquiz__scrollbar';
-  //       scroller.className = 'riaquiz__scroller';
-  //       scrollbar.appendChild(scroller);
-  //       this.viewport.appendChild(scrollbar);
-  //       // console.log('sdfsdf');
-  //       this.scroller = this.viewport.querySelector('.riaquiz__scroller');
-  //       this.scrollerHeight = parseInt(this.ratio * this.viewportHeight);
-  //       this.scrollerHeight = (this.scrollerHeight <= ScrollBox.#SCROLLER_HEIGHT_MIN) ? ScrollBox.#SCROLLER_HEIGHT_MIN : this.scrollerHeight;
-  //       this.scroller.style.height = this.scrollerHeight + 'px';
-  //     }
-  //
-  //     registerEventsHandler(e) {
-  //       this.contentBox.addEventListener('scroll', () => {
-  //         this.scroller.style.top = (this.contentBox.scrollTop * this.ratio) + 'px';
-  //       });
-  //       this.scroller.addEventListener('mousedown', e => {
-  //         this.start = e.clientY;
-  //         this.pressed = true;
-  //       });
-  //       document.addEventListener('mousemove', this.drop.bind(this));
-  //       document.addEventListener('mouseup', () => this.pressed = false);
-  //     }
-  //
-  //     drop(e) {
-  //       e.preventDefault();
-  //       // console.log('drop');
-  //       if (this.pressed === false) return;
-  //       let shiftScroller = this.start - e.clientY;
-  //       this.scroller.style.top = (this.scroller.offsetTop - shiftScroller) + 'px';
-  //       let shiftContent = this.scroller.offsetTop / this.ratio;
-  //       const totalheightScroller = this.scroller.offsetHeight + this.scroller.offsetTop;
-  //       const maxOffsetScroller = this.viewportHeight - this.scroller.offsetHeight;
-  //       if (this.scroller.offsetTop < 0) this.scroller.style.top = '0px';
-  //       if (totalheightScroller >= this.viewportHeight) this.scroller.style.top = maxOffsetScroller + 'px';
-  //       this.contentBox.scrollTo(0, shiftContent);
-  //       this.start = e.clientY;
-  //     }
-  //   }
-  //   let quizContainers = document.querySelectorAll('.riaquiz__questions-item');
-  //   for (let container of quizContainers) {
-  //     let scrollbox = new ScrollBox(container);
-  //   }
-  // })();
-  // turnOnScroll();
+  let questionsList = document.querySelector('.riaquiz__questions-list');
+  let firstAnswers = document.querySelectorAll('.riaquiz__ans--0');
+  let questionsItem = document.querySelectorAll('.riaquiz__questions-item');
+  let answers = document.querySelectorAll('.riaquiz__ans');
+  let riaQuizPrevButton = document.querySelector('.riaquiz__arrow--prev');
+  let riaQuizNextButton = document.querySelector('.riaquiz__arrow--next');
+  questionsList.style.transform = "translateX(0px)";
+  firstAnswers.forEach((item, i) => {
+    item.addEventListener('click', function() {
+      switch (true) {
+        case item.classList.contains('riaquiz__ans--0-1') :
+        switchToQuestions(1);
+        break;
+        case item.classList.contains('riaquiz__ans--0-2') :
+        switchToQuestions(2);
+        break;
+        case item.classList.contains('riaquiz__ans--0-3') :
+        switchToQuestions(3);
+        break;
+        case item.classList.contains('riaquiz__ans--0-4') :
+        switchToQuestions(4);
+        break;
+        case item.classList.contains('riaquiz__ans--0-5') :
+        switchToQuestions(5);
+        break;
+        case item.classList.contains('riaquiz__ans--0-6') :
+        switchToQuestions(6);
+        break;
+        case item.classList.contains('riaquiz__ans--0-7') :
+        switchToQuestions(7);
+        break;
+        case item.classList.contains('riaquiz__ans--0-8') :
+        switchToQuestions(8);
+        break;
+        case item.classList.contains('riaquiz__ans--0-9') :
+        switchToQuestions(9);
+        break;
+      }
+    })
+  });
+  function switchToQuestions(x) {
+    questionsItem.forEach((item) => {
+      if (item.classList.contains('riaquiz__questions-item--' + x)) {
+        item.classList.add('riaquiz__questions-item--active');
+      }
+    })
+  };
+  function nextQuestion() {
+    questionsList.style.transform = "translateX(-" + (parseInt(questionsList.style.transform.match(/\d+/)) + 300) + "px)";
+  }
+  function prevQuestion() {
+    questionsList.style.transform = "translateX(-" + (parseInt(questionsList.style.transform.match(/\d+/)) - 300) + "px)";
+  }
+  riaQuizNextButton.addEventListener('click', nextQuestion);
+  riaQuizPrevButton.addEventListener('click', prevQuestion);
+  answers.forEach((item) => {
+    item.addEventListener('click', nextQuestion)
+  });
 }

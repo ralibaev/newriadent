@@ -112,20 +112,23 @@
   }
   &__questions-list {
     display: flex;
-    width: 500%;
     height: 440px;
+    transition: all .3s ease;
   }
   &__questions-item {
-    // position: ;
-    width: 300px;
+    display: none;
+    min-width: 300px;
     height: 100%;
+    &--active {
+      display: block;
+    }
   }
   &__questions-view {
     height: 100%;
     overflow: hidden;
   }
   &__questions-content {
-    padding: 20px;
+    padding: 25px;
     height: 100%;
     box-sizing: border-box;
     overflow-y: scroll;
@@ -133,6 +136,13 @@
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
       display: none;
+    }
+    span {
+      font-size: 16px;
+    }
+    p {
+      font-size: 12px;
+      font-weight: 600;
     }
   }
   // &__scrollbar, &__scroller {
@@ -155,12 +165,24 @@
     flex-direction: column;
     margin-top: 10px;
   }
-  &__ans {
-    height: 50px;
-    padding: 5px;
+  &__ans, &__label {
+    min-height: 50px;
+    padding: 10px;
     margin: 5px 0;
-    border: none;
+    background-color: transparent;
+    border: 1px solid rgb(230, 230, 230);
     border-radius: 10px;
+    box-sizing: border-box;
+    &:hover {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    }
+  }
+  &__label {
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 10px;
+    }
   }
   &__navbar {
     position: absolute;
@@ -169,6 +191,47 @@
     height: 60px;
     background-color: rgba(0,0,0,0.5);
     border-radius: 0 0 10px 10px;
+  }
+  &__arrows {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
+  &__arrow {
+    display: flex;
+    align-items: center;
+    min-height: 45px;
+    padding: 10px 20px;
+    background-color: $violet;
+    border: none;
+    border-radius: 25px;
+    box-sizing: border-box;
+    &--prev {
+      svg {
+        transform: rotate(180deg);
+      }
+      span {
+        margin-left: 10px;
+      }
+    }
+    &--next {
+      span {
+        margin-right: 10px;
+      }
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    span {
+      color: white;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
   }
   &__close {
     display: none;
