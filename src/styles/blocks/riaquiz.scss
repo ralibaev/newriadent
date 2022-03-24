@@ -4,15 +4,19 @@
   bottom: 20px;
   width: 300px;
   max-width: 360px;
-  height: 200px;
+  height: 100px;
   box-shadow: 0 15px 10px -15px rgba(0, 0, 0, 0.1), 1px 2px 20px rgba(0, 0, 0, 0.1);
   z-index: 100;
+  @media (min-width: $tablet-min) {
+    height: 200px;
+  }
   &--show {
     height: 500px;
     .riaquiz__wrapper {
       background-color: white;
     }
     .riaquiz__begin {
+      height: 200px;
       &::after, p, button {
         display: none;
       }
@@ -45,11 +49,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 200px;
+    height: 100px;
     padding: 20px;
     box-sizing: border-box;
     background: url('../img/riaquiz-back.jpg') center/cover no-repeat;
     cursor: pointer;
+    @media (min-width: $tablet-min) {
+      height: 200px;
+    }
     &::after {
       content: '';
       position: absolute;
@@ -180,9 +187,13 @@
   &__label {
     display: flex;
     align-items: center;
+    cursor: pointer;
     span {
       margin-left: 10px;
     }
+  }
+  &__textarea {
+    visibility: hidden;
   }
   &__navbar {
     position: absolute;
@@ -228,8 +239,8 @@
       color: white;
     }
     svg {
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       fill: white;
     }
   }

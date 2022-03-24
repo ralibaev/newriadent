@@ -1637,19 +1637,27 @@ if (riaQuiz) {
   });
   riaQuizClose.addEventListener('click', function() {
     riaQuiz.classList.remove('riaquiz--show');
+    riaQuiz.classList.remove('riaquiz--questions');
   });
   riaQuizStart.addEventListener('click', function() {
     riaQuiz.classList.add('riaquiz--questions');
   });
   let questionsList = document.querySelector('.riaquiz__questions-list');
+  let questionsWidth = 900;
   let firstAnswers = document.querySelectorAll('.riaquiz__ans--0');
   let questionsItem = document.querySelectorAll('.riaquiz__questions-item');
+  let questionsItemQuestions = document.querySelectorAll('.riaquiz__questions-item');
   let answers = document.querySelectorAll('.riaquiz__ans');
+  let labels = document.querySelectorAll('.riaquiz__label');
+  let quizString;
+  let quizAnswers = [];
+  let quizTextArea = document.querySelector('.riaquiz__textarea');
   let riaQuizPrevButton = document.querySelector('.riaquiz__arrow--prev');
   let riaQuizNextButton = document.querySelector('.riaquiz__arrow--next');
   questionsList.style.transform = "translateX(0px)";
   firstAnswers.forEach((item, i) => {
     item.addEventListener('click', function() {
+      quizTextArea.innerHTML = ""
       switch (true) {
         case item.classList.contains('riaquiz__ans--0-1') :
         switchToQuestions(1);
@@ -1683,20 +1691,61 @@ if (riaQuiz) {
   });
   function switchToQuestions(x) {
     questionsItem.forEach((item) => {
+      if ((item.classList.contains('riaquiz__questions-item--question')) && (item.classList.contains('riaquiz__questions-item--active'))) {
+        item.classList.remove('riaquiz__questions-item--active');
+        questionsWidth -= 300;
+      }
+    })
+    questionsItem.forEach((item) => {
       if (item.classList.contains('riaquiz__questions-item--' + x)) {
         item.classList.add('riaquiz__questions-item--active');
+        questionsWidth += 300;
       }
     })
   };
   function nextQuestion() {
     questionsList.style.transform = "translateX(-" + (parseInt(questionsList.style.transform.match(/\d+/)) + 300) + "px)";
+    checkLabel();
+    if (questionsWidth == parseInt(questionsList.style.transform.match(/\d+/))) {
+      quizTextArea.innerHTML = "" + quizAnswers;
+    }
   }
   function prevQuestion() {
     questionsList.style.transform = "translateX(-" + (parseInt(questionsList.style.transform.match(/\d+/)) - 300) + "px)";
+    checkLabel();
+    quizAnswers.pop();
   }
   riaQuizNextButton.addEventListener('click', nextQuestion);
   riaQuizPrevButton.addEventListener('click', prevQuestion);
+  function checkLabel() {
+    if (questionsWidth == (parseInt(questionsList.style.transform.match(/\d+/)) + 600)) {
+      riaQuizNextButton.disabled = false;
+      riaQuizNextButton.addEventListener('click', function() {
+        quizString = "" + (labels[0].closest('.riaquiz__questions-content').querySelector('.riaquiz__questions-title').innerHTML) + " : "
+        // quizTextArea.innerHTML += (labels[0].closest('.riaquiz__questions-content').querySelector('.riaquiz__questions-title').innerHTML);
+        // quizTextArea.innerHTML += '<br>';
+        labels.forEach((item) => {
+          if (item.querySelector('input').checked) {
+            quizString += (item.querySelector('span').innerHTML + " ");
+            // quizTextArea.innerHTML += item.querySelector('span').innerHTML;
+            // quizTextArea.innerHTML += '<br>';
+          }
+        });
+        quizAnswers.push(quizString + "<br>");
+      });
+    } else {
+      riaQuizNextButton.disabled = true;
+    }
+  }
   answers.forEach((item) => {
-    item.addEventListener('click', nextQuestion)
+    item.addEventListener('click', function() {
+      quizString = "" + (item.closest('.riaquiz__questions-content').querySelector('.riaquiz__questions-title').innerHTML) + " : " + item.innerHTML;
+      quizAnswers.push(quizString + "<br>");
+      nextQuestion();
+      // quizTextArea.innerHTML += (item.closest('.riaquiz__questions-content').querySelector('.riaquiz__questions-title').innerHTML);
+      // quizTextArea.innerHTML += '<br>';
+      // quizTextArea.innerHTML += item.innerHTML;
+      // quizTextArea.innerHTML += '<br>';
+    });
   });
 }
