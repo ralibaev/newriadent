@@ -615,11 +615,13 @@ if (ceniItem) {
   ceniItem.forEach((item, i) => {
     item.querySelector('.ceni__item-title').addEventListener('click', function() {
       if (item.querySelector('.ceni__table').classList.contains('ceni__table--show')) {
-        item.querySelector('.ceni__table').classList.remove('ceni__table--show');
         item.querySelector('.ceni__item-title').classList.remove('ceni__item-title--show');
+        item.querySelector('.ceni__item-top').classList.remove('ceni__item-top--show');
+        item.querySelector('.ceni__table').classList.remove('ceni__table--show');
       } else {
-        item.querySelector('.ceni__table').classList.add('ceni__table--show');
         item.querySelector('.ceni__item-title').classList.add('ceni__item-title--show');
+        item.querySelector('.ceni__item-top').classList.add('ceni__item-top--show');
+        item.querySelector('.ceni__table').classList.add('ceni__table--show');
       }
     })
   });
@@ -712,6 +714,7 @@ if (searchInput) {
     let searchInfo = document.querySelector('.ceni__search-info');
     let searchCount = 0;
     let somestring;
+    let anotherstring;
     searchInput.oninput = function() {
       let value = this.value.trim();
       let someClone;
@@ -727,7 +730,8 @@ if (searchInput) {
       if (value) {
         listPrices.forEach(elem => {
           somestring = elem.innerText.toLowerCase();
-          if (somestring.search(value) != -1) {
+          anotherstring = value.toLowerCase();
+          if (somestring.search(anotherstring) != -1) {
             someClone = elem.parentNode.cloneNode(true);
             if (!elem.classList.contains('ceni__item-strong')) {
               someTitle = elem.parentNode.parentNode.parentNode.parentNode.firstChild.innerHTML;
