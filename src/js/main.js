@@ -828,22 +828,7 @@ if (certificateList) {
   let slideIndex = 0;
   let screenWidth;
 
-  // function isMobile() {
-  //   if (window.matchMedia('(max-width: 767px)').matches) {
-  //     return true;
-  //   }
-  // };
-  // function isTablet() {
-  //   if ((window.matchMedia('(max-width: 1023px)').matches) && (window.matchMedia('(min-width: 768px)').matches)) {
-  //     return true;
-  //   }
-  // };
-  // function isLaptop() {
-  //   if (window.matchMedia('(max-width: 1200px)').matches) {
-  //     return true;
-  //   }
-  // };
-
+  // Определение ширины экрана
   function knowScreenWidth() {
     switch (true) {
       case (window.matchMedia('(max-width: 767px)').matches) :
@@ -863,76 +848,44 @@ if (certificateList) {
 
   // Переключение слайдера
   function certificateSwitchSlide(x) {
-    event.preventDefault();
     certificateButtonList.childNodes.forEach((item, i) => {
       if (item.classList.contains('some-staff__button-item--active')) {
         item.classList.remove('some-staff__button-item--active');
       }
     });
-    switch (screenWidth) {
-      case (1) :
-        certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-        certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-        break;
-      case (2) :
-        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+    if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
+      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+    } else {
+      switch (screenWidth) {
+        case (1) :
           certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
           certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-        } else {
+          break;
+        case (2) :
           if (x < (certificateItem.length - 1)) {
             certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
           };
+          // Если это последний слайд переключаем активную кнопку сразу на последний
           if (x == (certificateItem.length - 2)) {
-            certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
             certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
           } else {
             certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
           };
-        };
-        break;
-      case (3) :
-        if (x < (certificateItem.length - 1)) {
-          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
-        };
-        if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
-          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
-          certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-        } else {
-          certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
-        };
-        break;
-      case (4) :
-        break;
+          break;
+        case (3) :
+          if (x < (certificateItem.length - 1)) {
+            certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+          };
+          // Если это последний или предпоследний слайд переключаем активную кнопку сразу на последний
+          if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
+            certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+          } else {
+            certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
+          };
+          break;
+      }
     }
-    // if (window.matchMedia('(max-width: 767px)').matches) {
-    //   certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-    //   certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-    // } else if (window.matchMedia('(max-width: 1023px)').matches) {
-    //   if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
-    //     certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-    //     certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-    //   } else {
-    //     if (x < (certificateItem.length - 1)) {
-    //       certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-    //     };
-    //     if (x == (certificateItem.length - 2)) {
-    //       certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-    //       certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-    //     } else {
-    //       certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
-    //     };
-    //   }
-    // } else if (window.matchMedia('(max-width: 1200px)').matches) {
-    //   if (x < (certificateItem.length - 1)) {
-    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
-    //   };
-    //   if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 3))) {
-    //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
-    //     certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-    //   } else {
-    //     certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
-    //   };
-    // } else {}
   };
 
   // События движения тач-слайдера
@@ -942,26 +895,29 @@ if (certificateList) {
 
   // Кнопка перключения следующего слайда
   certificateNextButton.addEventListener('click', function() {
-    event.preventDefault();
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      if (slideIndex < (certificateItem.length - 1)) {
-        certificateSwitchSlide(++slideIndex);
+    // Если это большой слайдер попап, то ограничение слайдера до последнего, если маленький, то в завимиости от того, сколько слайдов видно
+    if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+      if (slideIndex < (certificateItem.length - 1)) {certificateSwitchSlide(++slideIndex);}
+    } else {
+      switch (screenWidth) {
+        case (1) :
+          if (slideIndex < (certificateItem.length - 1)) {
+            certificateSwitchSlide(++slideIndex);
+          };
+          break;
+        case (2) :
+          if (slideIndex < (certificateItem.length - 2)) {
+            certificateSwitchSlide(++slideIndex);
+          };
+          break;
+        case (3) :
+        case (4) :
+          if (slideIndex < (certificateItem.length - 3)) {
+            certificateSwitchSlide(++slideIndex);
+          };
+          break;
       }
-    } else if (window.matchMedia('(max-width: 1023px)').matches) {
-      if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
-        if (slideIndex < (certificateItem.length - 1)) {
-          certificateSwitchSlide(++slideIndex);
-        }
-      } else {
-        if (slideIndex < (certificateItem.length - 2)) {
-          certificateSwitchSlide(++slideIndex);
-        }
-      }
-    } else if (window.matchMedia('(max-width: 1200px)').matches) {
-      if (slideIndex < (certificateItem.length - 3)) {
-        certificateSwitchSlide(++slideIndex);
-      }
-    } else {};
+    }
   });
 
   // Кнопка перключения предыдущего слайда
@@ -991,7 +947,7 @@ if (certificateList) {
       item.style.width = certificateWidth + "px";
     });
     certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-    certificateButtons()
+    certificateButtons();
   };
 
   // Три функции для перключения слайда скроллом
@@ -1034,42 +990,44 @@ if (certificateList) {
           certificateSwitchSlide(slideIndex);
         }
       } else {
-        if (window.matchMedia('(max-width: 767px)').matches) {
+        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
           if (slideIndex < (certificateItem.length - 1)) {
             certificateSwitchSlide(++slideIndex);
-          } else {
-            certificateSwitchSlide(slideIndex);
-          }
-        } else if (window.matchMedia('(max-width: 1023px)').matches) {
-          if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
-            if (slideIndex < (certificateItem.length - 1)) {
-              certificateSwitchSlide(++slideIndex);
-            } else {
-              certificateSwitchSlide(slideIndex);
-            }
-          } else {
-            if (slideIndex < (certificateItem.length - 2)) {
-              certificateSwitchSlide(++slideIndex);
-            } else {
-              certificateSwitchSlide(slideIndex);
-            }
+          } else {certificateSwitchSlide(slideIndex);}
+        } else {
+          switch (screenWidth) {
+            case (1) :
+              if (slideIndex < (certificateItem.length - 1)) {
+                certificateSwitchSlide(++slideIndex);
+              } else {certificateSwitchSlide(slideIndex);};
+            case (2) :
+              if (slideIndex < (certificateItem.length - 2)) {
+                certificateSwitchSlide(++slideIndex);
+              } else {certificateSwitchSlide(slideIndex);}
+            case (3) :
+            case (4) :
+              if (slideIndex < (certificateItem.length - 3)) {
+                certificateSwitchSlide(++slideIndex);
+              } else {certificateSwitchSlide(slideIndex);}
           }
         }
-      };
-    } else {
-      certificateSwitchSlide(slideIndex);
-    };
+      }
+    } else {certificateSwitchSlide(slideIndex)};
     if (!posFinal) {
-      if (window.matchMedia('(max-width: 767px)').matches) {
-        certificateWrapper.classList.add('some-staff__certificate--show');
-        popupOverlay.classList.add('popup__overlay--show');
-      } else if (window.matchMedia('(max-width: 1023px)').matches) {
-        certificateItem.forEach((item, i) => {
-          if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
-            slideIndex = i;
-          }
-        });
-        bigGallery(slideIndex);
+      switch (screenWidth) {
+        case (1) :
+          certificateWrapper.classList.add('some-staff__certificate--show');
+          popupOverlay.classList.add('popup__overlay--show');
+          break;
+        case (2) :
+        case (3) :
+        case (4) :
+          certificateItem.forEach((item, i) => {
+            if (item.innerHTML == event.target.parentNode.innerHTML) {slideIndex = i}
+          });
+          bigGallery(slideIndex);
+          console.log(slideIndex);
+          break;
       }
     }
   };
@@ -1080,28 +1038,57 @@ if (certificateList) {
   popupOverlay.addEventListener('click', function() {
     certificateWrapper.classList.remove('some-staff__certificate--show');
     popupOverlay.classList.remove('popup__overlay--show');
-    if (window.matchMedia('(max-width: 1023px)').matches) {
-      if (slideIndex == (certificateItem.length - 1)) {
-        riaSlider(--slideIndex);
-      } else {
-        riaSlider(slideIndex);
-      }
-    };
+    // if (window.matchMedia('(max-width: 1023px)').matches) {
+    //   if (slideIndex == (certificateItem.length - 1)) {
+    //     riaSlider(--slideIndex);
+    //   } else {
+    //     riaSlider(slideIndex);
+    //   }
+    // };
+    if (slideIndex == (certificateItem.length - 1)) {
+      riaSlider(--slideIndex);
+    } else {
+      riaSlider(slideIndex);
+    }
   });
   certificateClose.addEventListener('click', function() {
     certificateWrapper.classList.remove('some-staff__certificate--show');
     popupOverlay.classList.remove('popup__overlay--show');
-    if (window.matchMedia('(max-width: 1023px)').matches) {
-      if (slideIndex == (certificateItem.length - 1)) {
-        riaSlider(--slideIndex);
-      } else {
-        riaSlider(slideIndex);
-      }
-    };
+    if (slideIndex == (certificateItem.length - 1)) {
+      riaSlider(--slideIndex);
+    } else {
+      riaSlider(slideIndex);
+      console.log(slideIndex);
+    }
   });
 
   // Построение слайдера
   function riaSlider(x) {
+    while (certificateButtonList.firstChild) {
+      certificateButtonList.removeChild(certificateButtonList.firstChild);
+    }
+    switch (screenWidth) {
+      case (1) :
+        certificateWidth = window.innerWidth - 100;
+        certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
+        for (let i = 0; i < certificateItem.length; i++) {
+          let certificateButtonItem = document.createElement('button');
+          certificateButtonItem.classList.add('some-staff__button-item');
+          certificateButtonList.append(certificateButtonItem);
+        };
+        certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
+        certificateItem.forEach((item, i) => {
+          item.style.width = certificateWidth + "px";
+        });
+      case (2) :
+        certificateWidth = window.innerWidth - 160;
+        certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
+        for (let i = 0; i < (certificateItem.length / 2); i++) {
+          let certificateButtonItem = document.createElement('button');
+          certificateButtonItem.classList.add('some-staff__button-item');
+          certificateButtonList.append(certificateButtonItem);
+        };
+    }
     if (window.matchMedia('(max-width: 767px)').matches) {
       certificateWidth = window.innerWidth - 100;
       certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
@@ -1131,7 +1118,7 @@ if (certificateList) {
       };
       if (x < (certificateItem.length - 1)) {
         certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-      };
+      };// остановилс
       if (x == (certificateItem.length - 2)) {
         certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
         certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
@@ -1175,46 +1162,92 @@ if (certificateList) {
   // Переключение слайда по нижним кнопкам
   function certificateButtons() {
     certificateButtonList.childNodes.forEach((item, i) => {
-      if (window.matchMedia('(max-width: 767px)').matches) {
-        item.addEventListener('click', function() {
-          certificateSwitchSlide(i);
-          slideIndex = i;
-        })
-      } else if (window.matchMedia('(max-width: 1023px)').matches) {
-        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+      switch (screenWidth) {
+        case (1) :
           item.addEventListener('click', function() {
             certificateSwitchSlide(i);
             slideIndex = i;
-          })
-        } else {
-          item.addEventListener('click', function() {
-            if (((i + 1) * 2) < certificateItem.length) {
-              certificateSwitchSlide(i*2);
-              slideIndex = i*2;
-            } else {
-              certificateSwitchSlide(certificateItem.length - 2);
-              slideIndex = certificateItem.length - 2;
-            }
-          })
-        }
-      } else if (window.matchMedia('(max-width: 1200px)').matches) {
-        if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
-          item.addEventListener('click', function() {
-            certificateSwitchSlide(i);
-            slideIndex = i;
-          })
-        } else {
-          item.addEventListener('click', function() {
-            if (((i + 1) * 2) < certificateItem.length) {
-              certificateSwitchSlide(i*2);
-              slideIndex = i*2;
-            } else {
-              certificateSwitchSlide(certificateItem.length - 2);
-              slideIndex = certificateItem.length - 2;
-            }
-          })
-        }
+          });
+          break;
+        case (2) :
+          if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+            item.addEventListener('click', function() {
+              certificateSwitchSlide(i);
+              slideIndex = i;
+            })
+          } else {
+            item.addEventListener('click', function() {
+              if (((i + 1) * 2) < certificateItem.length) {
+                certificateSwitchSlide(i*2);
+                slideIndex = i*2;
+              } else {
+                certificateSwitchSlide(certificateItem.length - 2);
+                slideIndex = certificateItem.length - 2;
+              }
+            })
+          };
+          break;
+        case (3) :
+          if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+            item.addEventListener('click', function() {
+              certificateSwitchSlide(i);
+              slideIndex = i;
+            })
+          } else {
+            item.addEventListener('click', function() {
+              if (((i + 1) * 3) < certificateItem.length) {
+                certificateSwitchSlide(i*3);
+                slideIndex = i*3;
+              } else {
+                certificateSwitchSlide(certificateItem.length - 3);
+                slideIndex = certificateItem.length - 3;
+              }
+            })
+          };
+          break;
+        case (4) :
+          break;
       }
+      // if (window.matchMedia('(max-width: 767px)').matches) {
+      //   item.addEventListener('click', function() {
+      //     certificateSwitchSlide(i);
+      //     slideIndex = i;
+      //   })
+      // } else if (window.matchMedia('(max-width: 1023px)').matches) {
+      //   if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+      //     item.addEventListener('click', function() {
+      //       certificateSwitchSlide(i);
+      //       slideIndex = i;
+      //     })
+      //   } else {
+      //     item.addEventListener('click', function() {
+      //       if (((i + 1) * 2) < certificateItem.length) {
+      //         certificateSwitchSlide(i*2);
+      //         slideIndex = i*2;
+      //       } else {
+      //         certificateSwitchSlide(certificateItem.length - 2);
+      //         slideIndex = certificateItem.length - 2;
+      //       }
+      //     })
+      //   }
+      // } else if (window.matchMedia('(max-width: 1200px)').matches) {
+      //   if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
+      //     item.addEventListener('click', function() {
+      //       certificateSwitchSlide(i);
+      //       slideIndex = i;
+      //     })
+      //   } else {
+      //     item.addEventListener('click', function() {
+      //       if (((i + 1) * 2) < certificateItem.length) {
+      //         certificateSwitchSlide(i*2);
+      //         slideIndex = i*2;
+      //       } else {
+      //         certificateSwitchSlide(certificateItem.length - 2);
+      //         slideIndex = certificateItem.length - 2;
+      //       }
+      //     })
+      //   }
+      // }
     });
   }
 

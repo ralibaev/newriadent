@@ -1,12 +1,5 @@
 .ceni {
-  padding-bottom: 20px;
   background-color: #eeeeee;
-  @media (min-width: $tablet-min) {
-    padding-bottom: 30px;
-  }
-  @media (min-width: $laptop-min) {
-    padding-bottom: 50px;
-  }
   &__container {
     padding: 30px 0;
     @media (min-width: $laptop-min) {
@@ -67,6 +60,7 @@
     margin: 3px 0;
     border: none;
     border-radius: 10px;
+    background-color: white;
     overflow: hidden;
     @media (min-width: $laptop-min) {
       margin: 18px 0;
@@ -87,9 +81,9 @@
       flex-direction: column;
       padding: 10px;
       border-bottom: 1px solid #9A9A9A;
-      &:nth-child(2n) {
-        background-color: #eeeeee;
-      }
+      // &:nth-child(2n) {
+      //   background-color: #eeeeee;
+      // }
       &:last-child {
         border-bottom: none;
       }
@@ -178,6 +172,7 @@
     margin-bottom: 10px;
     background-color: white;
     border-radius: 10px;
+    overflow: hidden;
     &:nth-child(1) {
       .ceni__item-img {background-image: url('../img/ceni-item-back1.jpg');}
     }
@@ -230,7 +225,7 @@
     align-items: center;
     width: 100%;
     margin: 0;
-    padding: 15px;
+    padding: 5px 15px;
     box-sizing: border-box;
     font-size: 14px;
     text-align: left;
@@ -238,27 +233,46 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    @media (min-width: $tablet-min) {
+      padding: 10px 20px;
+    }
+    @media (min-width: $laptop-min) {
+      position: relative;
+      height: 70px;
+      padding: 0 25px;
+      font-size: 18px;
+      text-transform: uppercase;
+      z-index: 5;
+      &:hover {
+        background-color: #f9f6ff;
+        // opacity: 0.7;
+      }
+    }
     &::after {
       content: '';
       display: block;
-      min-width: 17px;
-      min-height: 8px;
+      min-width: 40px;
+      min-height: 40px;
       margin-left: 10px;
-      background: url('../img/ceni-arrow.svg') center/cover no-repeat;
+      border-radius: 20px;
+      background: url('../img/ceni-arrow.svg') center/17px no-repeat;
       transition: .3s;
-    }
-    &:hover {
-      background-color: #edeaf5;
     }
     &--show {
       &::after {
         transform: rotate(180deg);
+        @media (min-width: $laptop-min) {
+          background-color: #F1F1F1;
+        }
       }
-    }
-    @media (min-width: $laptop-min) {
-      padding: 25px;
-      font-size: 18px;
-      text-transform: uppercase;
+      &:hover {
+        background-color: transparent;
+        &::after {
+          @media (min-width: $laptop-min) {
+            background-color: #f9f6ff;
+          }
+        }
+      }
     }
   }
   &__item-top {
@@ -268,6 +282,13 @@
     &--show {
       display: flex;
     }
+    @media (min-width: $tablet-min) {
+      flex-direction: row-reverse;
+    }
+    @media (min-width: $laptop-min) {
+      position: relative;
+      flex-direction: row;
+    }
   }
   &__item-img {
     width: 100%;
@@ -275,11 +296,32 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    @media (min-width: $tablet-min) {
+      width: 48%;
+      padding-top: 0;
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, white 0, white 5%, transparent 40%);
+      }
+    }
+    @media (min-width: $laptop-min) {
+      position: absolute;
+      right: 0;
+      top: -70px;
+      height: calc(100% + 70px);
+    }
   }
   &__item-text {
     padding: 0 20px;
     @media (max-width: $phone-max) {
       display: none;
+    }
+    @media (min-width: $tablet-min) {
+      width: 48%;
+      padding: 20px;
     }
   }
   &__table {
@@ -296,6 +338,10 @@
       max-height: 20000px;
       visibility: visible;
     }
+    @media (min-width: $laptop-min) {
+      border: 1px solid black;
+      border-radius: 0 0 10px 10px;
+    }
     tbody {
       display: block;
       width: 100%;
@@ -306,7 +352,7 @@
       padding: 10px;
       border-bottom: 1px solid #9A9A9A;
       &:nth-child(2n) {
-        @media (min-width: $tablet-min) {
+        @media (min-width: $laptop-min) {
           background-color: #eeeeee;
         }
       }
