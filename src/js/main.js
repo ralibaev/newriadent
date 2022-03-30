@@ -816,6 +816,9 @@ if (certificateList) {
   let certificateItem = document.querySelectorAll('.some-staff__certificate-item');
   certificateList.style.width = '' + (certificateItem.length * 100) + '%';
   let certificateWidth;
+  let certificateHeight;
+  let certificateBigWidth;
+  let certificateBigHeight;
   let certificatePrevButton = document.querySelector('.some-staff__button--prev');
   let certificateNextButton = document.querySelector('.some-staff__button--next');
   let certificateButtonList = document.querySelector('.some-staff__button-list');
@@ -835,7 +838,7 @@ if (certificateList) {
         screenWidth = 1; break;
       case (window.matchMedia('(max-width: 1023px)').matches) :
         screenWidth = 2; break;
-      case (window.matchMedia('(max-width: 1200px)').matches) :
+      case (window.matchMedia('(max-width: 1299px)').matches) :
         screenWidth = 3; break;
       default: screenWidth = 4;
     }
@@ -874,6 +877,7 @@ if (certificateList) {
           };
           break;
         case (3) :
+        case (4) :
           if (x < (certificateItem.length - 1)) {
             certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
           };
@@ -932,7 +936,18 @@ if (certificateList) {
   function bigGallery(x) {
     certificateWrapper.classList.add('some-staff__certificate--show');
     popupOverlay.classList.add('popup__overlay--show');
-    certificateWidth = window.innerWidth - 200;
+
+    certificateHeight = certificateList.offsetHeight;
+    certificateWidth = certificateItem[0].offsetWidth;
+    certificateBigWidth = window.innerWidth - 200;
+    certificateBigHeight = certificateBigWidth * certificateHeight / certificateWidth;
+    console.log(certificateBigHeight);
+    console.log(certificateBigWidth);
+    if (certificateBigHeight > document.documentElement.clientHeight) {
+      certificateBigWidth = (document.documentElement.clientHeight * 0.8) * certificateWidth / certificateHeight;
+      console.log(certificateBigWidth);
+    }
+    certificateWidth = certificateBigWidth;
     certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
     while (certificateButtonList.firstChild) {
       certificateButtonList.removeChild(certificateButtonList.firstChild);
@@ -1000,15 +1015,18 @@ if (certificateList) {
               if (slideIndex < (certificateItem.length - 1)) {
                 certificateSwitchSlide(++slideIndex);
               } else {certificateSwitchSlide(slideIndex);};
+              break;
             case (2) :
               if (slideIndex < (certificateItem.length - 2)) {
                 certificateSwitchSlide(++slideIndex);
               } else {certificateSwitchSlide(slideIndex);}
+              break;
             case (3) :
             case (4) :
               if (slideIndex < (certificateItem.length - 3)) {
                 certificateSwitchSlide(++slideIndex);
               } else {certificateSwitchSlide(slideIndex);}
+              break;
           }
         }
       }
@@ -1026,7 +1044,6 @@ if (certificateList) {
             if (item.innerHTML == event.target.parentNode.innerHTML) {slideIndex = i}
           });
           bigGallery(slideIndex);
-          console.log(slideIndex);
           break;
       }
     }
@@ -1038,27 +1055,43 @@ if (certificateList) {
   popupOverlay.addEventListener('click', function() {
     certificateWrapper.classList.remove('some-staff__certificate--show');
     popupOverlay.classList.remove('popup__overlay--show');
-    // if (window.matchMedia('(max-width: 1023px)').matches) {
-    //   if (slideIndex == (certificateItem.length - 1)) {
-    //     riaSlider(--slideIndex);
-    //   } else {
-    //     riaSlider(slideIndex);
-    //   }
-    // };
-    if (slideIndex == (certificateItem.length - 1)) {
-      riaSlider(--slideIndex);
-    } else {
-      riaSlider(slideIndex);
+    switch (screenWidth) {
+      case (1) :
+      case (2) :
+        if (slideIndex == (certificateItem.length - 1)) {
+          riaSlider(--slideIndex);
+        } else {riaSlider(slideIndex);}
+        break;
+      case (3) :
+      case (4) :
+        if (slideIndex == (certificateItem.length - 1)) {
+          riaSlider(--slideIndex);
+        } else if (slideIndex == (certificateItem.length - 2)) {
+          slideIndex -= 2;
+          riaSlider(slideIndex);
+        } else {riaSlider(slideIndex);}
+        break;
     }
   });
   certificateClose.addEventListener('click', function() {
     certificateWrapper.classList.remove('some-staff__certificate--show');
     popupOverlay.classList.remove('popup__overlay--show');
-    if (slideIndex == (certificateItem.length - 1)) {
-      riaSlider(--slideIndex);
-    } else {
-      riaSlider(slideIndex);
-      console.log(slideIndex);
+    switch (screenWidth) {
+      case (1) :
+      case (2) :
+        if (slideIndex == (certificateItem.length - 1)) {
+          riaSlider(--slideIndex);
+        } else {riaSlider(slideIndex);}
+        break;
+      case (3) :
+      case (4) :
+        if (slideIndex == (certificateItem.length - 1)) {
+          slideIndex -= 2;
+          riaSlider(slideIndex);
+        } else if (slideIndex == (certificateItem.length - 2)) {
+          riaSlider(--slideIndex);
+        } else {riaSlider(slideIndex);}
+        break;
     }
   });
 
@@ -1080,6 +1113,7 @@ if (certificateList) {
         certificateItem.forEach((item, i) => {
           item.style.width = certificateWidth + "px";
         });
+        break;
       case (2) :
         certificateWidth = window.innerWidth - 160;
         certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
@@ -1088,74 +1122,59 @@ if (certificateList) {
           certificateButtonItem.classList.add('some-staff__button-item');
           certificateButtonList.append(certificateButtonItem);
         };
-    }
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      certificateWidth = window.innerWidth - 100;
-      certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
-      certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-      while (certificateButtonList.firstChild) {
-        certificateButtonList.removeChild(certificateButtonList.firstChild);
-      }
-      for (let i = 0; i < certificateItem.length; i++) {
-        let certificateButtonItem = document.createElement('button');
-        certificateButtonItem.classList.add('some-staff__button-item');
-        certificateButtonList.append(certificateButtonItem);
-      };
-      certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-      certificateItem.forEach((item, i) => {
-        item.style.width = certificateWidth + "px";
-      });
-    } else if (window.matchMedia('(max-width: 1023px)').matches) {
-      certificateWidth = window.innerWidth - 160;
-      certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
-      while (certificateButtonList.firstChild) {
-        certificateButtonList.removeChild(certificateButtonList.firstChild);
-      };
-      for (let i = 0; i < (certificateItem.length / 2); i++) {
-        let certificateButtonItem = document.createElement('button');
-        certificateButtonItem.classList.add('some-staff__button-item');
-        certificateButtonList.append(certificateButtonItem);
-      };
-      if (x < (certificateItem.length - 1)) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-      };// остановилс
-      if (x == (certificateItem.length - 2)) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-      } else {
-        certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
-      };
-      if ((certificateItem.length % 2) != 0) {
+        if (x < (certificateItem.length - 1)) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
+        };
+        if (x == (certificateItem.length - 2)) {
+          certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+        } else {
+          certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
+        };
         certificateItem.forEach((item, i) => {
           item.style.width = (certificateWidth / 2) + 'px';
         });
-      };
-    } else if (window.matchMedia('(max-width: 1200px)').matches) {
-      certificateWidth = window.innerWidth - 200;
-      certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-      while (certificateButtonList.firstChild) {
-        certificateButtonList.removeChild(certificateButtonList.firstChild);
-      };
-      for (let i = 0; i < (certificateItem.length / 3); i++) {
-        let certificateButtonItem = document.createElement('button');
-        certificateButtonItem.classList.add('some-staff__button-item');
-        certificateButtonList.append(certificateButtonItem);
-      };
-      if (x < (certificateItem.length - 1)) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-      };
-      if ((x == (certificateItem.length - 2)) || (x == (certificateItem.length - 2))) {
-        certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-        certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-      } else {
-        certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
-      };
-      if ((certificateItem.length % 3) != 0) {
+        break;
+      case (3) :
+        certificateWidth = window.innerWidth - 200;
+        certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+        for (let i = 0; i < (certificateItem.length / 3); i++) {
+          let certificateButtonItem = document.createElement('button');
+          certificateButtonItem.classList.add('some-staff__button-item');
+          certificateButtonList.append(certificateButtonItem);
+        };
+        if (x < (certificateItem.length - 1)) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+        };
+        if ((x == (certificateItem.length - 1)) || (x == (certificateItem.length - 2))) {
+          certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+        } else {
+          certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
+        };
         certificateItem.forEach((item, i) => {
           item.style.width = (certificateWidth / 3) + 'px';
         });
-      };
-    } else {}
+        break;
+      case (4) :
+        certificateWidth = 1100;
+        certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
+        for (let i = 0; i < (certificateItem.length / 3); i++) {
+          let certificateButtonItem = document.createElement('button');
+          certificateButtonItem.classList.add('some-staff__button-item');
+          certificateButtonList.append(certificateButtonItem);
+        };
+        if (x < (certificateItem.length - 1)) {
+          certificateList.style.transform = "translateX(-" + (x * (certificateWidth/3)) + "px)";
+        };
+        if ((x == (certificateItem.length - 1)) || (x == (certificateItem.length - 2))) {
+          certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
+        } else {
+          certificateButtonList.childNodes[Math.floor(x / 3)].classList.add('some-staff__button-item--active');
+        };
+        certificateItem.forEach((item, i) => {
+          item.style.width = (certificateWidth / 3) + 'px';
+        });
+        break;
+    }
     certificateButtons();
   };
 
@@ -1188,6 +1207,7 @@ if (certificateList) {
           };
           break;
         case (3) :
+        case (4) :
           if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
             item.addEventListener('click', function() {
               certificateSwitchSlide(i);
@@ -1205,230 +1225,10 @@ if (certificateList) {
             })
           };
           break;
-        case (4) :
-          break;
       }
-      // if (window.matchMedia('(max-width: 767px)').matches) {
-      //   item.addEventListener('click', function() {
-      //     certificateSwitchSlide(i);
-      //     slideIndex = i;
-      //   })
-      // } else if (window.matchMedia('(max-width: 1023px)').matches) {
-      //   if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
-      //     item.addEventListener('click', function() {
-      //       certificateSwitchSlide(i);
-      //       slideIndex = i;
-      //     })
-      //   } else {
-      //     item.addEventListener('click', function() {
-      //       if (((i + 1) * 2) < certificateItem.length) {
-      //         certificateSwitchSlide(i*2);
-      //         slideIndex = i*2;
-      //       } else {
-      //         certificateSwitchSlide(certificateItem.length - 2);
-      //         slideIndex = certificateItem.length - 2;
-      //       }
-      //     })
-      //   }
-      // } else if (window.matchMedia('(max-width: 1200px)').matches) {
-      //   if (certificateWrapper.classList.contains('some-staff__certificate--show')) {
-      //     item.addEventListener('click', function() {
-      //       certificateSwitchSlide(i);
-      //       slideIndex = i;
-      //     })
-      //   } else {
-      //     item.addEventListener('click', function() {
-      //       if (((i + 1) * 2) < certificateItem.length) {
-      //         certificateSwitchSlide(i*2);
-      //         slideIndex = i*2;
-      //       } else {
-      //         certificateSwitchSlide(certificateItem.length - 2);
-      //         slideIndex = certificateItem.length - 2;
-      //       }
-      //     })
-      //   }
-      // }
     });
   }
-
   riaSlider(0);
-
-
-  // if (window.matchMedia('(max-width: 767px)').matches) {
-  //   certificateWidth = window.innerWidth - 100;
-  //   certificateList.style.width = (certificateItem.length * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   for (let i = 0; i < certificateItem.length; i++) {
-  //     let certificateButtonItem = document.createElement('button');
-  //     certificateButtonItem.classList.add('some-staff__button-item');
-  //     certificateButtonList.append(certificateButtonItem);
-  //   };
-  //   certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
-  //   certificateItem.forEach((item, i) => {
-  //     item.style.width = certificateWidth + "px";
-  //   });
-  //   // function certificateSwitchSlide(x) {
-  //   //   event.preventDefault();
-  //   //   certificateButtonList.childNodes.forEach((item, i) => {
-  //   //     if (item.classList.contains('some-staff__button-item--active')) {
-  //   //       item.classList.remove('some-staff__button-item--active');
-  //   //     }
-  //   //   });
-  //   //   certificateList.style.transform = "translateX(-" + (x * certificateWidth) + "px)";
-  //   //   certificateButtonList.childNodes[x].classList.add('some-staff__button-item--active');
-  //   // };
-  //   // function swipeEnd() {
-  //   //   posFinal = posInit - posX1;
-  //   //   certificateList.removeEventListener('touchmove', swipeAction);
-  //   //   certificateList.removeEventListener('touchend', swipeEnd);
-  //   //   certificateList.classList.add('some-staff__certificate-list--tr');
-  //   //
-  //   //   if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
-  //   //     if (posInit < posX1) {
-  //   //       if (slideIndex > 0) {
-  //   //         certificateSwitchSlide(--slideIndex);
-  //   //       } else {
-  //   //         certificateSwitchSlide(slideIndex);
-  //   //       }
-  //   //     } else {
-  //   //       if (slideIndex < (certificateItem.length - 1)) {
-  //   //         certificateSwitchSlide(++slideIndex);
-  //   //       } else {
-  //   //         certificateSwitchSlide(slideIndex);
-  //   //       }
-  //   //     };
-  //   //   } else {
-  //   //     certificateSwitchSlide(slideIndex);
-  //   //   };
-  //   //   if (!posFinal) {
-  //   //     certificateWrapper.classList.add('some-staff__certificate--show');
-  //   //     popupOverlay.classList.add('popup__overlay--show');
-  //   //   }
-  //   // }
-  //   certificateList.addEventListener('touchstart', swipeStart);
-  //   certificateButtonList.childNodes.forEach((item, i) => {
-  //     item.addEventListener('click', function() {
-  //       certificateSwitchSlide(i);
-  //       slideIndex = i;
-  //     })
-  //   });
-  // } else if (window.matchMedia('(max-width: 1023px)').matches) {
-  //   certificateWidth = window.innerWidth - 160;
-  //   certificateList.style.width = ((certificateItem.length / 2) * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   for (let i = 0; i < (certificateItem.length / 2); i++) {
-  //     let certificateButtonItem = document.createElement('button');
-  //     certificateButtonItem.classList.add('some-staff__button-item');
-  //     certificateButtonList.append(certificateButtonItem);
-  //   };
-  //   certificateButtonList.childNodes[0].classList.add('some-staff__button-item--active');
-  //   if ((certificateItem.length % 2) != 0) {
-  //     certificateItem.forEach((item, i) => {
-  //       item.style.width = (certificateWidth / 2) + 'px';
-  //     });
-  //   };
-  //   // function certificateSwitchSlide(x) {
-  //   //   event.preventDefault();
-  //   //   certificateButtonList.childNodes.forEach((item, i) => {
-  //   //     if (item.classList.contains('some-staff__button-item--active')) {
-  //   //       item.classList.remove('some-staff__button-item--active');
-  //   //     }
-  //   //   });
-  //   //   if (x < (certificateItem.length - 1)) {
-  //   //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-  //   //   };
-  //   //   if (x == (certificateItem.length - 2)) {
-  //   //     certificateList.style.transform = "translateX(-" + (x * (certificateWidth/2)) + "px)";
-  //   //     certificateButtonList.lastChild.classList.add('some-staff__button-item--active');
-  //   //   } else {
-  //   //     certificateButtonList.childNodes[Math.floor(x / 2)].classList.add('some-staff__button-item--active');
-  //   //   };
-  //   // };
-  //   // function swipeEnd() {
-  //   //   posFinal = posInit - posX1;
-  //   //   certificateList.removeEventListener('touchmove', swipeAction);
-  //   //   certificateList.removeEventListener('touchend', swipeEnd);
-  //   //   certificateList.classList.add('some-staff__certificate-list--tr');
-  //   //
-  //   //   if (Math.abs(posFinal) > (certificateWidth * 0.3)) {
-  //   //     if (posInit < posX1) {
-  //   //       if (slideIndex > 0) {
-  //   //         certificateSwitchSlide(--slideIndex);
-  //   //       } else {
-  //   //         certificateSwitchSlide(slideIndex);
-  //   //       }
-  //   //     } else {
-  //   //       if (slideIndex < (certificateItem.length - 2)) {
-  //   //         certificateSwitchSlide(++slideIndex);
-  //   //       } else {
-  //   //         certificateSwitchSlide(slideIndex);
-  //   //       }
-  //   //     };
-  //   //   } else {
-  //   //     certificateSwitchSlide(slideIndex);
-  //   //   };
-  //   //   if (!posFinal) {
-  //   //     certificateItem.forEach((item, i) => {
-  //   //       if (item.innerHTML == event.target.parentNode.parentNode.innerHTML) {
-  //   //         slideIndex = i;
-  //   //       }
-  //   //     });
-  //   //     bigGallery(slideIndex);
-  //   //   }
-  //   // }
-  //   certificateList.addEventListener('touchstart', swipeStart);
-  //   certificateButtonList.childNodes.forEach((item, i) => {
-  //     item.addEventListener('click', function() {
-  //       if (((i + 1) * 2) < certificateItem.length) {
-  //         certificateSwitchSlide(i*2);
-  //         slideIndex = i*2;
-  //       } else {
-  //         certificateSwitchSlide(certificateItem.length - 2);
-  //         slideIndex = certificateItem.length - 2;
-  //       }
-  //     })
-  //   })
-  // } else if (window.matchMedia('(max-width: 1200px)').matches) {
-  //   certificateWidth = window.innerWidth - 200;
-  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   if ((certificateItem.length % 3) != 0) {
-  //     certificateItem.forEach((item, i) => {
-  //       item.style.width = (certificateWidth / 3) + 'px';
-  //     });
-  //   };
-  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //   certificateNextButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
-  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-  //     };
-  //   });
-  //   certificatePrevButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-  //   });
-  // } else {
-  //   certificateWidth =  1100;
-  //   certificateList.style.width = ((certificateItem.length / 3) * certificateWidth) + "px";
-  //   certificateList.style.transform = "translateX(0px)";
-  //   if ((certificateItem.length % 3) != 0) {
-  //     certificateItem.forEach((item, i) => {
-  //       item.style.width = (certificateWidth / 3) + 'px';
-  //     });
-  //   };
-  //   certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //   certificateNextButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     if (certificateMove + certificateWidth < certificateWidth * (certificateItem.length / 3)) {
-  //       certificateList.style.transform = "translateX(-" + (certificateMove + certificateWidth) + "px)";
-  //     };
-  //   });
-  //   certificatePrevButton.addEventListener('click', function() {
-  //     certificateMove = parseInt(certificateList.style.transform.match(/\d+/));
-  //     certificateList.style.transform = "translateX(-" + (certificateMove - certificateWidth) + "px)";
-  //   });
-  // }
 }
 
 // Отзывы
