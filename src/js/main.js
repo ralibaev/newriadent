@@ -762,6 +762,31 @@ if (searchInput) {
   }
 };
 
+// Поиск по услугам
+let uslugiInput = document.querySelector('.uslugi__search-input');
+if (uslugiInput) {
+  window.onload = () => {
+    let uslugiList = document.querySelectorAll('.uslugi__item-list ul li a');
+    let searchResults = document.querySelector('.uslugi__search-list ul');
+    let uslugiString;
+    let anotherUslugiString;
+    uslugiInput.oninput = function() {
+      let value = this.value.trim();
+      if (value) {
+        uslugiList.forEach(elem => {
+          uslugiString = elem.innerText.toLowerCase();
+          anotherUslugiString = value.toLowerCase();
+          console.log(uslugiString);
+          console.log(anotherUslugiString);
+          if (uslugiString.search(anotherUslugiString) != -1) {
+            searchResults.appendChild(' ');
+          };
+        })
+      }
+    }
+  }
+}
+
 // Галерея лицензий
 let licensesList = document.querySelectorAll('.pravovaya-informaciya__item');
 if (licensesList.length) {
