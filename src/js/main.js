@@ -768,20 +768,29 @@ if (uslugiInput) {
   window.onload = () => {
     let uslugiList = document.querySelectorAll('.uslugi__item-list ul li a');
     let searchResults = document.querySelector('.uslugi__search-list ul');
+    let uslugiInfo = document.querySelector('.uslugi__search-info')
     let uslugiString;
     let anotherUslugiString;
+    let uslugiCount = 0;
     uslugiInput.oninput = function() {
       let value = this.value.trim();
+      searchResults.innerHTML = '';
+      uslugiInfo.innerHTML = '';
+      uslugiCount = 0;
       if (value) {
         uslugiList.forEach(elem => {
           uslugiString = elem.innerText.toLowerCase();
           anotherUslugiString = value.toLowerCase();
-          console.log(uslugiString);
-          console.log(anotherUslugiString);
           if (uslugiString.search(anotherUslugiString) != -1) {
-            searchResults.appendChild(' ');
+            let searchItem = elem.cloneNode();
+            searchItem.innerHTML = elem.innerText;
+            let finalSearchItem = document.createElement('li');
+            finalSearchItem.appendChild(searchItem);
+            searchResults.appendChild(finalSearchItem);
+            uslugiCount++;
           };
         })
+        uslugiInfo.innerHTML = 'Найдено ' + uslugiCount + ' свопадений';
       }
     }
   }
