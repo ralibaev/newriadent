@@ -344,7 +344,11 @@ header.page-header
           li.main-nav__item
             a(href="/uslugi/po-dms/") ДМС
         .main-nav__search
-          input.main-nav__search-input(type="text" placeholder="Поиск")
+          form(role="search" method="get" id="searchform" action="https://riadent.ru/").main-nav__search-form
+            label(for="s" id="s").screen-reader-text
+            input(type="text" value="" name="s" id="s" placeholder="Поиск").main-nav__search-input
+            input(type="submit" id="searchsubmit" value="найти").main-nav__search-submit
+          //- input.main-nav__search-input(type="text" placeholder="Поиск")
         .main-nav__black
           ul
             li
