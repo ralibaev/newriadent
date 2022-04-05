@@ -1487,11 +1487,13 @@ if (beforeAfter.length) {
 // Поиск по сайту
 let searchSite = document.querySelector('.main-nav__search-input');
 if (searchSite) {
+  let searchForm = document.querySelector('.main-nav__search-form');
+  let searchSubmit = document.querySelector('.main-nav__search-submit');
   searchSite.addEventListener('click', function() {
     searchSite.classList.add('main-nav__search-input--active');
   });
   document.addEventListener('mousedown', (e) => {
-    if (e.target != searchSite) {
+    if (e.target != searchSubmit) {
       searchSite.classList.remove('main-nav__search-input--active');
     }
   })

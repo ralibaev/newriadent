@@ -1,0 +1,39 @@
+.o-kompanii1 {
+  &__wrapper {
+    max-width: 1920px;
+    @media (min-width: $tablet-min) {
+      display: flex;
+    }
+  }
+  &__img {
+    width: 100%;
+    padding-top: 80%;
+    background: url('../img/o-kompanii1-img.jpg') center/cover no-repeat;
+    @media (min-width: $tablet-min) {
+      width: 50%;
+      padding-top: 50%;
+    }
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    @media (min-width: $tablet-min) {
+      width: 50%;
+    }
+    @media (min-width: $laptop-min) {
+      max-width: 600px;
+    }
+    p:first-of-type {
+      @media (min-width: $tablet-min) {
+        font-weight: bold;
+      }
+      span {
+        color: $violet;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+  }
+}
