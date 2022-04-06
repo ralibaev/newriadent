@@ -1,5 +1,41 @@
 .o-kompanii2 {
   &__img {
+    width: 100%;
     max-width: 1920px;
+    padding-top: 80%;
+    background: url('../img/o-kompanii2-img.jpg') top/cover no-repeat;
+    @media (min-width: $tablet-min) {
+      padding-top: 50%;
+    }
+    @media (min-width: $laptop-min) {
+      padding-top: 30%;
+    }
+  }
+  &__container {
+    padding: 20px 0;
+    @media (min-width: $tablet-min) {
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 0;
+    }
+  }
+  &__logo {
+    width: 140px;
+    min-width: 140px;
+    @media (min-width: $tablet-min) {
+      padding: 20px 0;
+      margin-right: 30px;
+    }
+    @media (min-width: $laptop-min) {
+      min-width: 240px;
+    }
+  }
+  &__text {
+    @media (min-width: $laptop-min) {
+      max-width: 720px;
+    }
+    span {
+      color: $violet;
+    }
   }
 }
