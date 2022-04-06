@@ -1,0 +1,49 @@
+.o-kompanii3 {
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+  }
+  &__wrapper {
+    @media (min-width: $tablet-min) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__img {
+    width: 100%;
+    padding-top: 130%;
+    border-radius: 10px;
+    background: url('../img/o-kompanii3-img.jpg') top/cover no-repeat;
+    overflow: hidden;
+    @media (min-width: $tablet-min) {
+      width: 48%;
+      padding-top: 0;
+    }
+    @media (min-width: $laptop-min) {
+      width: 38%;
+    }
+  }
+  &__right {
+    @media (min-width: $tablet-min) {
+      width: 48%;
+    }
+    @media (min-width: $laptop-min) {
+      width: 60%;
+    }
+  }
+  &__text {
+    padding: 20px 0;
+    @media (min-width: $tablet-min) {
+      padding: 0 0 20px;
+    }
+  }
+  &__img2 {
+    width: 100%;
+    padding-top: 70%;
+    border-radius: 10px;
+    background: url('../img/o-kompanii3-img2.jpg') center/cover no-repeat;
+    overflow: hidden;
+  }
+}

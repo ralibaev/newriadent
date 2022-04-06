@@ -1,0 +1,91 @@
+.o-kompanii4 {
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $tablet-min) {
+      display: flex;
+      justify-content: space-between;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+  }
+  &__title {
+    @media (min-width: $tablet-min) {
+      width: 40%;
+    }
+  }
+  &__text {
+    @media (min-width: $tablet-min) {
+      width: 60%;
+    }
+  }
+  &__text-item {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    @media (min-width: $tablet-min) {
+      padding: 10px 0;
+    }
+    @media (min-width: $laptop-min) {
+      padding: 20px 0;
+    }
+    &:last-child {
+      border-bottom: 1px solid black;
+    }
+    svg {
+      min-width: 10px;
+      width: 10px;
+      height: 10px;
+      margin-top: 20px;
+      margin-right: 20px;
+      @media (min-width: $tablet-min) {
+        min-width: 15px;
+        width: 15px;
+        height: 15px;
+      }
+      @media (min-width: $laptop-min) {
+        min-width: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &__link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 240px;
+    height: 60px;
+    margin: 30px auto 0;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 50%;
+      transition: 0.3s ease;
+    }
+    &::before {
+      transform: rotate(3deg);
+      // animation: 4s infinite 0s plannedWiggle linear;
+    }
+    &::after {
+      transform: rotate(-3deg);
+      // animation: 4s infinite 2s plannedWiggle linear;
+    }
+    &:hover {
+      opacity: 0.7;
+    }
+    a {
+      font-size: 14px;
+      color: black;
+      text-decoration: none;
+    }
+  }
+}

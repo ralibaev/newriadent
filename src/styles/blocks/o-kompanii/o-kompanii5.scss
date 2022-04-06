@@ -1,0 +1,119 @@
+.o-kompanii5 {
+  &__container {
+    padding: 30px 0;
+    @media (min-width: $laptop-min) {
+      padding: 50px 0;
+    }
+  }
+  &__images {
+    @media (min-width: $tablet-min) {
+      display: flex;
+      justify-content: space-between;
+    }
+    h3 {
+      text-transform: uppercase;
+      // border-bottom: 1px solid black;
+    }
+  }
+  &__2022, &__2023 {
+    padding: 20px 0;
+    @media (min-width: $tablet-min) {
+      width: 48%;
+    }
+  }
+  &__2022 {
+    @media (min-width: $laptop-min) {
+      width: 38%;
+    }
+  }
+  &__2023 {
+    @media (min-width: $laptop-min) {
+      width: 60%;
+    }
+  }
+  &__p {
+    @media (min-width: $tablet-min) {
+      height: 48px;
+    }
+  }
+  &__2022-topimg, &__2022-bottomimg1, &__2022-bottomimg2, &__2023-leftimg, &__2023-rightimg1, &__2023-rightimg2 {
+    width: 100%;
+    padding-top: 35%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    @media (min-width: $laptop-min) {
+      margin-bottom: 20px;
+    }
+  }
+  &__2022-topimg {
+    margin-top: 30px;
+    background: url('../img/o-kompanii5-img1.jpg') center/cover no-repeat;
+    @media (min-width: $laptop-min) {
+      margin-top: 0;
+      padding-top: 50%;
+    }
+  }
+  &__2022-bottomimg {
+    @media (min-width: $laptop-min) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+  &__2022-bottomimg1 {
+    background: url('../img/o-kompanii5-img2.jpg') center/cover no-repeat;
+    @media (min-width: $laptop-min) {
+      width: 45%;
+      padding-top: 45%;
+    }
+  }
+  &__2022-bottomimg2 {
+    background: url('../img/o-kompanii5-img3.jpg') center/cover no-repeat;
+    @media (min-width: $laptop-min) {
+      width: 50%;
+      padding-top: 50%;
+    }
+  }
+  &__2023-images {
+    @media (min-width: $laptop-min) {
+      display: flex;
+      justify-content: space-between;
+      height: 500px;
+    }
+    @media (min-width: $scaf) {
+      height: 600px;
+    }
+  }
+  &__2023-leftimg {
+    margin-top: 30px;
+    background: url('../img/o-kompanii5-img4.jpg') center/cover no-repeat;
+    @media (min-width: $laptop-min) {
+      width: 36%;
+      margin-top: 0;
+    }
+  }
+  &__2023-rightimg {
+    @media (min-width: $laptop-min) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 60%;
+      height: 100%;
+    }
+  }
+  &__2023-rightimg1 {
+    background: url('../img/o-kompanii5-img5.jpg') center/cover no-repeat;
+    @media (min-width: $laptop-min) {
+      height: 46%;
+      padding-top: 0;
+    }
+  }
+  &__2023-rightimg2 {
+    background: url('../img/o-kompanii5-img6.jpg') center/cover no-repeat;
+    @media (min-width: $laptop-min) {
+      height: 46%;
+      padding-top: 0;
+    }
+  }
+}
