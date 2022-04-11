@@ -1502,18 +1502,36 @@ if (searchSite) {
 // Риаквиз
 let riaQuiz = document.querySelector('.riaquiz');
 if (riaQuiz) {
+  setTimeout(function() {
+    riaQuiz.classList.add('riaquiz--visible');
+  }, 3000);
   let riaQuizBegin = document.querySelector('.riaquiz__begin');
+  let riaQuizBottom = document.querySelector('.riaquiz__bottom');
   let riaQuizClose = document.querySelector('.riaquiz__close');
   let riaQuizStart = document.querySelector('.riaquiz__button-start');
   riaQuizBegin.addEventListener('click', function() {
+    riaQuizBottom.style.display = 'block';
     riaQuiz.classList.add('riaquiz--show');
+    // setTimeout(function() {
+      // riaQuizBegin.classList.remove('animate__fadeInUp');
+    //   riaQuizBegin.classList.add('animate__backOutLeft');
+      // riaQuizBottom.classList.remove('animate__fadeInUp');
+    //   riaQuizBottom.classList.add('animate__backOutLeft');
+    // }, 1000);
   });
   riaQuizClose.addEventListener('click', function() {
+    riaQuizBegin.style.display = 'flex';
     riaQuiz.classList.remove('riaquiz--show');
     riaQuiz.classList.remove('riaquiz--questions');
   });
   riaQuizStart.addEventListener('click', function() {
+    riaQuizBegin.classList.add('animate__fadeOutUp');
+    riaQuizBottom.classList.add('animate__fadeOutDown');
     riaQuiz.classList.add('riaquiz--questions');
+    setTimeout(function() {
+      riaQuizBegin.style.display = 'none';
+      riaQuizBottom.style.display = 'none';
+    }, 300)
   });
   let questionsList = document.querySelector('.riaquiz__questions-list');
   let questionsWidth = 900;

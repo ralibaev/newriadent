@@ -2,13 +2,18 @@
   position: fixed;
   left: 20px;
   bottom: 20px;
+  display: none;
   width: 300px;
   max-width: 360px;
   height: 100px;
   box-shadow: 0 15px 10px -15px rgba(0, 0, 0, 0.1), 1px 2px 20px rgba(0, 0, 0, 0.1);
   z-index: 100;
+  transition: all .3s ease;
   @media (min-width: $tablet-min) {
     height: 200px;
+  }
+  &--visible {
+    display: block;
   }
   &--show {
     height: 500px;
@@ -17,6 +22,7 @@
     }
     .riaquiz__begin {
       height: 200px;
+      cursor: auto;
       &::after, p, button {
         display: none;
       }
@@ -31,7 +37,8 @@
   }
   &--questions {
     .riaquiz__begin, .riaquiz__bottom {
-      display: none;
+      // transform: translateX(-100%);
+      // display: none;
     }
     .riaquiz__questions {
       display: block;
@@ -54,6 +61,8 @@
     box-sizing: border-box;
     background: url('../img/riaquiz-back.jpg') center/cover no-repeat;
     cursor: pointer;
+    // transition: all .3s ease;
+    animation-duration: 0.5s;
     @media (min-width: $tablet-min) {
       height: 200px;
     }
@@ -82,10 +91,19 @@
       z-index: 105;
     }
   }
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   &__bottom {
     display: none;
     padding: 10px;
     box-sizing: border-box;
+    // transition: all .3s ease;
+    animation-duration: 0.5s;
     // background-color: white;
     h2, p, .riaquiz__adress {
       text-align: center;
@@ -116,6 +134,7 @@
   &__questions {
     display: none;
     height: 100%;
+    animation-duration: 1s;
   }
   &__questions-list {
     display: flex;
@@ -281,20 +300,22 @@
   &__close {
     display: none;
     position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 20px;
-    height: 20px;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
     border: none;
-    background-color: transparent;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 110;
+    transition: all 0.3s ease;
     &::before, &::after {
       content: '';
       position: absolute;
-      left: 0;
-      top: 9px;
+      left: 2px;
+      top: 11px;
       display: block;
-      width: 100%;
+      width: 80%;
       height: 2px;
       background-color: black;
     }
@@ -303,6 +324,11 @@
     }
     &::after {
       transform: rotate(45deg);
+    }
+    &:hover {
+      &::before, &::after {
+        background-color: white;
+      }
     }
   }
 }
