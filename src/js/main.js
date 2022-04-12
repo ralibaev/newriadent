@@ -1504,11 +1504,18 @@ let riaQuiz = document.querySelector('.riaquiz');
 if (riaQuiz) {
   setTimeout(function() {
     riaQuiz.classList.add('riaquiz--visible');
-  }, 3000);
+  }, 10000);
+  setTimeout(function() {
+    if (!riaQuiz.classList.contains('riaquiz--questions')) {
+      riaQuizBottom.style.display = 'block';
+    };
+    riaQuiz.classList.add('riaquiz--show');
+  }, 20000);
   let riaQuizBegin = document.querySelector('.riaquiz__begin');
   let riaQuizBottom = document.querySelector('.riaquiz__bottom');
   let riaQuizClose = document.querySelector('.riaquiz__close');
   let riaQuizStart = document.querySelector('.riaquiz__button-start');
+  console.log(getComputedStyle(riaQuizBottom).display);
   riaQuizBegin.addEventListener('click', function() {
     riaQuizBottom.style.display = 'block';
     riaQuiz.classList.add('riaquiz--show');
@@ -1521,6 +1528,7 @@ if (riaQuiz) {
   });
   riaQuizClose.addEventListener('click', function() {
     riaQuizBegin.style.display = 'flex';
+    riaQuizBottom.style.display = 'none';
     riaQuiz.classList.remove('riaquiz--show');
     riaQuiz.classList.remove('riaquiz--questions');
   });
