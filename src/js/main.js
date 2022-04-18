@@ -1515,7 +1515,6 @@ if (riaQuiz) {
   let riaQuizBottom = document.querySelector('.riaquiz__bottom');
   let riaQuizClose = document.querySelector('.riaquiz__close');
   let riaQuizStart = document.querySelector('.riaquiz__button-start');
-  console.log(getComputedStyle(riaQuizBottom).display);
   riaQuizBegin.addEventListener('click', function() {
     riaQuizBottom.style.display = 'block';
     riaQuiz.classList.add('riaquiz--show');
