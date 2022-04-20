@@ -823,22 +823,22 @@ if (licensesList.length) {
     let licenseNumber = licenseShowed.querySelector('img').attributes.src.textContent;
     licenseNumber = parseInt(licenseNumber.match(/\d+/));
     if (licenseNumber == 1) {
-      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license' + (licensesList.length) + '.webp';
-      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license' + (licensesList.length) + '.jpg';
+      licenseShowed.querySelector('source').attributes.srcset.textContent = '/wp-content/uploads/img/license' + (licensesList.length) + '.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = '/wp-content/uploads/img/license' + (licensesList.length) + '.jpg';
     } else {
-      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license' + (licenseNumber - 1) + '.webp';
-      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license' + (licenseNumber - 1) + '.jpg';
+      licenseShowed.querySelector('source').attributes.srcset.textContent = '/wp-content/uploads/img/license' + (licenseNumber - 1) + '.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = '/wp-content/uploads/img/license' + (licenseNumber - 1) + '.jpg';
     }
   });
   licenseNextButton.addEventListener('click', function() {
     let licenseNumber = licenseShowed.querySelector('img').attributes.src.textContent;
     licenseNumber = parseInt(licenseNumber.match(/\d+/));
     if (licenseNumber == 5) {
-      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license1.webp';
-      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license1.jpg';
+      licenseShowed.querySelector('source').attributes.srcset.textContent = '/wp-content/uploads/img/license1.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = '/wp-content/uploads/img/license1.jpg';
     } else {
-      licenseShowed.querySelector('source').attributes.srcset.textContent = 'img/license' + (licenseNumber + 1) + '.webp';
-      licenseShowed.querySelector('img').attributes.src.textContent = 'img/license' + (licenseNumber + 1) + '.jpg';
+      licenseShowed.querySelector('source').attributes.srcset.textContent = '/wp-content/uploads/img/license' + (licenseNumber + 1) + '.webp';
+      licenseShowed.querySelector('img').attributes.src.textContent = '/wp-content/uploads/img/license' + (licenseNumber + 1) + '.jpg';
     }
   });
 }

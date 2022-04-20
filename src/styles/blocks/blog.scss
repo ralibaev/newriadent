@@ -1,0 +1,30 @@
+.blog {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    @media (min-width: $tablet-min) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  &__video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    @media (min-width: $tablet-min) {
+      width: 48%;
+      padding-top: 27%;
+    }
+    iframe {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+  &__text {
+    @media (min-width: $tablet-min) {
+      width: 48%;
+    }
+  }
+}

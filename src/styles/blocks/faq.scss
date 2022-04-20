@@ -60,8 +60,8 @@
   }
 }
 body.webp .faq {
-  background: url('../img/faq-background.webp') top right no-repeat;
+  background: url('../img/faq-background.webp') top right/cover no-repeat;
 }
 body.no-webp .faq {
-  background: url('../img/faq-background.png') top right no-repeat;
+  background: url('../img/faq-background.png') top right/cover no-repeat;
 }
