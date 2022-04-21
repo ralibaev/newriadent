@@ -88,6 +88,17 @@
         background-color: #848484;
       }
     }
+    &:nth-child(6) {
+      .akcii__img {
+        background: url('../img/akcii6-mobile.jpg') center/cover no-repeat;
+        @media (min-width: $tablet-min) {
+          background: url('../img/akcii6.jpg') center/cover no-repeat;
+        }
+      }
+      .akcii__akciya, .akcii__text a {
+        background-color: #252760;
+      }
+    }
   }
   &__img {
     width: 100%;
