@@ -581,7 +581,7 @@ if (reviewSlides.length) {
           reviewWrapper.style.transform = "translateX(-" + (reviewMove + reviewWidth) + "px)";
         }
       } else {
-        if (reviewMove <= reviewWidth) {
+        if (reviewMove < reviewWidth) {
           reviewWrapper.style.transform = "translateX(-" + (reviewMove + reviewWidth) + "px)";
         }
       }
@@ -589,6 +589,14 @@ if (reviewSlides.length) {
     reviewButtonPrev.addEventListener('click', function() {
       reviewMove = parseInt(reviewWrapper.style.transform.match(/\d+/));
       reviewWrapper.style.transform = "translateX(-" + (reviewMove - reviewWidth) + "px)";
+    });
+  } else {
+    let reviewsTops = document.querySelectorAll('.reviews__top');
+    let reviewsShadow = document.querySelector('.reviews__shadow');
+    reviewsTops.forEach((item, i) => {
+      item.addEventListener('click', function() {
+        reviewsShadow.style.transform = "translateX(" + (i * 100) + "%)";
+      })
     });
   }
 }
