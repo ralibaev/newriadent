@@ -592,11 +592,25 @@ if (reviewSlides.length) {
     });
   } else {
     let reviewsTops = document.querySelectorAll('.reviews__top');
+    let reviewsReviews = document.querySelectorAll('.reviews__reviews');
     let reviewsShadow = document.querySelector('.reviews__shadow');
+    reviewsReviews.forEach((item, i) => {
+      reviewsReviews[i].style.height = reviewsReviews[i].querySelector('.reviews__rev-list').offsetHeight + 'px';
+      console.log(reviewsReviews[i].querySelector('.reviews__rev-list').offsetHeight);
+      reviewsReviews[i].querySelector('.reviews__rev-list').style.left = (100 * i) + '%';
+    });
     reviewsTops.forEach((item, i) => {
       item.addEventListener('click', function() {
         reviewsShadow.style.transform = "translateX(" + (i * 100) + "%)";
-      })
+        reviewsReviews.forEach((some) => {
+          some.classList.remove('reviews__reviews--active');
+        });
+        reviewsReviews[i].classList.add('reviews__reviews--active');
+        reviewsReviews.forEach((some) => {
+          some.querySelector('.reviews__rev-list').style.transform = "translateX(-" + (i * 100) + "%)";
+          some.style.height = reviewsReviews[i].querySelector('.reviews__rev-list').offsetHeight + 'px';
+        });
+      });
     });
   }
 }

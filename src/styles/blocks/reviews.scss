@@ -54,7 +54,7 @@
     overflow: hidden;
     @media (min-width: $scaf) {
       margin-top: 0;
-      overflow: visible;
+      padding-top: 50px;
     }
   }
   &__wrapper {
@@ -80,7 +80,7 @@
     left: 0;
     width: 25%;
     height: 250px;
-    box-shadow: 0 -20px 10px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 -20px 7px 7px rgba(0,0,0,0.1);
     border-radius: 10px 10px 0 0;
     transition: all .5s ease;
     @media (min-width: $scaf) {
@@ -134,9 +134,57 @@
       font-size: 30px;
     }
   }
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    a {
+      color: $violet;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
   &__reviews {
     @media (min-width: $scaf) {
-      width: 400%;
+      width: 100%;
+      overflow: hidden;
+      transition: all .3s ease;
+    }
+    &--active {
+      // position: absolute;
+      // left: 0;
+      @media (min-width: $scaf) {
+        .reviews__rev-list {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__rev-list {
+    transition: all 1s ease;
+    @media (min-width: $scaf) {
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      opacity: 0;
+      // transform: translateY(-100%);
+      // opacity: 0;
+    }
+  }
+  &__rev-item {
+    @media (max-width: 1199px) {
+      &:nth-of-type(n+4) {
+        display: none;
+      }
+    }
+    @media (min-width: $scaf) {
+      width: 50%;
     }
   }
 }
