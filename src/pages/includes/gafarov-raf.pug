@@ -11,15 +11,18 @@ section.some-staff
         p <strong>Стаж работы:</strong> 14 лет
         p <strong>Специализация:</strong> адентия, абсцесс полости рта, альвеолит после удаления зуба, абсцесс зуба, вывих зуба, дисфункция ВНЧС, дистопия зуба
     hr
-    .some-staff__certificate-wrapper
-      button.some-staff__button.some-staff__button--prev
-      .some-staff__certificate-inner
-        .some-staff__certificate-list
-          .some-staff__certificate-item
-            picture
-              source(type="image/webp" srcset="img/gafarov-certificate1.webp")
-              img(src="img/gafarov-certificate1.jpg" alt="")
-      button.some-staff__button.some-staff__button--next
+    .some-staff__certificate
+      .some-staff__certificate-wrapper
+        button.some-staff__button.some-staff__button--prev
+        .some-staff__certificate-inner
+          .some-staff__certificate-list.some-staff__certificate-list--tr
+            .some-staff__certificate-item
+              picture
+                source(type="image/webp" srcset="img/gafarov-certificate1.webp")
+                img(src="img/gafarov-certificate1.jpg" alt="")
+        button.some-staff__button.some-staff__button--next
+        button.some-staff__close
+      .some-staff__button-list
     .some-staff__running
       h2.some-staff__running-title.some-staff__running-title--1
         span Сертификаты
